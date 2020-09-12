@@ -37,6 +37,26 @@ class CardianTests: XCTestCase {
             XCTAssertNotNil(height)
         }
     }
+    
+    func testBreakdownView() {
+        
+        let heightMetric = Metric(name: "height", displayName: "Height", type: "quantity", description: "This is your height.")
+        let weightMetric = Metric(name: "weight", displayName: "Weight", type: "quantity", description: "This is your weignt.")
+        let heartRateMetric = Metric(name: "heartrate", displayName: "Heart Rate", type: "quantity", description: "This is your heart rate.")
+        let bodyTemperatureMetric = Metric(name: "bodytemp", displayName: "Body Temperature", type: "quantity", description: "This is your body temperature.")
+        let sleepCountMetric = Metric(name: "sleepcount", displayName: "Sleep Count", type: "quantity", description: "This is your sleep count.")
+        let stepCountMetric = Metric(name: "stepcount", displayName: "Step Count", type: "quantity", description: "This is your step count.")
+
+        let metricCollection = MetricCollection(name: "Body Measurements", metrics: [heightMetric, weightMetric, heartRateMetric, bodyTemperatureMetric])
+        let metricCollection2 = MetricCollection(name: "Advanced Measurements", metrics: [sleepCountMetric, stepCountMetric])
+
+        let breakdownDataSource = BreakdownDataSource(title: "Understand How Your Data is Used", description: "Below is a breakdown of the data being gathered by this app and a description of how it is used.", actionTitle: "Continue", MetricCollections: [metricCollection, metricCollection2])
+
+        let breakdownViewController = DataBreakdownController(dataSource: breakdownDataSource)
+        
+        
+        
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

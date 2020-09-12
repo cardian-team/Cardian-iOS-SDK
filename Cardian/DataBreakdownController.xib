@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DataBreakdownController" customModule="Cardian" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="x0P-b4-K3H" id="7Cv-vR-bcZ"/>
+                <outlet property="dismissButton" destination="7dP-7N-3Sm" id="yHu-kj-fqC"/>
+                <outlet property="headingLabel" destination="fYk-qz-sA7" id="pMn-4g-GGP"/>
+                <outlet property="iconImage" destination="4jb-CS-uSr" id="HMz-fK-JEB"/>
+                <outlet property="mainActionButton" destination="DSL-rY-KsG" id="r4y-aL-Qwa"/>
+                <outlet property="tableView" destination="Bu9-li-6c0" id="ICX-UN-WO9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dP-7N-3Sm">
+                    <rect key="frame" x="328" y="20" width="31" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="cAc-ys-23E"/>
+                        <constraint firstAttribute="width" constant="31" id="tfs-h5-reZ"/>
+                    </constraints>
+                    <state key="normal" image="dismissbutton"/>
+                    <connections>
+                        <action selector="dismissViewTappedWithSender:" destination="-1" eventType="touchUpInside" id="2kA-yT-SAG"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartBubble" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-CS-uSr">
+                    <rect key="frame" x="155" y="62" width="65" height="57"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="65" id="AAu-GP-0Cm"/>
+                        <constraint firstAttribute="height" constant="57" id="d0p-a2-nsj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Understand How Your Data is Used" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYk-qz-sA7">
+                    <rect key="frame" x="35" y="149" width="305" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="iPj-q8-NLH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Below is a breakdown of the data being used by this app and a description of how it's used." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0P-b4-K3H">
+                    <rect key="frame" x="46" y="178" width="283" height="57"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="SJK-VQ-9lC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bu9-li-6c0">
+                    <rect key="frame" x="16" y="245" width="343" height="302"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSL-rY-KsG">
+                    <rect key="frame" x="16" y="572" width="343" height="60"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Sn2-lT-e1Y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fYk-qz-sA7" secondAttribute="trailing" constant="35" id="1MB-Eb-u83"/>
+                <constraint firstItem="x0P-b4-K3H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="46" id="Ahg-7i-Ib8"/>
+                <constraint firstItem="Bu9-li-6c0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ERf-Aa-CAe"/>
+                <constraint firstItem="fYk-qz-sA7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="FOH-mW-jcW"/>
+                <constraint firstItem="7dP-7N-3Sm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="IO4-BI-mBZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DSL-rY-KsG" secondAttribute="bottom" constant="35" id="K2Q-n5-le8"/>
+                <constraint firstItem="DSL-rY-KsG" firstAttribute="top" secondItem="Bu9-li-6c0" secondAttribute="bottom" constant="25" id="MLM-32-AQ7"/>
+                <constraint firstItem="DSL-rY-KsG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="OHE-mM-OA5"/>
+                <constraint firstItem="4jb-CS-uSr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="62" id="VSb-P4-Eo7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bu9-li-6c0" secondAttribute="trailing" constant="16" id="fe1-Gc-7sG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7dP-7N-3Sm" secondAttribute="trailing" constant="16" id="gAA-di-cqU"/>
+                <constraint firstItem="Bu9-li-6c0" firstAttribute="top" secondItem="x0P-b4-K3H" secondAttribute="bottom" constant="10" id="jmY-jL-ga8"/>
+                <constraint firstItem="4jb-CS-uSr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kZY-gW-jqw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="x0P-b4-K3H" secondAttribute="trailing" constant="46" id="muW-8z-ILi"/>
+                <constraint firstItem="x0P-b4-K3H" firstAttribute="top" secondItem="fYk-qz-sA7" secondAttribute="bottom" constant="8" id="pF1-kv-b3q"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DSL-rY-KsG" secondAttribute="trailing" constant="16" id="rnQ-hF-sCI"/>
+                <constraint firstItem="fYk-qz-sA7" firstAttribute="top" secondItem="4jb-CS-uSr" secondAttribute="bottom" constant="30" id="w8a-mz-mCF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="144.3778110944528"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="HeartBubble" width="150" height="150"/>
+        <image name="dismissbutton" width="31" height="31"/>
+    </resources>
+</document>

@@ -11,6 +11,16 @@
 		726CAA3E25011E0C00428D6F /* CardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA3D25011E0C00428D6F /* CardianTests.swift */; };
 		726CAA4025011E0C00428D6F /* Cardian.h in Headers */ = {isa = PBXBuildFile; fileRef = 726CAA3225011E0C00428D6F /* Cardian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA4A2501232300428D6F /* HealthKitManager.swift */; };
+		72881DE9250CBD5A00942FC7 /* DisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */; };
+		72881DEA250CBD5A00942FC7 /* DisclosureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */; };
+		72D9CA4A2509E96C009016D7 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA492509E96C009016D7 /* Models.swift */; };
+		72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA4D2509EC36009016D7 /* BaseViewController.swift */; };
+		72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA4F2509ED03009016D7 /* DataBreakdownController.swift */; };
+		72D9CA522509ED03009016D7 /* DataBreakdownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D9CA502509ED03009016D7 /* DataBreakdownController.xib */; };
+		72D9CA582509F0AC009016D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D9CA572509F0AC009016D7 /* Assets.xcassets */; };
+		72D9CA5A2509F38C009016D7 /* CardianStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA592509F38C009016D7 /* CardianStyler.swift */; };
+		72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA5B2509F571009016D7 /* Declarations.swift */; };
+		72D9CA5D250A0AAF009016D7 /* DataBreakdownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D9CA502509ED03009016D7 /* DataBreakdownController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +41,15 @@
 		726CAA3D25011E0C00428D6F /* CardianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianTests.swift; sourceTree = "<group>"; };
 		726CAA3F25011E0C00428D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		726CAA4A2501232300428D6F /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureViewController.swift; sourceTree = "<group>"; };
+		72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureViewController.xib; sourceTree = "<group>"; };
+		72D9CA492509E96C009016D7 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		72D9CA4D2509EC36009016D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		72D9CA4F2509ED03009016D7 /* DataBreakdownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBreakdownController.swift; sourceTree = "<group>"; };
+		72D9CA502509ED03009016D7 /* DataBreakdownController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataBreakdownController.xib; sourceTree = "<group>"; };
+		72D9CA572509F0AC009016D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72D9CA592509F38C009016D7 /* CardianStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianStyler.swift; sourceTree = "<group>"; };
+		72D9CA5B2509F571009016D7 /* Declarations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Declarations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +93,11 @@
 			isa = PBXGroup;
 			children = (
 				726CAA3225011E0C00428D6F /* Cardian.h */,
+				72D9CA492509E96C009016D7 /* Models.swift */,
+				72D9CA5B2509F571009016D7 /* Declarations.swift */,
+				72D9CA592509F38C009016D7 /* CardianStyler.swift */,
+				72D9CA572509F0AC009016D7 /* Assets.xcassets */,
+				72D9CA4C2509EC15009016D7 /* ViewControllers */,
 				726CAA492501231300428D6F /* HealthKit */,
 				726CAA3325011E0C00428D6F /* Info.plist */,
 			);
@@ -95,6 +119,42 @@
 				726CAA4A2501232300428D6F /* HealthKitManager.swift */,
 			);
 			name = HealthKit;
+			sourceTree = "<group>";
+		};
+		72D9CA4B2509EBE9009016D7 /* CardianConnect */ = {
+			isa = PBXGroup;
+			children = (
+				72D9CA532509ED0A009016D7 /* Controllers */,
+				72D9CA542509ED27009016D7 /* Views */,
+			);
+			name = CardianConnect;
+			sourceTree = "<group>";
+		};
+		72D9CA4C2509EC15009016D7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				72D9CA4D2509EC36009016D7 /* BaseViewController.swift */,
+				72D9CA4B2509EBE9009016D7 /* CardianConnect */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		72D9CA532509ED0A009016D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */,
+				72D9CA4F2509ED03009016D7 /* DataBreakdownController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		72D9CA542509ED27009016D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */,
+				72D9CA502509ED03009016D7 /* DataBreakdownController.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +250,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D9CA582509F0AC009016D7 /* Assets.xcassets in Resources */,
+				72881DEA250CBD5A00942FC7 /* DisclosureViewController.xib in Resources */,
+				72D9CA522509ED03009016D7 /* DataBreakdownController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D9CA5D250A0AAF009016D7 /* DataBreakdownController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +271,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */,
 				726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */,
+				72D9CA4A2509E96C009016D7 /* Models.swift in Sources */,
+				72D9CA5A2509F38C009016D7 /* CardianStyler.swift in Sources */,
+				72881DE9250CBD5A00942FC7 /* DisclosureViewController.swift in Sources */,
+				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
+				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +432,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Cardian/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -373,7 +444,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -389,6 +460,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Cardian/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +471,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
