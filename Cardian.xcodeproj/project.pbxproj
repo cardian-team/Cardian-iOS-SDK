@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */; };
+		72335B6D2512C21E00014CE9 /* MetricDescriptionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */; };
+		72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */; };
+		72335B712512CAAA00014CE9 /* ConfirmationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72335B6F2512CAAA00014CE9 /* ConfirmationController.xib */; };
+		72335B732512D47C00014CE9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B722512D47C00014CE9 /* AuthManager.swift */; };
 		726CAA3925011E0C00428D6F /* Cardian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; };
 		726CAA3E25011E0C00428D6F /* CardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA3D25011E0C00428D6F /* CardianTests.swift */; };
 		726CAA4025011E0C00428D6F /* Cardian.h in Headers */ = {isa = PBXBuildFile; fileRef = 726CAA3225011E0C00428D6F /* Cardian.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDescriptionController.swift; sourceTree = "<group>"; };
+		72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetricDescriptionController.xib; sourceTree = "<group>"; };
+		72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
+		72335B6F2512CAAA00014CE9 /* ConfirmationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationController.xib; sourceTree = "<group>"; };
+		72335B722512D47C00014CE9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		726CAA2F25011E0C00428D6F /* Cardian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cardian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		726CAA3225011E0C00428D6F /* Cardian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cardian.h; sourceTree = "<group>"; };
 		726CAA3325011E0C00428D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				726CAA4A2501232300428D6F /* HealthKitManager.swift */,
+				72335B722512D47C00014CE9 /* AuthManager.swift */,
 			);
 			name = HealthKit;
 			sourceTree = "<group>";
@@ -144,6 +155,8 @@
 			children = (
 				72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */,
 				72D9CA4F2509ED03009016D7 /* DataBreakdownController.swift */,
+				72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */,
+				72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +166,8 @@
 			children = (
 				72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */,
 				72D9CA502509ED03009016D7 /* DataBreakdownController.xib */,
+				72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */,
+				72335B6F2512CAAA00014CE9 /* ConfirmationController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -250,8 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72335B6D2512C21E00014CE9 /* MetricDescriptionController.xib in Resources */,
 				72D9CA582509F0AC009016D7 /* Assets.xcassets in Resources */,
 				72881DEA250CBD5A00942FC7 /* DisclosureViewController.xib in Resources */,
+				72335B712512CAAA00014CE9 /* ConfirmationController.xib in Resources */,
 				72D9CA522509ED03009016D7 /* DataBreakdownController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,13 +288,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */,
 				72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */,
 				726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */,
 				72D9CA4A2509E96C009016D7 /* Models.swift in Sources */,
 				72D9CA5A2509F38C009016D7 /* CardianStyler.swift in Sources */,
 				72881DE9250CBD5A00942FC7 /* DisclosureViewController.swift in Sources */,
 				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
+				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
+				72335B732512D47C00014CE9 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

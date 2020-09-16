@@ -65,6 +65,11 @@ class DisclosureViewController: BaseViewController {
         self.present(breakdownController, animated: true, completion: nil)
     }
     
+    func linkTapped() {
+        guard let url = URL(string: dataSource.agreementLink) else { return }
+        UIApplication.shared.open(url)
+    }
+    
     override func viewSetup() {
         super.viewSetup()
         headingLabel.text = dataSource.heading
@@ -78,4 +83,5 @@ class DisclosureViewController: BaseViewController {
     
     // MARK: IBActions
     @IBAction func mainActionButtonTapped() { self.mainActionTapped() }
+    @IBAction func linkButtonTapped() { self.linkTapped() }
 }

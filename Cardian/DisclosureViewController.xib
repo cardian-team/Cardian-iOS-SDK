@@ -145,7 +145,7 @@ to connect to Apple Health</string>
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-3U-Ny3">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-3U-Ny3">
                             <rect key="frame" x="20" y="27" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="55u-vI-WWt"/>
@@ -199,7 +199,7 @@ to connect to Apple Health</string>
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bLj-gC-5Yk">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="bLj-gC-5Yk">
                             <rect key="frame" x="20" y="27" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="u3Z-Zk-CNN"/>
@@ -256,6 +256,7 @@ to connect to Apple Health</string>
         </view>
     </objects>
     <resources>
+        <image name="Check" width="18" height="14"/>
         <image name="Ellipse" width="200" height="48"/>
         <image name="dismissbutton" width="31" height="31"/>
     </resources>
