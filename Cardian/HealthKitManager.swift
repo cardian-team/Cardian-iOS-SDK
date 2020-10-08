@@ -72,6 +72,63 @@ struct HealthBirthdate {
 
 // MARK: Class
 class HealthKitManager {
+    
+    public static func healthKitObjectTranslater(metric: Metric) -> HKObjectType? {
+        switch metric.name {
+        case "height":
+                return HKQuantityType.quantityType(forIdentifier: .height)
+        case "weight":
+                return HKQuantityType.quantityType(forIdentifier: .bodyMass)
+        case "heartRate":
+                return HKQuantityType.quantityType(forIdentifier: .heartRate)
+        case "bodyTemperature":
+                return HKQuantityType.quantityType(forIdentifier: .bodyTemperature)
+        case "oxygenSaturation":
+                return HKQuantityType.quantityType(forIdentifier: .oxygenSaturation)
+        case "bloodPressureDiasystolic":
+                return HKQuantityType.quantityType(forIdentifier: .bloodPressureDiastolic)
+        case "bloodPressureSystolic":
+                return HKQuantityType.quantityType(forIdentifier: .bloodPressureSystolic)
+        case "bodyFatPercentage":
+            return HKQuantityType.quantityType(forIdentifier: .bodyFatPercentage)
+        case "bloodGlucose":
+            return HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
+        case "stepCount":
+            return HKQuantityType.quantityType(forIdentifier: .stepCount)
+        case "distanceWalkingRunning":
+            return HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
+        case "distanceCycling":
+            return HKQuantityType.quantityType(forIdentifier: .distanceCycling)
+        case "basalEnergyBurned":
+            return HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)
+        case "activeEnergyBurned":
+            return HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
+        case "flightsClimbed":
+            return HKQuantityType.quantityType(forIdentifier: .flightsClimbed)
+        case "sleepAnalysis":
+            return HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)
+        case "workouts":
+            return HKObjectType.workoutType()
+        case "uvExposure":
+            return HKQuantityType.quantityType(forIdentifier: .uvExposure)
+        case "biologicalSex":
+            return HKCharacteristicType.characteristicType(forIdentifier: .biologicalSex)
+        case "dateOfBirth":
+            return HKCharacteristicType.characteristicType(forIdentifier: .dateOfBirth)
+        case "menstrualFlow":
+            return HKCategoryType.categoryType(forIdentifier: .menstrualFlow)
+        case "cervicalMucusQuality":
+            return HKCategoryType.categoryType(forIdentifier: .cervicalMucusQuality)
+        case "basalBodyTemperature":
+            return HKQuantityType.quantityType(forIdentifier: .basalBodyTemperature)
+        case "ovulationTestResults":
+            return HKCategoryType.categoryType(forIdentifier: .ovulationTestResult)
+        default:
+            print("Health metric either not supported or found.")
+            return nil
+        }
+    }
+    
     /// Returns whether health data is available on this device.
     public static func dataAvailable() -> Bool { return HKHealthStore.isHealthDataAvailable() }
     

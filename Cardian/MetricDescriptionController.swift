@@ -31,11 +31,22 @@ class MetricDescriptionController: BaseViewController {
     // MARK: Functions
     init(dataSource: MetricDescriptionDataSource) {
         self.dataSource = dataSource
-        super.init(nibName: MetricDescriptionController.nibName, bundle: nil)
+        let bundle = Bundle(for: MetricDescriptionController.self)
+        super.init(nibName: MetricDescriptionController.nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewSetup() {

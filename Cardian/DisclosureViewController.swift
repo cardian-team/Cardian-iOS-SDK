@@ -16,6 +16,8 @@ struct DisclosureDataSource {
     let description2: String
     let actionTitle: String
     let agreementLink: String
+    let authMetrics: AuthMetrics
+    let metricCollections: [MetricCollection]
 }
 
 class DisclosureViewController: BaseViewController {
@@ -40,7 +42,8 @@ class DisclosureViewController: BaseViewController {
     // MARK: Functions
     init(dataSource: DisclosureDataSource, showDismissButton: Bool = true) {
         self.dataSource = dataSource
-        super.init(nibName: DisclosureViewController.nibName, bundle: nil)
+        let bundle = Bundle(for: DisclosureViewController.self)
+        super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {
@@ -48,21 +51,17 @@ class DisclosureViewController: BaseViewController {
     }
     
     func mainActionTapped() {
-        // TODO: Get Data Breakdown Controller data, the following data source is temporary
-        
-        let heightMetric = Metric(name: "height", displayName: "Height", type: "quantity", description: "This is your height.")
-        let weightMetric = Metric(name: "weight", displayName: "Weight", type: "quantity", description: "This is your weignt.")
-        let heartRateMetric = Metric(name: "heartrate", displayName: "Heart Rate", type: "quantity", description: "This is your heart rate.")
-        let bodyTemperatureMetric = Metric(name: "bodytemp", displayName: "Body Temperature", type: "quantity", description: "This is your body temperature.")
-        let sleepCountMetric = Metric(name: "sleepcount", displayName: "Sleep Count", type: "quantity", description: "This is your sleep count.")
-        let stepCountMetric = Metric(name: "stepcount", displayName: "Step Count", type: "quantity", description: "This is your step count.")
-
-        let metricCollection = MetricCollection(name: "Body Measurements", metrics: [heightMetric, weightMetric, heartRateMetric, bodyTemperatureMetric])
-        let metricCollection2 = MetricCollection(name: "Advanced Measurements", metrics: [sleepCountMetric, stepCountMetric])
-        let tempDataSource = BreakdownDataSource(title: "Understand How Your Data is Used", description: "Below is the breakdown of the data being used by this app and a description of how it's being used.", actionTitle: "Continue", MetricCollections: [metricCollection, metricCollection2])
-        
-        let breakdownController = DataBreakdownController(dataSource: tempDataSource)
-        self.present(breakdownController, animated: true, completion: nil)
+        // TODO: This is temporary and should probably be in the API class
+        let breakdownDataSource = BreakdownDataSource(title: "Understand How Your Data is Used",
+                                                      description: "Below is a breakdown of the data being gathered by this app and a description of how it is used.",
+                                                      actionTitle: "Continue",
+                                                      authMetrics: dataSource.authMetrics,
+                                                      MetricCollections: dataSource.metricCollections)
+        let breakdownController = DataBreakdownController(dataSource: breakdownDataSource)
+        breakdownController.modalPresentationStyle = .fullScreen
+        breakdownController.modalTransitionStyle = .crossDissolve
+        if #available(iOS 13.0, *) { breakdownController.isModalInPresentation = true }
+        self.navigationController?.pushViewController(breakdownController, animated: true)
     }
     
     func linkTapped() {

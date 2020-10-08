@@ -9,8 +9,8 @@
 import Foundation
 
 struct AuthMetrics: Codable {
-    let read: [String]
-    let write: [String]
+    let read: [Metric]
+    let write: [Metric]
 }
 
 struct Metric: Codable {

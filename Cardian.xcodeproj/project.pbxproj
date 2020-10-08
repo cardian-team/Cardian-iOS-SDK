@@ -12,10 +12,13 @@
 		72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */; };
 		72335B712512CAAA00014CE9 /* ConfirmationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72335B6F2512CAAA00014CE9 /* ConfirmationController.xib */; };
 		72335B732512D47C00014CE9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B722512D47C00014CE9 /* AuthManager.swift */; };
+		72335B7525133E9000014CE9 /* Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B7425133E9000014CE9 /* Connect.swift */; };
+		72335B7725133F2B00014CE9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B7625133F2B00014CE9 /* API.swift */; };
 		726CAA3925011E0C00428D6F /* Cardian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; };
 		726CAA3E25011E0C00428D6F /* CardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA3D25011E0C00428D6F /* CardianTests.swift */; };
 		726CAA4025011E0C00428D6F /* Cardian.h in Headers */ = {isa = PBXBuildFile; fileRef = 726CAA3225011E0C00428D6F /* Cardian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA4A2501232300428D6F /* HealthKitManager.swift */; };
+		726FF3B8252F8AE60070D083 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72ED30F32516C22900ACFBD2 /* HealthKit.framework */; };
 		72881DE9250CBD5A00942FC7 /* DisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */; };
 		72881DEA250CBD5A00942FC7 /* DisclosureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */; };
 		72D9CA4A2509E96C009016D7 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA492509E96C009016D7 /* Models.swift */; };
@@ -26,6 +29,24 @@
 		72D9CA5A2509F38C009016D7 /* CardianStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA592509F38C009016D7 /* CardianStyler.swift */; };
 		72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9CA5B2509F571009016D7 /* Declarations.swift */; };
 		72D9CA5D250A0AAF009016D7 /* DataBreakdownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D9CA502509ED03009016D7 /* DataBreakdownController.xib */; };
+		72ED30B92516AF8D00ACFBD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30B82516AF8D00ACFBD2 /* AppDelegate.swift */; };
+		72ED30BB2516AF8D00ACFBD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30BA2516AF8D00ACFBD2 /* SceneDelegate.swift */; };
+		72ED30BD2516AF8D00ACFBD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30BC2516AF8D00ACFBD2 /* ViewController.swift */; };
+		72ED30C02516AF8D00ACFBD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30BE2516AF8D00ACFBD2 /* Main.storyboard */; };
+		72ED30C22516AF8E00ACFBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30C12516AF8E00ACFBD2 /* Assets.xcassets */; };
+		72ED30C52516AF8E00ACFBD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30C32516AF8E00ACFBD2 /* LaunchScreen.storyboard */; };
+		72ED30CB2516AFA200ACFBD2 /* Cardian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; };
+		72ED30CC2516AFA200ACFBD2 /* Cardian.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		72ED30D82516B0F100ACFBD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30D72516B0F100ACFBD2 /* AppDelegate.m */; };
+		72ED30DB2516B0F200ACFBD2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30DA2516B0F200ACFBD2 /* SceneDelegate.m */; };
+		72ED30DE2516B0F200ACFBD2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30DD2516B0F200ACFBD2 /* ViewController.m */; };
+		72ED30E12516B0F200ACFBD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30DF2516B0F200ACFBD2 /* Main.storyboard */; };
+		72ED30E32516B0F200ACFBD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30E22516B0F200ACFBD2 /* Assets.xcassets */; };
+		72ED30E62516B0F200ACFBD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72ED30E42516B0F200ACFBD2 /* LaunchScreen.storyboard */; };
+		72ED30E92516B0F200ACFBD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED30E82516B0F200ACFBD2 /* main.m */; };
+		72ED30ED2516B3B300ACFBD2 /* Cardian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; };
+		72ED30EE2516B3B300ACFBD2 /* Cardian.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		72ED30F42516C22900ACFBD2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72ED30F32516C22900ACFBD2 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +57,46 @@
 			remoteGlobalIDString = 726CAA2E25011E0C00428D6F;
 			remoteInfo = Cardian;
 		};
+		72ED30CD2516AFA200ACFBD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 726CAA2625011E0C00428D6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 726CAA2E25011E0C00428D6F;
+			remoteInfo = Cardian;
+		};
+		72ED30EF2516B3B300ACFBD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 726CAA2625011E0C00428D6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 726CAA2E25011E0C00428D6F;
+			remoteInfo = Cardian;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72ED30CF2516AFA200ACFBD2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				72ED30CC2516AFA200ACFBD2 /* Cardian.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72ED30F12516B3B300ACFBD2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				72ED30EE2516B3B300ACFBD2 /* Cardian.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDescriptionController.swift; sourceTree = "<group>"; };
@@ -44,6 +104,8 @@
 		72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
 		72335B6F2512CAAA00014CE9 /* ConfirmationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationController.xib; sourceTree = "<group>"; };
 		72335B722512D47C00014CE9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		72335B7425133E9000014CE9 /* Connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect.swift; sourceTree = "<group>"; };
+		72335B7625133F2B00014CE9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		726CAA2F25011E0C00428D6F /* Cardian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cardian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		726CAA3225011E0C00428D6F /* Cardian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cardian.h; sourceTree = "<group>"; };
 		726CAA3325011E0C00428D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +113,7 @@
 		726CAA3D25011E0C00428D6F /* CardianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianTests.swift; sourceTree = "<group>"; };
 		726CAA3F25011E0C00428D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		726CAA4A2501232300428D6F /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		726FF3B7252F8AE60070D083 /* CardianTestAppObC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardianTestAppObC.entitlements; sourceTree = "<group>"; };
 		72881DE7250CBD5A00942FC7 /* DisclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureViewController.swift; sourceTree = "<group>"; };
 		72881DE8250CBD5A00942FC7 /* DisclosureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureViewController.xib; sourceTree = "<group>"; };
 		72D9CA492509E96C009016D7 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -60,6 +123,28 @@
 		72D9CA572509F0AC009016D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D9CA592509F38C009016D7 /* CardianStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianStyler.swift; sourceTree = "<group>"; };
 		72D9CA5B2509F571009016D7 /* Declarations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Declarations.swift; sourceTree = "<group>"; };
+		72ED30B62516AF8D00ACFBD2 /* CardianTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardianTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72ED30B82516AF8D00ACFBD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		72ED30BA2516AF8D00ACFBD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		72ED30BC2516AF8D00ACFBD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		72ED30BF2516AF8D00ACFBD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72ED30C12516AF8E00ACFBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72ED30C42516AF8E00ACFBD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		72ED30C62516AF8E00ACFBD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72ED30D42516B0F100ACFBD2 /* CardianTestAppObC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardianTestAppObC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72ED30D62516B0F100ACFBD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		72ED30D72516B0F100ACFBD2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		72ED30D92516B0F100ACFBD2 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		72ED30DA2516B0F200ACFBD2 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		72ED30DC2516B0F200ACFBD2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		72ED30DD2516B0F200ACFBD2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		72ED30E02516B0F200ACFBD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72ED30E22516B0F200ACFBD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72ED30E52516B0F200ACFBD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		72ED30E72516B0F200ACFBD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72ED30E82516B0F200ACFBD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		72ED30F22516C22900ACFBD2 /* CardianTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardianTestApp.entitlements; sourceTree = "<group>"; };
+		72ED30F32516C22900ACFBD2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +163,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72ED30B32516AF8D00ACFBD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30CB2516AFA200ACFBD2 /* Cardian.framework in Frameworks */,
+				72ED30F42516C22900ACFBD2 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72ED30D12516B0F100ACFBD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30ED2516B3B300ACFBD2 /* Cardian.framework in Frameworks */,
+				726FF3B8252F8AE60070D083 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -86,7 +189,10 @@
 			children = (
 				726CAA3125011E0C00428D6F /* Cardian */,
 				726CAA3C25011E0C00428D6F /* CardianTests */,
+				72ED30B72516AF8D00ACFBD2 /* CardianTestApp */,
+				72ED30D52516B0F100ACFBD2 /* CardianTestAppObC */,
 				726CAA3025011E0C00428D6F /* Products */,
+				72ED30CA2516AFA200ACFBD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +201,8 @@
 			children = (
 				726CAA2F25011E0C00428D6F /* Cardian.framework */,
 				726CAA3825011E0C00428D6F /* CardianTests.xctest */,
+				72ED30B62516AF8D00ACFBD2 /* CardianTestApp.app */,
+				72ED30D42516B0F100ACFBD2 /* CardianTestAppObC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +214,8 @@
 				72D9CA492509E96C009016D7 /* Models.swift */,
 				72D9CA5B2509F571009016D7 /* Declarations.swift */,
 				72D9CA592509F38C009016D7 /* CardianStyler.swift */,
+				72335B7625133F2B00014CE9 /* API.swift */,
+				72335B7425133E9000014CE9 /* Connect.swift */,
 				72D9CA572509F0AC009016D7 /* Assets.xcassets */,
 				72D9CA4C2509EC15009016D7 /* ViewControllers */,
 				726CAA492501231300428D6F /* HealthKit */,
@@ -172,6 +282,48 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		72ED30B72516AF8D00ACFBD2 /* CardianTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				72ED30F22516C22900ACFBD2 /* CardianTestApp.entitlements */,
+				72ED30B82516AF8D00ACFBD2 /* AppDelegate.swift */,
+				72ED30BA2516AF8D00ACFBD2 /* SceneDelegate.swift */,
+				72ED30BC2516AF8D00ACFBD2 /* ViewController.swift */,
+				72ED30BE2516AF8D00ACFBD2 /* Main.storyboard */,
+				72ED30C12516AF8E00ACFBD2 /* Assets.xcassets */,
+				72ED30C32516AF8E00ACFBD2 /* LaunchScreen.storyboard */,
+				72ED30C62516AF8E00ACFBD2 /* Info.plist */,
+			);
+			path = CardianTestApp;
+			sourceTree = "<group>";
+		};
+		72ED30CA2516AFA200ACFBD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72ED30F32516C22900ACFBD2 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72ED30D52516B0F100ACFBD2 /* CardianTestAppObC */ = {
+			isa = PBXGroup;
+			children = (
+				726FF3B7252F8AE60070D083 /* CardianTestAppObC.entitlements */,
+				72ED30D62516B0F100ACFBD2 /* AppDelegate.h */,
+				72ED30D72516B0F100ACFBD2 /* AppDelegate.m */,
+				72ED30D92516B0F100ACFBD2 /* SceneDelegate.h */,
+				72ED30DA2516B0F200ACFBD2 /* SceneDelegate.m */,
+				72ED30DC2516B0F200ACFBD2 /* ViewController.h */,
+				72ED30DD2516B0F200ACFBD2 /* ViewController.m */,
+				72ED30DF2516B0F200ACFBD2 /* Main.storyboard */,
+				72ED30E22516B0F200ACFBD2 /* Assets.xcassets */,
+				72ED30E42516B0F200ACFBD2 /* LaunchScreen.storyboard */,
+				72ED30E72516B0F200ACFBD2 /* Info.plist */,
+				72ED30E82516B0F200ACFBD2 /* main.m */,
+			);
+			path = CardianTestAppObC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -222,13 +374,51 @@
 			productReference = 726CAA3825011E0C00428D6F /* CardianTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		72ED30B52516AF8D00ACFBD2 /* CardianTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72ED30C92516AF8E00ACFBD2 /* Build configuration list for PBXNativeTarget "CardianTestApp" */;
+			buildPhases = (
+				72ED30B22516AF8D00ACFBD2 /* Sources */,
+				72ED30B32516AF8D00ACFBD2 /* Frameworks */,
+				72ED30B42516AF8D00ACFBD2 /* Resources */,
+				72ED30CF2516AFA200ACFBD2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72ED30CE2516AFA200ACFBD2 /* PBXTargetDependency */,
+			);
+			name = CardianTestApp;
+			productName = CardianTestApp;
+			productReference = 72ED30B62516AF8D00ACFBD2 /* CardianTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		72ED30D32516B0F100ACFBD2 /* CardianTestAppObC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72ED30EA2516B0F200ACFBD2 /* Build configuration list for PBXNativeTarget "CardianTestAppObC" */;
+			buildPhases = (
+				72ED30D02516B0F100ACFBD2 /* Sources */,
+				72ED30D12516B0F100ACFBD2 /* Frameworks */,
+				72ED30D22516B0F100ACFBD2 /* Resources */,
+				72ED30F12516B3B300ACFBD2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72ED30F02516B3B300ACFBD2 /* PBXTargetDependency */,
+			);
+			name = CardianTestAppObC;
+			productName = CardianTestAppObC;
+			productReference = 72ED30D42516B0F100ACFBD2 /* CardianTestAppObC.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		726CAA2625011E0C00428D6F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1170;
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = Curaegis;
 				TargetAttributes = {
@@ -238,6 +428,12 @@
 					};
 					726CAA3725011E0C00428D6F = {
 						CreatedOnToolsVersion = 11.6;
+					};
+					72ED30B52516AF8D00ACFBD2 = {
+						CreatedOnToolsVersion = 11.7;
+					};
+					72ED30D32516B0F100ACFBD2 = {
+						CreatedOnToolsVersion = 11.7;
 					};
 				};
 			};
@@ -256,6 +452,8 @@
 			targets = (
 				726CAA2E25011E0C00428D6F /* Cardian */,
 				726CAA3725011E0C00428D6F /* CardianTests */,
+				72ED30B52516AF8D00ACFBD2 /* CardianTestApp */,
+				72ED30D32516B0F100ACFBD2 /* CardianTestAppObC */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +479,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72ED30B42516AF8D00ACFBD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30C52516AF8E00ACFBD2 /* LaunchScreen.storyboard in Resources */,
+				72ED30C22516AF8E00ACFBD2 /* Assets.xcassets in Resources */,
+				72ED30C02516AF8D00ACFBD2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72ED30D22516B0F100ACFBD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30E62516B0F200ACFBD2 /* LaunchScreen.storyboard in Resources */,
+				72ED30E32516B0F200ACFBD2 /* Assets.xcassets in Resources */,
+				72ED30E12516B0F200ACFBD2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -294,9 +512,11 @@
 				72D9CA4A2509E96C009016D7 /* Models.swift in Sources */,
 				72D9CA5A2509F38C009016D7 /* CardianStyler.swift in Sources */,
 				72881DE9250CBD5A00942FC7 /* DisclosureViewController.swift in Sources */,
+				72335B7525133E9000014CE9 /* Connect.swift in Sources */,
 				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
 				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
+				72335B7725133F2B00014CE9 /* API.swift in Sources */,
 				72335B732512D47C00014CE9 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +529,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72ED30B22516AF8D00ACFBD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30BD2516AF8D00ACFBD2 /* ViewController.swift in Sources */,
+				72ED30B92516AF8D00ACFBD2 /* AppDelegate.swift in Sources */,
+				72ED30BB2516AF8D00ACFBD2 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72ED30D02516B0F100ACFBD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72ED30DE2516B0F200ACFBD2 /* ViewController.m in Sources */,
+				72ED30D82516B0F100ACFBD2 /* AppDelegate.m in Sources */,
+				72ED30E92516B0F200ACFBD2 /* main.m in Sources */,
+				72ED30DB2516B0F200ACFBD2 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -317,7 +558,52 @@
 			target = 726CAA2E25011E0C00428D6F /* Cardian */;
 			targetProxy = 726CAA3A25011E0C00428D6F /* PBXContainerItemProxy */;
 		};
+		72ED30CE2516AFA200ACFBD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 726CAA2E25011E0C00428D6F /* Cardian */;
+			targetProxy = 72ED30CD2516AFA200ACFBD2 /* PBXContainerItemProxy */;
+		};
+		72ED30F02516B3B300ACFBD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 726CAA2E25011E0C00428D6F /* Cardian */;
+			targetProxy = 72ED30EF2516B3B300ACFBD2 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		72ED30BE2516AF8D00ACFBD2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72ED30BF2516AF8D00ACFBD2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		72ED30C32516AF8E00ACFBD2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72ED30C42516AF8E00ACFBD2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		72ED30DF2516B0F200ACFBD2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72ED30E02516B0F200ACFBD2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		72ED30E42516B0F200ACFBD2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72ED30E52516B0F200ACFBD2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		726CAA4125011E0C00428D6F /* Debug */ = {
@@ -533,6 +819,84 @@
 			};
 			name = Release;
 		};
+		72ED30C72516AF8E00ACFBD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TCCEYF5TG;
+				INFOPLIST_FILE = CardianTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.CardianTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72ED30C82516AF8E00ACFBD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TCCEYF5TG;
+				INFOPLIST_FILE = CardianTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.CardianTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		72ED30EB2516B0F200ACFBD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CardianTestAppObC/CardianTestAppObC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TCCEYF5TG;
+				INFOPLIST_FILE = CardianTestAppObC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.CardianTestAppObC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72ED30EC2516B0F200ACFBD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CardianTestAppObC/CardianTestAppObC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3TCCEYF5TG;
+				INFOPLIST_FILE = CardianTestAppObC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.CardianTestAppObC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -559,6 +923,24 @@
 			buildConfigurations = (
 				726CAA4725011E0C00428D6F /* Debug */,
 				726CAA4825011E0C00428D6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72ED30C92516AF8E00ACFBD2 /* Build configuration list for PBXNativeTarget "CardianTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72ED30C72516AF8E00ACFBD2 /* Debug */,
+				72ED30C82516AF8E00ACFBD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72ED30EA2516B0F200ACFBD2 /* Build configuration list for PBXNativeTarget "CardianTestAppObC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72ED30EB2516B0F200ACFBD2 /* Debug */,
+				72ED30EC2516B0F200ACFBD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

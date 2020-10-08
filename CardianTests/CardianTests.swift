@@ -24,6 +24,15 @@ class CardianTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
+    func testAuthorization() {
+        let heightMetric = Metric(name: "height", displayName: "Height", type: "quantityMetric", description: "Your current recorded height")
+        let weightMetric = Metric(name: "weight", displayName: "Weight", type: "quantityMetric", description: "Your current recorded body mass")
+        let authMetrics = AuthMetrics(read: [heightMetric, weightMetric], write: [heightMetric])
+        AuthManager.authorize(authMetrics: authMetrics) { (success, error) in
+            XCTAssertTrue(success)
+        }
+    }
+    
     func testGetWeight() {
         HealthKitManager.getCurrentWeight { (weight) in
             print("WEIGHT: \(weight ?? -1.0)")
@@ -53,8 +62,6 @@ class CardianTests: XCTestCase {
         let breakdownDataSource = BreakdownDataSource(title: "Understand How Your Data is Used", description: "Below is a breakdown of the data being gathered by this app and a description of how it is used.", actionTitle: "Continue", MetricCollections: [metricCollection, metricCollection2])
 
         let breakdownViewController = DataBreakdownController(dataSource: breakdownDataSource)
-        
-        
         
     }
 

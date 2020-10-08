@@ -12,6 +12,7 @@ struct BreakdownDataSource {
     let title: String
     let description: String
     let actionTitle: String
+    let authMetrics: AuthMetrics
     let MetricCollections: [MetricCollection]
 }
 
@@ -36,7 +37,8 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     // MARK: Functions
     init(dataSource: BreakdownDataSource, showDismissButton: Bool = true) {
         self.dataSource = dataSource
-        super.init(nibName: DataBreakdownController.nibName, bundle: nil)
+        let bundle = Bundle(for: DataBreakdownController.self)
+        super.init(nibName: DataBreakdownController.nibName, bundle: bundle)
         
 //        self.iconImage.image = icon
 //        self.dismissButton.isHidden = !showDismissButton
@@ -49,6 +51,7 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewSetup()
+        tableView.reloadData()
     }
     
     override func viewSetup() {
@@ -60,13 +63,28 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     }
     
     func mainActionTapped() {
-        // TODO: To be implemented
+        AuthManager.authorize(authMetrics: dataSource.authMetrics) { (success, error) in
+            guard error == nil else {
+                print("ERROR: could not authorize with HealthKit: \(error!.localizedDescription)")
+                return
+            }
+            print("Successfully authorized with HealthKit")
+            DispatchQueue.main.async {
+                let confirmationController = ConfirmationController()
+                confirmationController.modalPresentationStyle = .fullScreen
+                confirmationController.modalTransitionStyle = .crossDissolve
+                if #available(iOS 13.0, *) { confirmationController.isModalInPresentation = true }
+                self.navigationController?.pushViewController(confirmationController, animated: true)
+            }
+        }
     }
     
     // MARK: TableView
-    
     func tableViewSetup() {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,6 +97,21 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return dataSource.MetricCollections[section].name
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+            headerView.textLabel?.textColor = .black
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        view.tintColor = .white
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50 // TODO: No random numbers
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,8 +127,12 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let metricDescription = dataSource.MetricCollections[indexPath.section].metrics[indexPath.row].description else { return }
-        // TODO: Description view should be presented here...
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let metric = dataSource.MetricCollections[indexPath.section].metrics[indexPath.row]
+        guard let metricDescription = metric.description else { return }
+        let dataSource = MetricDescriptionDataSource(title: metric.displayName, description: metricDescription, privacyLink: "https://cardian.io") // TODO: This is temporary obviously
+        let descriptionController = MetricDescriptionController(dataSource: dataSource)
+        self.navigationController?.pushViewController(descriptionController, animated: true)
         print("Selected metric description: \(metricDescription)")
     }
     

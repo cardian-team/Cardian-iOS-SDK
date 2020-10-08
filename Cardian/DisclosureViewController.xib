@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -46,9 +47,9 @@ to connect to Apple Health</string>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swC-vk-dFb">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swC-vk-dFb">
                     <rect key="frame" x="16" y="550" width="343" height="60"/>
-                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemRedColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="wlv-YH-R7c"/>
                     </constraints>
@@ -56,8 +57,11 @@ to connect to Apple Health</string>
                     <state key="normal" title="Continue">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="mainActionButtonTapped" destination="-1" eventType="touchUpInside" id="xls-1j-jtm"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mx-ps-zwP">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mx-ps-zwP">
                     <rect key="frame" x="40" y="618" width="295" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="29" id="alq-Pw-vWd"/>
@@ -66,25 +70,21 @@ to connect to Apple Health</string>
                     <state key="normal" title="By continuing, you agree to the Cardian User Agreement">
                         <color key="titleColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="linkButtonTapped" destination="-1" eventType="touchUpInside" id="ZKm-LP-ohD"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UP7-cZ-bK3">
                     <rect key="frame" x="38" y="59" width="298" height="126"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CvS-BB-onu">
-                            <rect key="frame" x="108.5" y="0.0" width="81" height="81"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="81" id="1jz-w8-Uqm"/>
-                                <constraint firstAttribute="height" constant="81" id="Q6u-eW-4aV"/>
-                            </constraints>
-                        </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-M9-5Ub">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stretch" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-M9-5Ub">
                             <rect key="frame" x="0.0" y="76" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="NqL-uj-rwQ"/>
                                 <constraint firstAttribute="height" constant="50" id="yWd-2Y-7LL"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7h8-53-eVL">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Device" translatesAutoresizingMaskIntoConstraints="NO" id="7h8-53-eVL">
                             <rect key="frame" x="248" y="76" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="TNM-Vz-c9m"/>
@@ -97,8 +97,15 @@ to connect to Apple Health</string>
                                 <constraint firstAttribute="height" constant="48" id="MeK-vc-LgE"/>
                             </constraints>
                         </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartBubble" translatesAutoresizingMaskIntoConstraints="NO" id="CvS-BB-onu">
+                            <rect key="frame" x="108.5" y="0.0" width="81" height="81"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="81" id="1jz-w8-Uqm"/>
+                                <constraint firstAttribute="height" constant="81" id="Q6u-eW-4aV"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="fW3-dv-4cf" firstAttribute="top" secondItem="UP7-cZ-bK3" secondAttribute="top" constant="22" id="CfP-lv-OcI"/>
                         <constraint firstAttribute="bottom" secondItem="Ep9-M9-5Ub" secondAttribute="bottom" id="ERg-GN-7ja"/>
@@ -153,7 +160,7 @@ to connect to Apple Health</string>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="fc1-3U-Ny3" firstAttribute="top" secondItem="BdO-pr-Wys" secondAttribute="top" constant="27" id="AjN-mp-kG4"/>
                         <constraint firstItem="IAn-aF-I1o" firstAttribute="top" secondItem="BdO-pr-Wys" secondAttribute="top" constant="6" id="Hp1-Bi-WaV"/>
@@ -207,7 +214,7 @@ to connect to Apple Health</string>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80.5" id="4Nb-8M-AmV"/>
                         <constraint firstItem="mgJ-ai-mD0" firstAttribute="leading" secondItem="bLj-gC-5Yk" secondAttribute="trailing" constant="26" id="8pg-iU-Oct"/>
@@ -222,7 +229,8 @@ to connect to Apple Health</string>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="BdO-pr-Wys" firstAttribute="top" secondItem="x3R-ku-wFV" secondAttribute="bottom" constant="30" id="17T-3A-HFh"/>
                 <constraint firstItem="UP7-cZ-bK3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="59" id="5ld-E8-qnF"/>
@@ -251,13 +259,21 @@ to connect to Apple Health</string>
                 <constraint firstItem="x3R-ku-wFV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="mNJ-iR-zLh"/>
                 <constraint firstItem="UP7-cZ-bK3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="38" id="tqP-On-YhV"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="144.3778110944528"/>
         </view>
     </objects>
     <resources>
         <image name="Check" width="18" height="14"/>
+        <image name="Device" width="368" height="357"/>
         <image name="Ellipse" width="200" height="48"/>
+        <image name="HeartBubble" width="150" height="150"/>
+        <image name="Stretch" width="398" height="357"/>
         <image name="dismissbutton" width="31" height="31"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
