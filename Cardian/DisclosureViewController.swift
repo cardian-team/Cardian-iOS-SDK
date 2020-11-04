@@ -8,18 +8,6 @@
 
 import UIKit
 
-struct DisclosureDataSource {
-    let heading: String
-    let title1: String
-    let description1: String
-    let title2: String
-    let description2: String
-    let actionTitle: String
-    let agreementLink: String
-    let authMetrics: AuthMetrics
-    let metricCollections: [MetricCollection]
-}
-
 class DisclosureViewController: BaseViewController {
     
     // MARK: IBOutlets
@@ -37,10 +25,10 @@ class DisclosureViewController: BaseViewController {
     public static let nibName = "DisclosureViewController"
     
     // MARK: Variables
-    var dataSource: DisclosureDataSource
+    var dataSource: ConnectUIConfiguration
     
     // MARK: Functions
-    init(dataSource: DisclosureDataSource, showDismissButton: Bool = true) {
+    init(dataSource: ConnectUIConfiguration, showDismissButton: Bool = true) {
         self.dataSource = dataSource
         let bundle = Bundle(for: DisclosureViewController.self)
         super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
@@ -65,18 +53,18 @@ class DisclosureViewController: BaseViewController {
     }
     
     func linkTapped() {
-        guard let url = URL(string: dataSource.agreementLink) else { return }
+        guard let url = URL(string: dataSource.cardianUrl) else { return }
         UIApplication.shared.open(url)
     }
     
     override func viewSetup() {
         super.viewSetup()
-        headingLabel.text = dataSource.heading
-        titleLabel1.text = dataSource.title1
-        descriptionLabel1.text = dataSource.description1
-        titleLabel2.text = dataSource.title2
-        descriptionLabel2.text = dataSource.description2
-        mainActionButton.setTitle(dataSource.actionTitle, for: .normal)
+        headingLabel.text = dataSource.introductionHeader
+        titleLabel1.text = dataSource.introductionTitle1
+        descriptionLabel1.text = dataSource.introductionBody1
+        titleLabel2.text = dataSource.introductionTitle2
+        descriptionLabel2.text = dataSource.introductionBody2
+        mainActionButton.setTitle(dataSource.introductionButtonLabel, for: .normal)
         CardianStyler.styleRoundedButton(button: mainActionButton)
     }
     

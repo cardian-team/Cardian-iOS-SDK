@@ -9,6 +9,9 @@
 import Foundation
 
 class API {
+    func getConfig() {
+    
+    }
     
     func getSampleAuthMetrics() -> AuthMetrics {
         let heightMetric = Metric(name: "height", displayName: "Height", type: "quantityMetric", description: "Your current recorded height")
@@ -32,16 +35,24 @@ class API {
         return [metricCollection, metricCollection2]
     }
     
-    func getSampleDisclosureDataSource() -> DisclosureDataSource {
-        return DisclosureDataSource(heading: "Trana uses Cardian to connect to Apple Health",
-                                       title1: "Transparency",
-                                       description1: "Keeping you in the know about how your health data is being used by apps.",
-                                       title2: "Security",
-                                       description2: "Your data is encrypted and will not be sold to third parties.",
-                                       actionTitle: "Continue",
-                                       agreementLink: "https://cardian.io",
-                                       authMetrics: getSampleAuthMetrics(),
-                                       metricCollections: getSampleMetricCollections())
+    
+    
+    func getSampleDisclosureDataSource() -> ConnectUIConfiguration {
+        return ConnectUIConfiguration(cardianUrl: "",
+                                      introductionHeader: "Trana uses Cardian to connect to Apple Health",
+                                      introductionTitle1: "Transparency",
+                                      introductionBody1: "Keeping you in the know about how your health data is being used by apps.",
+                                      introductionTitle2: "Security",
+                                      introductionBody2: "Your data is encrypted",
+                                      introductionButtonLabel: "Continue",
+                                      usageTitle: "How your data will be used",
+                                      usageDescription: "Below is a breakdown of how Trana uses your data",
+                                      usageButtonLabel: "Continue",
+                                      completionTitle: "Success",
+                                      completionBody: "Your health data was synced with Trana",
+                                      completionButtonLabel: "Complete",
+                                      authMetrics: getSampleAuthMetrics(),
+                                      metricCollections: getSampleMetricCollections())
         
     }
 }

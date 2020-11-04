@@ -15,9 +15,7 @@ public class Control {
     public func configure(_ api_key: String) {
         // Checck for a cached one under this API KEY
         
-        API.getConfig(
-            
-        )
+
     }
     
     public func log(message: String) {
