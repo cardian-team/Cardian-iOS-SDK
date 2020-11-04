@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DEDE1F4255351CB00EAE60E /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F3255351CB00EAE60E /* Control.swift */; };
+		0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F9255352F600EAE60E /* Cardian.swift */; };
 		72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */; };
 		72335B6D2512C21E00014CE9 /* MetricDescriptionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */; };
 		72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */; };
@@ -99,6 +101,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DEDE1F3255351CB00EAE60E /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
+		0DEDE1F9255352F600EAE60E /* Cardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardian.swift; sourceTree = "<group>"; };
 		72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDescriptionController.swift; sourceTree = "<group>"; };
 		72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetricDescriptionController.xib; sourceTree = "<group>"; };
 		72335B6E2512CAAA00014CE9 /* ConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				726CAA3225011E0C00428D6F /* Cardian.h */,
+				0DEDE1F9255352F600EAE60E /* Cardian.swift */,
+				0DEDE1F3255351CB00EAE60E /* Control.swift */,
 				72D9CA492509E96C009016D7 /* Models.swift */,
 				72D9CA5B2509F571009016D7 /* Declarations.swift */,
 				72D9CA592509F38C009016D7 /* CardianStyler.swift */,
@@ -507,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */,
+				0DEDE1F4255351CB00EAE60E /* Control.swift in Sources */,
 				72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */,
 				726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */,
 				72D9CA4A2509E96C009016D7 /* Models.swift in Sources */,
@@ -515,6 +522,7 @@
 				72335B7525133E9000014CE9 /* Connect.swift in Sources */,
 				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
 				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
+				0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
 				72335B7725133F2B00014CE9 /* API.swift in Sources */,
 				72335B732512D47C00014CE9 /* AuthManager.swift in Sources */,
