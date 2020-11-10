@@ -6,4 +6,4 @@
 //  Copyright © 2020 Curaegis. All rights reserved.
 //
 
-public let Cardian = Control.default;
+public let CardianApp = Control.default;

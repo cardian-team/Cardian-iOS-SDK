@@ -12,8 +12,7 @@ import UIKit
 @objc (CRDConnect) public class Connect: NSObject {
     
     @objc public class func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
-        let api = API()
-        let disclosureDataSource = api.getSampleDisclosureDataSource()
+        let disclosureDataSource = API.getSampleDisclosureDataSource()
         let disclosureView = DisclosureViewController(dataSource: disclosureDataSource)
         if #available(iOS 13.0, *) { disclosureView.isModalInPresentation = true }
         let navController = UINavigationController(rootViewController: disclosureView)
@@ -26,8 +25,7 @@ import UIKit
     }
     
     @objc public class func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        let api = API()
-        let authMetrics = api.getSampleAuthMetrics()
+        let authMetrics = API.getSampleAuthMetrics()
         AuthManager.authorize(authMetrics: authMetrics) { (bool, error) in
             guard error == nil else {
                 print("HEALTH KIT ERROR: Unable to requrest authorization: \(error.debugDescription)")

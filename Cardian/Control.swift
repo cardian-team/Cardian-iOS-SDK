@@ -7,18 +7,28 @@
 //
 
 import Foundation
+import Alamofire
 
 public class Control {
+    let queue = DispatchQueue(label: "com.curaegis.cardian")
     public static let `default` = Control();
-    public init() {}
-    
-    public func configure(_ api_key: String) {
-        // Checck for a cached one under this API KEY
-        
-
+    private var fetchingConfig: Bool
+    public init() {
+        self.config = nil;
+        self.fetchingConfig = false;
     }
     
-    public func log(message: String) {
-        print("Log message: ", message)
+    private var config: CardianConfiguration?;
+    
+    public func configure(_ api_key: String) {
+        print("Yessir")
+        self.fetchingConfig = true;
+        // Checck for a cached one under this API KEY
+        API.getConfig(api_key, callback: self.setConfigurations);
+    }
+    
+    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration) {
+        self.config = config;
+        self.fetchingConfig = false;
     }
 }
