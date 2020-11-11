@@ -13,11 +13,18 @@ class API {
     
     public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration, ConnectUIConfiguration) -> ()) -> Void {
         print("hello")
-        let thing = AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config").responseJSON { response in switch response.result {
+        let headers: HTTPHeaders = [
+          "X-API-Key": apiKey,
+          "Accept": "application/json",
+        ]
+        
+        print(headers)
+        
+        let thing = AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/1", headers: headers).responseJSON { response in switch response.result {
             case .success(let JSON):
                 // TODO error checking
                 let response = JSON as! NSDictionary
-
+                print(response)
                 //example if there is an id
                 let dataObject = response.object(forKey: "data")!
                 let data = dataObject as! NSDictionary
@@ -85,26 +92,5 @@ class API {
         let metricCollection = MetricCollection(name: "Body Measurements", metrics: [heightMetric, weightMetric, heartRateMetric, bodyTemperatureMetric])
         let metricCollection2 = MetricCollection(name: "Advanced Measurements", metrics: [sleepCountMetric, stepCountMetric])
         return [metricCollection, metricCollection2]
-    }
-    
-    
-    
-    public static func getSampleDisclosureDataSource() -> ConnectUIConfiguration {
-        return ConnectUIConfiguration(cardianUrl: "",
-                                      introductionHeader: "Trana uses Cardian to connect to Apple Health",
-                                      introductionTitle1: "Transparency",
-                                      introductionBody1: "Keeping you in the know about how your health data is being used by apps.",
-                                      introductionTitle2: "Security",
-                                      introductionBody2: "Your data is encrypted",
-                                      introductionButtonLabel: "Continue",
-                                      usageTitle: "How your data will be used",
-                                      usageDescription: "Below is a breakdown of how Trana uses your data",
-                                      usageButtonLabel: "Continue",
-                                      completionTitle: "Success",
-                                      completionBody: "Your health data was synced with Trana",
-                                      completionButtonLabel: "Complete",
-                                      authMetrics: getSampleAuthMetrics(),
-                                      metricCollections: getSampleMetricCollections())
-        
     }
 }

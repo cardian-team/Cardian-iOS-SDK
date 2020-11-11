@@ -11,13 +11,15 @@ import Cardian
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        CardianApp.connect(presentationController: self) { (success) in
+            print("Return from controller: \(success)")
+        }
     }
     
     @IBAction func connectTapped() {
-        Cardian.Connect.connect(presentationController: self) { (success) in
+        CardianApp.connect(presentationController: self) { (success) in
             print("Return from controller: \(success)")
         }
     }
