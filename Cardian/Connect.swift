@@ -26,7 +26,8 @@ import UIKit
     }
     
     @objc public class func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        let authMetrics = API.getSampleAuthMetrics()
+        // TODO fix force unqrap
+        let authMetrics = CardianApp.getAuthMetrics()!
         AuthManager.authorize(authMetrics: authMetrics) { (bool, error) in
             guard error == nil else {
                 print("HEALTH KIT ERROR: Unable to requrest authorization: \(error.debugDescription)")

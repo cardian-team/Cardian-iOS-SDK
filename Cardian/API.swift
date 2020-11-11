@@ -11,16 +11,13 @@ import Alamofire
 
 class API {
     
-    public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration, ConnectUIConfiguration) -> ()) -> Void {
-        print("hello")
+    public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration, ConnectUIConfiguration, AuthMetrics) -> ()) -> Void {
         let headers: HTTPHeaders = [
           "X-API-Key": apiKey,
           "Accept": "application/json",
         ]
         
-        print(headers)
-        
-        let thing = AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/1", headers: headers).responseJSON { response in switch response.result {
+        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/3", headers: headers).responseJSON { response in switch response.result {
             case .success(let JSON):
                 // TODO error checking
                 let response = JSON as! NSDictionary
@@ -28,7 +25,8 @@ class API {
                 //example if there is an id
                 let dataObject = response.object(forKey: "data")!
                 let data = dataObject as! NSDictionary
-                print(data)
+    
+                let metrics = data.object(forKey: "metrics") as! NSDictionary
                 let theme = data.object(forKey: "theme") as! NSDictionary
                 let views = theme.object(forKey: "views") as! NSDictionary
 
@@ -42,6 +40,30 @@ class API {
                     completion: "true",
                     themeIconUrl: theme.object(forKey: "icon_url") as! String,
                     themePrimaryColor: theme.object(forKey: "primary") as! String)
+                
+                var readMetrics: [Metric] = []
+                var writeMetrics: [Metric] = []
+                for (key, value) in metrics {
+                    let currentMetric = value as! NSDictionary
+                    let newMetric = Metric(
+                        name: key as! String,
+                        displayName: currentMetric.object(forKey: "label") as! String,
+                        type: currentMetric.object(forKey: "type") as! String,
+                        description: "Deleting descriptions soon")
+                    
+                    let permissions = currentMetric.object(forKey: "mode") as! Int
+                    
+                    if (permissions > 0) {
+                        readMetrics.append(newMetric)
+                    }
+                    
+                    if (permissions == 2) {
+                        writeMetrics.append(newMetric)
+                    }
+                }
+                let readMetricsCollection = MetricCollection(name: "Readable Metrics", metrics: readMetrics)
+                let writeMetricColleciton = MetricCollection(name: "Writeable", metrics: writeMetrics)
+                let authMetrics = AuthMetrics(read: readMetrics, write: writeMetrics)
                 
                 
                 let uiConfiguration = ConnectUIConfiguration(
@@ -58,39 +80,18 @@ class API {
                     completionTitle: completion.object(forKey: "title") as! String,
                     completionBody: completion.object(forKey: "body") as! String,
                     completionButtonLabel: completion.object(forKey: "button_label") as! String,
-                    authMetrics: getSampleAuthMetrics(),
-                    metricCollections: getSampleMetricCollections())
+                    authMetrics: authMetrics,
+                    metricCollections: [readMetricsCollection, writeMetricColleciton])
                 
                 
+                print(readMetrics)
+                print(writeMetrics)
+
                 
-                print(newConfig)
-                print(uiConfiguration)
-                callback(newConfig, uiConfiguration)
+                callback(newConfig, uiConfiguration, authMetrics)
             case .failure(let error):
                 print("Request failed with error: \(error)")
             }
         }
-    }
-    
-    public static func getSampleAuthMetrics() -> AuthMetrics {
-        let heightMetric = Metric(name: "height", displayName: "Height", type: "quantityMetric", description: "Your current recorded height")
-        let weightMetric = Metric(name: "weight", displayName: "Weight", type: "quantityMetric", description: "Your current recorded body mass")
-        let heartRateMetric = Metric(name: "heartRate", displayName: "Heart Rate", type: "quantity", description: "This is your heart rate.")
-        let bodyTemperatureMetric = Metric(name: "bodyTemperature", displayName: "Body Temperature", type: "quantity", description: "This is your body temperature.")
-        let authMetrics = AuthMetrics(read: [heightMetric, weightMetric, heartRateMetric, bodyTemperatureMetric], write: [heightMetric])
-        return authMetrics
-    }
-    
-    public static func getSampleMetricCollections() -> [MetricCollection] {
-        let heightMetric = Metric(name: "height", displayName: "Height", type: "quantity", description: "This is your height.")
-        let weightMetric = Metric(name: "weight", displayName: "Weight", type: "quantity", description: "This is your weight.")
-        let heartRateMetric = Metric(name: "heartrate", displayName: "Heart Rate", type: "quantity", description: "This is your heart rate.")
-        let bodyTemperatureMetric = Metric(name: "bodytemp", displayName: "Body Temperature", type: "quantity", description: "This is your body temperature.")
-        let sleepCountMetric = Metric(name: "sleepcount", displayName: "Sleep Count", type: "quantity", description: "This is your sleep count.")
-        let stepCountMetric = Metric(name: "stepcount", displayName: "Step Count", type: "quantity", description: "This is your step count.")
-
-        let metricCollection = MetricCollection(name: "Body Measurements", metrics: [heightMetric, weightMetric, heartRateMetric, bodyTemperatureMetric])
-        let metricCollection2 = MetricCollection(name: "Advanced Measurements", metrics: [sleepCountMetric, stepCountMetric])
-        return [metricCollection, metricCollection2]
     }
 }

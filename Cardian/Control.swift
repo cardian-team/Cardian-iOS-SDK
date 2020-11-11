@@ -19,25 +19,29 @@ public class Control {
     private var fetchingConfig: Bool
     private var config: CardianConfiguration?
     private var connectUiConfig: ConnectUIConfiguration?
+    private var authMetrics: AuthMetrics?
+    
     private var connectionClosure: ((ConnectUIConfiguration) -> Void)?
+    
     public init() {
-        self.config = nil;
-        self.fetchingConfig = false;
-        self.connectionClosure = nil;
+        self.config = nil
+        self.connectUiConfig = nil
+        self.fetchingConfig = false
+        self.connectionClosure = nil
+        self.authMetrics = nil
     }
     
-    
+
     public func configure(_ api_key: String) {
-        print("Yessir")
-        self.fetchingConfig = true;
+        self.fetchingConfig = true
         // Checck for a cached one under this API KEY
-        API.getConfig(api_key, callback: self.setConfigurations);
+        API.getConfig(api_key, callback: self.setConfigurations)
     }
     
-    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration) {
-        print("Set configurations")
-        self.config = config;
+    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration, authMetrics: AuthMetrics) {
+        self.config = config
         self.connectUiConfig = uiConfig;
+        self.authMetrics = authMetrics
         self.fetchingConfig = false;
         if let connectionClosure = self.connectionClosure {
             connectionClosure(self.connectUiConfig!)
@@ -60,5 +64,9 @@ public class Control {
     
     func getConnectUIConfiguration() -> ConnectUIConfiguration? {
         return self.connectUiConfig
+    }
+    
+    func getAuthMetrics() -> AuthMetrics? {
+        return self.authMetrics
     }
 }
