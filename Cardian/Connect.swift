@@ -12,7 +12,8 @@ import UIKit
 @objc (CRDConnect) public class Connect: NSObject {
     
     @objc public class func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
-        let disclosureDataSource = API.getSampleDisclosureDataSource()
+        // TODO check this unwrap pls
+        let disclosureDataSource = CardianApp.getConnectUIConfiguration()!
         let disclosureView = DisclosureViewController(dataSource: disclosureDataSource)
         if #available(iOS 13.0, *) { disclosureView.isModalInPresentation = true }
         let navController = UINavigationController(rootViewController: disclosureView)
