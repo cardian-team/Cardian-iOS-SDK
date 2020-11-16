@@ -14,6 +14,7 @@ struct CardianConfiguration: Codable {
     let completion: String
     let themeIconUrl: String
     let themePrimaryColor: String // might be a hex or something other
+    let interval: String
 }
 
 struct AuthMetrics: Codable {

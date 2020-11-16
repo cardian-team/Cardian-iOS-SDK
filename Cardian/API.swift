@@ -39,7 +39,9 @@ class API {
                     appName: data.object(forKey: "app_name") as! String,
                     completion: "true",
                     themeIconUrl: theme.object(forKey: "icon_url") as! String,
-                    themePrimaryColor: theme.object(forKey: "primary") as! String)
+                    themePrimaryColor: theme.object(forKey: "primary") as! String,
+                    interval: "week"
+                )
                 
                 var readMetrics: [Metric] = []
                 var writeMetrics: [Metric] = []
@@ -93,5 +95,22 @@ class API {
                 print("Request failed with error: \(error)")
             }
         }
+    }
+    
+    public static func pushHealthKitData(_ apiKey: String, start: Date, end: Date) {
+        let headers: HTTPHeaders = [
+          "X-API-Key": apiKey,
+          "Accept": "application/json",
+        ]
+        
+        HealthKitManager.getSteps(start: start, end: end)  { record in
+                print(record)
+        }
+        
+        HealthKitManager.getTodaysSteps() { steps in
+            print(steps)
+        }
+        
+//        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/", headers: headers)
     }
 }

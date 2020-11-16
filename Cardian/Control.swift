@@ -46,7 +46,6 @@ public class Control {
         if let connectionClosure = self.connectionClosure {
             connectionClosure(self.connectUiConfig!)
         }
-        
     }
     
     public func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
@@ -60,6 +59,30 @@ public class Control {
                 Connect.connect(presentationController: presentationController, completion: completion)
             }
         }
+    }
+    
+    private func getIntervalStartDate() -> Date {
+        let weekInSeconds: Double = -7*24*60*60
+        let now = Date()
+        //TODO safe unwrap
+        switch self.config!.interval {
+        case "day":
+            return Calendar.current.startOfDay(for: now)
+        case "week":
+            let lastWeekDate = Date(timeIntervalSinceNow: weekInSeconds)
+            return Calendar.current.startOfDay(for: lastWeekDate)
+        default:
+            let lastWeekDate = Date(timeIntervalSinceNow: weekInSeconds)
+            return Calendar.current.startOfDay(for: lastWeekDate)
+        }
+        
+    }
+    
+    public func pushData(_ apiKey: String) {
+        let endDate = Date()
+        let startDate = self.getIntervalStartDate()
+        
+        API.pushHealthKitData(apiKey, start: startDate, end: endDate)
     }
     
     func getConnectUIConfiguration() -> ConnectUIConfiguration? {
