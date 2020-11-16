@@ -17,6 +17,7 @@ public class Control {
     let queue = DispatchQueue(label: "com.curaegis.cardian")
     // Privates
     private var fetchingConfig: Bool
+    private var apiKey: String?
     private var config: CardianConfiguration?
     private var connectUiConfig: ConnectUIConfiguration?
     private var authMetrics: AuthMetrics?
@@ -33,6 +34,7 @@ public class Control {
     
 
     public func configure(_ api_key: String) {
+        self.apiKey = api_key
         self.fetchingConfig = true
         // Checck for a cached one under this API KEY
         API.getConfig(api_key, callback: self.setConfigurations)
@@ -78,11 +80,29 @@ public class Control {
         
     }
     
-    public func pushData(_ apiKey: String) {
+    public func sync() {
         let endDate = Date()
         let startDate = self.getIntervalStartDate()
         
-        API.pushHealthKitData(apiKey, start: startDate, end: endDate)
+        // TODO Force Unwrap
+        for metric in self.authMetrics!.read {
+            
+            switch metric.name {
+            case "stepCount":
+                HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: startDate, end: endDate)
+                    { data in
+                        
+                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
+                }
+                
+            default:
+                print("HIT DEFAULT IN SYNC")
+            }
+            print(metric)
+        }
+        
+        // TODO Force unwrap
+        
     }
     
     func getConnectUIConfiguration() -> ConnectUIConfiguration? {

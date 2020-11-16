@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HealthKit
 import Alamofire
 
 class API {
@@ -103,7 +104,7 @@ class API {
           "Accept": "application/json",
         ]
         
-        HealthKitManager.getSteps(start: start, end: end)  { record in
+        HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: start, end: end)  { record in
                 print(record)
         }
         
@@ -112,5 +113,38 @@ class API {
         }
         
 //        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/", headers: headers)
+    }
+    
+    
+    public static func uploadQuantityHealthData(_ apiKey: String, data: [GenericHealthKitRecord]) {
+        let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/"
+        
+        
+        let headers: HTTPHeaders = [
+          "X-API-Key": apiKey,
+          "Accept": "application/json",
+        ]
+        
+        let parameters: [String: Any] = [
+            "IdQuiz" : 102
+        ]
+        
+        
+        print("Is this called?")
+
+        
+        do {
+            let d = try JSONSerialization.data(withJSONObject: parameters)
+            print(d)
+        } catch {
+            print("a")
+        }
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            print("BOOM")
+            print(response)
+            print("BOOM")
+        }
+        
     }
 }

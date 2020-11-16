@@ -34,7 +34,6 @@ struct MetricCollection: Codable {
     let metrics: [Metric]
 }
 
-
 struct ConnectUIConfiguration {
     let cardianUrl: String
     

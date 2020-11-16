@@ -209,7 +209,6 @@ class HealthKitManager {
             completion(results)
         }
         HKHealthStore().execute(query)
-        
     }
     
     /// Returns the current weight from healthkit in pounds
@@ -251,7 +250,7 @@ class HealthKitManager {
     }
     
     /// Returns step count from healthkit based on an interval of start/end timestamps
-    public static func getSteps(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
+    public static func getQuanitityMetric(healthKitType: HKQuantityTypeIdentifier, start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
         guard dataAvailable() else {
             completion(nil)
             return
@@ -260,7 +259,7 @@ class HealthKitManager {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         
-        guard let field = HKSampleType.quantityType(forIdentifier: .stepCount) else {
+        guard let field = HKSampleType.quantityType(forIdentifier: healthKitType) else {
             completion(nil)
             return
         }
