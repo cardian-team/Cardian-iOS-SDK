@@ -9,12 +9,13 @@
 import Foundation
 
 struct CardianConfiguration: Codable {
-    let metrics: String
+    let version: String
     let appName: String
     let completion: String
     let themeIconUrl: String
     let themePrimaryColor: String // might be a hex or something other
     let interval: String
+    let authMetrics: AuthMetrics
 }
 
 struct AuthMetrics: Codable {
@@ -34,7 +35,7 @@ struct MetricCollection: Codable {
     let metrics: [Metric]
 }
 
-struct ConnectUIConfiguration {
+struct ConnectUIConfiguration: Codable {
     let cardianUrl: String
     
     // Introduction Screen Variables
@@ -54,6 +55,7 @@ struct ConnectUIConfiguration {
     let completionBody: String
     let completionButtonLabel: String
     
+    // TODO Remove this from here and have connect prompt take from regualr config :D
     let authMetrics: AuthMetrics
     let metricCollections: [MetricCollection]
 //    "metrics": {
@@ -61,4 +63,9 @@ struct ConnectUIConfiguration {
 //        "label": "Height",
 //        "mode": 0
 //      }
+}
+
+struct ConnectedVersions: Codable {
+    var versionsMap: [String: Bool]
+    var latestConnectedVersion: String
 }

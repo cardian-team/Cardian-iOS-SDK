@@ -12,18 +12,20 @@ import Alamofire
 
 class API {
     
-    public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration, ConnectUIConfiguration, AuthMetrics) -> ()) -> Void {
+    public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration, ConnectUIConfiguration) -> ()) -> Void {
         let headers: HTTPHeaders = [
           "X-API-Key": apiKey,
           "Accept": "application/json",
         ]
         
-        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/3", headers: headers).responseJSON { response in switch response.result {
+        //TODO fix this to not throw if bad obj
+        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/3", headers: headers).responseJSON { result in switch result.result {
             case .success(let JSON):
                 // TODO error checking
                 let response = JSON as! NSDictionary
                 print(response)
                 //example if there is an id
+                // TODO see if i can just use encodable??? thatd be sicko
                 let dataObject = response.object(forKey: "data")!
                 let data = dataObject as! NSDictionary
     
@@ -34,15 +36,6 @@ class API {
                 let introduction = views.object(forKey: "introduction") as! NSDictionary
                 let usage = views.object(forKey: "usage") as! NSDictionary
                 let completion = views.object(forKey: "completion") as! NSDictionary
-                
-                let newConfig = CardianConfiguration(
-                    metrics: "",
-                    appName: data.object(forKey: "app_name") as! String,
-                    completion: "true",
-                    themeIconUrl: theme.object(forKey: "icon_url") as! String,
-                    themePrimaryColor: theme.object(forKey: "primary") as! String,
-                    interval: "week"
-                )
                 
                 var readMetrics: [Metric] = []
                 var writeMetrics: [Metric] = []
@@ -68,6 +61,16 @@ class API {
                 let writeMetricColleciton = MetricCollection(name: "Writeable", metrics: writeMetrics)
                 let authMetrics = AuthMetrics(read: readMetrics, write: writeMetrics)
                 
+                let newConfig = CardianConfiguration(
+                    version: "3",
+                    appName: data.object(forKey: "app_name") as! String,
+                    completion: "true",
+                    themeIconUrl: theme.object(forKey: "icon_url") as! String,
+                    themePrimaryColor: theme.object(forKey: "primary") as! String,
+                    interval: "week",
+                    authMetrics: authMetrics
+                )
+                
                 
                 let uiConfiguration = ConnectUIConfiguration(
                     cardianUrl: data.object(forKey: "cardian_url") as! String,
@@ -86,14 +89,43 @@ class API {
                     authMetrics: authMetrics,
                     metricCollections: [readMetricsCollection, writeMetricColleciton])
                 
-                
-                print(readMetrics)
-                print(writeMetrics)
-
-                
-                callback(newConfig, uiConfiguration, authMetrics)
+                callback(newConfig, uiConfiguration)
             case .failure(let error):
-                print("Request failed with error: \(error)")
+                var cachedConfig: CardianConfiguration? = nil
+                var cachedUIConfig: ConnectUIConfiguration? = nil
+                print("yo")
+                if let appData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_APP_CONFIG") {
+                    do {
+                        // Create JSON Decoder
+                        let decoder = JSONDecoder()
+        
+                        // Decode Note
+                        cachedConfig = try decoder.decode(CardianConfiguration.self, from: appData)
+                        print("BOOM got the defualt \(cachedConfig)")
+        
+                    } catch {
+                        print("Unable to Decode Note (\(error))")
+                    }
+                }
+                if let uiData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG") {
+                    do {
+                        // Create JSON Decoder
+                        let decoder = JSONDecoder()
+        
+                        // Decode Note
+                        cachedUIConfig = try decoder.decode(ConnectUIConfiguration.self, from: uiData)
+                        print("BOOM got the defualt \(cachedUIConfig)")
+        
+                    } catch {
+                        print("Unable to Decode Note (\(error))")
+                    }
+                }
+                print("Request failed with error: \(error), try from cache")
+                
+                // TODO tjhink of a better option
+                if cachedConfig != nil && cachedUIConfig != nil {
+                    callback(cachedConfig!, cachedUIConfig!)
+                }
             }
         }
     }

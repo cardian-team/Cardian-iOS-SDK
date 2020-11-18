@@ -6,21 +6,23 @@
 //  Copyright © 2020 Curaegis. All rights reserved.
 //
 
+// MARK: Imports
 import Foundation
 import Alamofire
 import UIKit
 
+// MARK: Class
 public class Control {
     // Expose an instance of control
     public static let `default` = Control();
     
     let queue = DispatchQueue(label: "com.curaegis.cardian")
-    // Privates
+    // MARK: Instance Vars
     private var fetchingConfig: Bool
     private var apiKey: String?
+    private var externalId: String?
     private var config: CardianConfiguration?
     private var connectUiConfig: ConnectUIConfiguration?
-    private var authMetrics: AuthMetrics?
     
     private var connectionClosure: ((ConnectUIConfiguration) -> Void)?
     
@@ -29,10 +31,11 @@ public class Control {
         self.connectUiConfig = nil
         self.fetchingConfig = false
         self.connectionClosure = nil
-        self.authMetrics = nil
+        self.externalId = nil
     }
     
-
+    
+    // MARK: Public Functions
     public func configure(_ api_key: String) {
         self.apiKey = api_key
         self.fetchingConfig = true
@@ -40,15 +43,6 @@ public class Control {
         API.getConfig(api_key, callback: self.setConfigurations)
     }
     
-    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration, authMetrics: AuthMetrics) {
-        self.config = config
-        self.connectUiConfig = uiConfig;
-        self.authMetrics = authMetrics
-        self.fetchingConfig = false;
-        if let connectionClosure = self.connectionClosure {
-            connectionClosure(self.connectUiConfig!)
-        }
-    }
     
     public func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
         if (!self.fetchingConfig && self.config != nil && self.connectUiConfig != nil) {
@@ -61,6 +55,75 @@ public class Control {
                 Connect.connect(presentationController: presentationController, completion: completion)
             }
         }
+    }
+    
+    // MARK: Private Functions
+    private func cacheConfigsInDefaults() {
+        let encoder = JSONEncoder()
+
+        // store config in UserDefaults
+        if let config = self.config {
+            do {
+                let data = try encoder.encode(config)
+                UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_APP_CONFIG")
+            } catch {
+                print("Unable to Encode Cardian app config (\(error))")
+            }
+        }
+        
+        // store Connect UI Config in UserDefaults
+        if let uiConfig = self.connectUiConfig {
+            do {
+                let data = try encoder.encode(uiConfig)
+                UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG")
+            } catch {
+                print("Unable to Encode uiConfig (\(error))")
+            }
+        }
+    }
+    
+    public func updateVersionsConnected() {
+        var versions: ConnectedVersions? = nil
+        if let versionData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_CONNECTED_VERSIONS") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
+
+                // Decode Note
+                versions = try decoder.decode(ConnectedVersions.self, from: versionData)
+                print("BOOM got the version con defualt \(versions)")
+            } catch {
+                versions = ConnectedVersions(versionsMap: [String: Bool](), latestConnectedVersion: self.config!.version)
+                print("Unable to Decode Versions dict (\(error))")
+            }
+        }
+        
+
+        
+        let encoder = JSONEncoder()
+        if let config = self.config {
+            versions?.latestConnectedVersion = config.version
+            versions?.versionsMap[config.version] = true
+            print(versions)
+            do {
+                let data = try encoder.encode(versions)
+                UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_CONNECTED_VERSIONS")
+            } catch {
+                print("Unable to Encode Connected Components (\(error))")
+            }
+        }
+    }
+    
+    // MARK: Get/Setters
+    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration) {
+        self.config = config
+        self.connectUiConfig = uiConfig;
+        self.fetchingConfig = false;
+        if let connectionClosure = self.connectionClosure {
+            connectionClosure(self.connectUiConfig!)
+        }
+        
+        self.cacheConfigsInDefaults()
     }
     
     private func getIntervalStartDate() -> Date {
@@ -85,7 +148,7 @@ public class Control {
         let startDate = self.getIntervalStartDate()
         
         // TODO Force Unwrap
-        for metric in self.authMetrics!.read {
+        for metric in self.getAuthMetrics()!.read {
             
             switch metric.name {
             case "stepCount":
@@ -110,6 +173,13 @@ public class Control {
     }
     
     func getAuthMetrics() -> AuthMetrics? {
-        return self.authMetrics
+        if let config = self.config {
+            return config.authMetrics
+        }
+        return nil
+    }
+    
+    func setExternalId(_ externalId: String) {
+        self.externalId = externalId
     }
 }

@@ -69,6 +69,7 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
                 return
             }
             print("Successfully authorized with HealthKit")
+            CardianApp.updateVersionsConnected()
             DispatchQueue.main.async {
                 let confirmationController = ConfirmationController()
                 confirmationController.modalPresentationStyle = .fullScreen
