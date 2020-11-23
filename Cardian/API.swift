@@ -19,11 +19,11 @@ class API {
         ]
         
         //TODO fix this to not throw if bad obj
-        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/3", headers: headers).responseJSON { result in switch result.result {
+        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/4", headers: headers).responseJSON { result in switch result.result {
             case .success(let JSON):
                 // TODO error checking
                 let response = JSON as! NSDictionary
-                print(response)
+                
                 //example if there is an id
                 // TODO see if i can just use encodable??? thatd be sicko
                 let dataObject = response.object(forKey: "data")!
@@ -93,7 +93,7 @@ class API {
             case .failure(let error):
                 var cachedConfig: CardianConfiguration? = nil
                 var cachedUIConfig: ConnectUIConfiguration? = nil
-                print("yo")
+                
                 if let appData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_APP_CONFIG") {
                     do {
                         // Create JSON Decoder
@@ -101,7 +101,6 @@ class API {
         
                         // Decode Note
                         cachedConfig = try decoder.decode(CardianConfiguration.self, from: appData)
-                        print("BOOM got the defualt \(cachedConfig)")
         
                     } catch {
                         print("Unable to Decode Note (\(error))")
@@ -114,8 +113,6 @@ class API {
         
                         // Decode Note
                         cachedUIConfig = try decoder.decode(ConnectUIConfiguration.self, from: uiData)
-                        print("BOOM got the defualt \(cachedUIConfig)")
-        
                     } catch {
                         print("Unable to Decode Note (\(error))")
                     }
@@ -130,52 +127,17 @@ class API {
         }
     }
     
-    public static func pushHealthKitData(_ apiKey: String, start: Date, end: Date) {
-        let headers: HTTPHeaders = [
-          "X-API-Key": apiKey,
-          "Accept": "application/json",
-        ]
-        
-        HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: start, end: end)  { record in
-                print(record)
-        }
-        
-        HealthKitManager.getTodaysSteps() { steps in
-            print(steps)
-        }
-        
-//        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/", headers: headers)
-    }
-    
-    
     public static func uploadQuantityHealthData(_ apiKey: String, data: [GenericHealthKitRecord]) {
-        let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/"
-        
+        let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/records"
+        print("Health data \(data)")
         
         let headers: HTTPHeaders = [
           "X-API-Key": apiKey,
           "Accept": "application/json",
         ]
         
-        let parameters: [String: Any] = [
-            "IdQuiz" : 102
-        ]
-        
-        
-        print("Is this called?")
-
-        
-        do {
-            let d = try JSONSerialization.data(withJSONObject: parameters)
-            print(d)
-        } catch {
-            print("a")
-        }
-        
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            print("BOOM")
-            print(response)
-            print("BOOM")
+        AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
+            print("Upload Response\(response)")
         }
         
     }

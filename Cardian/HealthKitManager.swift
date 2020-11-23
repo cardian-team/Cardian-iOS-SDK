@@ -12,6 +12,7 @@ import HealthKit
 // MARK: Declarations
 /// Stores step data for JSON export
 struct GenericHealthKitRecord : Codable {
+    var type: String
     var start_time: Double
     var end_time: Double
     var count: Double
@@ -280,13 +281,15 @@ class HealthKitManager {
             var out = [GenericHealthKitRecord]()
             for sample in samples {
                 guard let s = sample as? HKQuantitySample else { continue }
-                let step = GenericHealthKitRecord(
+                // Get the CARDIAN Type here not the raw value of HK type
+                let record = GenericHealthKitRecord(
+                    type: healthKitType.rawValue,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
                     count: s.quantity.doubleValue(for: HKUnit.count()),
                     reference_id: s.uuid
                 )
-                out.append(step)
+                out.append(record)
             }
             completion(out)
         }
@@ -503,6 +506,7 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let heartRate = GenericHealthKitRecord(
+                    type: "heartRate",
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
                     count: s.quantity.doubleValue(for: HKUnit.init(from: "count/min")),
@@ -548,6 +552,7 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let hrv = GenericHealthKitRecord(
+                    type: "heartRateVariability",
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
                     count: s.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli)),
@@ -593,6 +598,7 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let exercise = GenericHealthKitRecord(
+                    type: "exercise",
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
                     count: s.quantity.doubleValue(for: HKUnit.minute()),
@@ -638,6 +644,7 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let breathingSession = GenericHealthKitRecord(
+                    type: "breathingSession",
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
                     count: s.quantity.doubleValue(for: HKUnit.minute()),

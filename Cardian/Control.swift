@@ -91,7 +91,6 @@ public class Control {
 
                 // Decode Note
                 versions = try decoder.decode(ConnectedVersions.self, from: versionData)
-                print("BOOM got the version con defualt \(versions)")
             } catch {
                 versions = ConnectedVersions(versionsMap: [String: Bool](), latestConnectedVersion: self.config!.version)
                 print("Unable to Decode Versions dict (\(error))")
@@ -104,7 +103,6 @@ public class Control {
         if let config = self.config {
             versions?.latestConnectedVersion = config.version
             versions?.versionsMap[config.version] = true
-            print(versions)
             do {
                 let data = try encoder.encode(versions)
                 UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_CONNECTED_VERSIONS")
@@ -147,25 +145,31 @@ public class Control {
         let endDate = Date()
         let startDate = self.getIntervalStartDate()
         
+//        var quanitityRecords: [GenericHealthKitRecord] = [GenericHealthKitRecord]()
+        
         // TODO Force Unwrap
         for metric in self.getAuthMetrics()!.read {
             
             switch metric.name {
             case "stepCount":
                 HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: startDate, end: endDate)
-                    { data in
-                        
+                { data in
+                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
+                }
+            case "heartRate":
+                HealthKitManager.getHeartRate(start: startDate, end: endDate)
+                { data in
                     API.uploadQuantityHealthData(self.apiKey!, data: data!)
                 }
                 
             default:
                 print("HIT DEFAULT IN SYNC")
             }
-            print(metric)
         }
         
-        // TODO Force unwrap
+        // TODO combine all into one request
         
+        // TODO Force unwrap
     }
     
     func getConnectUIConfiguration() -> ConnectUIConfiguration? {
