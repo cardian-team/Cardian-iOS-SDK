@@ -12,10 +12,10 @@ import HealthKit
 // MARK: Declarations
 /// Stores step data for JSON export
 struct GenericHealthKitRecord : Codable {
-    var type: String
+    var metric_type: Int
     var start_time: Double
     var end_time: Double
-    var count: Double
+    var value: Double
     var reference_id: UUID
     var source: String = "h"
 }
@@ -283,10 +283,10 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 // Get the CARDIAN Type here not the raw value of HK type
                 let record = GenericHealthKitRecord(
-                    type: healthKitType.rawValue,
+                    metric_type: 1,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.count()),
+                    value: s.quantity.doubleValue(for: HKUnit.count()),
                     reference_id: s.uuid
                 )
                 out.append(record)
@@ -506,10 +506,10 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let heartRate = GenericHealthKitRecord(
-                    type: "heartRate",
+                    metric_type: 5,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.init(from: "count/min")),
+                    value: s.quantity.doubleValue(for: HKUnit.init(from: "count/min")),
                     reference_id: s.uuid
                 )
                 
@@ -552,10 +552,10 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let hrv = GenericHealthKitRecord(
-                    type: "heartRateVariability",
+                    metric_type: 6,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli)),
+                    value: s.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli)),
                     reference_id: s.uuid
                 )
                 out.append(hrv)
@@ -598,10 +598,10 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let exercise = GenericHealthKitRecord(
-                    type: "exercise",
+                    metric_type: 7,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.minute()),
+                    value: s.quantity.doubleValue(for: HKUnit.minute()),
                     reference_id: s.uuid
                 )
                 out.append(exercise)
@@ -644,10 +644,10 @@ class HealthKitManager {
                 guard let s = sample as? HKQuantitySample else { continue }
                 
                 let breathingSession = GenericHealthKitRecord(
-                    type: "breathingSession",
+                    metric_type: 8,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.minute()),
+                    value: s.quantity.doubleValue(for: HKUnit.minute()),
                     reference_id: s.uuid
                 )
                 out.append(breathingSession)

@@ -13,15 +13,13 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        CardianApp.connect(presentationController: self) { (success) in
+        CardianApp.promptForPermissions(presentationController: self) { (success) in
             print("Return from controller: \(success)")
         }
     }
     
     @IBAction func connectTapped() {
-        CardianApp.connect(presentationController: self) { (success) in
-            print("Return from controller: \(success)")
-        }
+        CardianApp.sync()
     }
 }
 

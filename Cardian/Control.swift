@@ -11,6 +11,11 @@ import Foundation
 import Alamofire
 import UIKit
 
+
+public struct promptForPermissionsOptions {
+    let presetationMode: String? = nil
+}
+
 // MARK: Class
 public class Control {
     // Expose an instance of control
@@ -44,7 +49,7 @@ public class Control {
     }
     
     
-    public func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
+    public func promptForPermissions(presentationController: UIViewController, options: promptForPermissionsOptions? = nil, completion: @escaping (Bool) -> Void) {
         if (!self.fetchingConfig && self.config != nil && self.connectUiConfig != nil) {
             Connect.connect(presentationController: presentationController, completion: completion)
         } else {
