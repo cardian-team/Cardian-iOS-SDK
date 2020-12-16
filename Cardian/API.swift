@@ -19,7 +19,7 @@ class API {
         ]
         
         //TODO fix this to not throw if bad obj
-        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/4", headers: headers).responseJSON { result in switch result.result {
+        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/1.0.0", headers: headers).responseJSON { result in switch result.result {
             case .success(let JSON):
                 // TODO error checking
                 let response = JSON as! NSDictionary
@@ -36,6 +36,7 @@ class API {
                 let introduction = views.object(forKey: "introduction") as! NSDictionary
                 let usage = views.object(forKey: "usage") as! NSDictionary
                 let completion = views.object(forKey: "completion") as! NSDictionary
+                let colors = theme.object(forKey: "colors") as! NSDictionary
                 
                 var readMetrics: [Metric] = []
                 var writeMetrics: [Metric] = []
@@ -66,15 +67,15 @@ class API {
                     appName: data.object(forKey: "app_name") as! String,
                     completion: "true",
                     themeIconUrl: theme.object(forKey: "icon_url") as! String,
-                    themePrimaryColor: theme.object(forKey: "primary") as! String,
+                    themePrimaryColor: colors.object(forKey: "primary") as! String,
                     interval: "week",
                     authMetrics: authMetrics
                 )
                 
-                
+                // fix cardian
                 let uiConfiguration = ConnectUIConfiguration(
-                    cardianUrl: data.object(forKey: "cardian_url") as! String,
-                    introductionHeader: introduction.object(forKey: "header") as! String,
+                    cardianUrl: "localhost3000",
+                    introductionHeader: "\(data.object(forKey: "app_name") as! String) uses Cardian to connect to Apple Health",
                     introductionTitle1: introduction.object(forKey: "bullet_1_title") as! String,
                     introductionBody1: introduction.object(forKey: "bullet_1_body") as! String,
                     introductionTitle2: introduction.object(forKey: "bullet_2_title") as! String,
