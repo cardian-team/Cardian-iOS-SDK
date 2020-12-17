@@ -75,7 +75,7 @@ struct HealthBirthdate {
 class HealthKitManager {
     
     public static func healthKitObjectTranslater(metric: Metric) -> HKObjectType? {
-        switch metric.name {
+        switch metric.id {
         case "height":
                 return HKQuantityType.quantityType(forIdentifier: .height)
         case "weight":

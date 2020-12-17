@@ -27,13 +27,11 @@ public class Control {
     private var apiKey: String?
     private var externalId: String?
     private var config: CardianConfiguration?
-    private var connectUiConfig: ConnectUIConfiguration?
     
-    private var connectionClosure: ((ConnectUIConfiguration) -> Void)?
+    private var connectionClosure: ((ConnectUiConfiguration) -> Void)?
     
     public init() {
         self.config = nil
-        self.connectUiConfig = nil
         self.fetchingConfig = false
         self.connectionClosure = nil
         self.externalId = nil
@@ -50,13 +48,13 @@ public class Control {
     
     
     public func promptForPermissions(presentationController: UIViewController, options: promptForPermissionsOptions? = nil, completion: @escaping (Bool) -> Void) {
-        if (!self.fetchingConfig && self.config != nil && self.connectUiConfig != nil) {
+        if (!self.fetchingConfig && self.config != nil && self.config?.connectUi != nil) {
             Connect.connect(presentationController: presentationController, completion: completion)
         } else {
             print("Still fetching.. would present a spinner")
             // Add spinner pop up or option for this
             self.connectionClosure = {
-                (ConnectUIConfiguration) -> Void in
+                (ConnectUiConfiguration) -> Void in
                 Connect.connect(presentationController: presentationController, completion: completion)
             }
         }
@@ -77,7 +75,7 @@ public class Control {
         }
         
         // store Connect UI Config in UserDefaults
-        if let uiConfig = self.connectUiConfig {
+        if let uiConfig = self.config?.connectUi {
             do {
                 let data = try encoder.encode(uiConfig)
                 UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG")
@@ -118,12 +116,11 @@ public class Control {
     }
     
     // MARK: Get/Setters
-    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration) {
+    private func setConfigurations(config: CardianConfiguration?) {
         self.config = config
-        self.connectUiConfig = uiConfig;
         self.fetchingConfig = false;
         if let connectionClosure = self.connectionClosure {
-            connectionClosure(self.connectUiConfig!)
+            connectionClosure(config!.connectUi)
         }
         
         self.cacheConfigsInDefaults()
@@ -153,9 +150,9 @@ public class Control {
 //        var quanitityRecords: [GenericHealthKitRecord] = [GenericHealthKitRecord]()
         
         // TODO Force Unwrap
-        for metric in self.getAuthMetrics()!.read {
-            
-            switch metric.name {
+        for metric in config!.metrics {
+            // tODO read vs write here
+            switch metric.id {
             case "stepCount":
                 HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: startDate, end: endDate)
                 { data in
@@ -173,19 +170,27 @@ public class Control {
         }
         
         // TODO combine all into one request
-        
-        // TODO Force unwrap
     }
     
-    func getConnectUIConfiguration() -> ConnectUIConfiguration? {
-        return self.connectUiConfig
+    func getConfiguration() -> CardianConfiguration? {
+        return self.config
     }
     
-    func getAuthMetrics() -> AuthMetrics? {
-        if let config = self.config {
-            return config.authMetrics
+    func getAuthMetrics() -> AuthMetrics {
+        var readMetrics: [Metric] = []
+        var writeMetrics: [Metric] = []
+        // tODO force unwrap
+        for (currentMetric) in self.config!.metrics {
+            if (currentMetric.mode > 0) {
+                readMetrics.append(currentMetric)
+            }
+            
+            if (currentMetric.mode == 2) {
+                writeMetrics.append(currentMetric)
+            }
         }
-        return nil
+        let authMetrics = AuthMetrics(read: readMetrics, write: writeMetrics)
+        return authMetrics
     }
     
     func setExternalId(_ externalId: String) {

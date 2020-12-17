@@ -118,11 +118,11 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         
-        if dataSource.MetricCollections[indexPath.section].metrics[indexPath.row].description != nil {
+        if dataSource.MetricCollections[indexPath.section].metrics[indexPath.row].usage_description != nil {
             cell.accessoryType = .disclosureIndicator
         }
         
-        let metricTitle = dataSource.MetricCollections[indexPath.section].metrics[indexPath.row].displayName
+        let metricTitle = dataSource.MetricCollections[indexPath.section].metrics[indexPath.row].label
         cell.textLabel?.text = metricTitle
         return cell
     }
@@ -130,8 +130,8 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         let metric = dataSource.MetricCollections[indexPath.section].metrics[indexPath.row]
-        guard let metricDescription = metric.description else { return }
-        let dataSource = MetricDescriptionDataSource(title: metric.displayName, description: metricDescription, privacyLink: "https://cardian.io") // TODO: This is temporary obviously
+        guard let metricDescription = metric.usage_description else { return }
+        let dataSource = MetricDescriptionDataSource(title: metric.label, description: metricDescription, privacyLink: "https://cardian.io") // TODO: This is temporary obviously
         let descriptionController = MetricDescriptionController(dataSource: dataSource)
         self.navigationController?.pushViewController(descriptionController, animated: true)
         print("Selected metric description: \(metricDescription)")
