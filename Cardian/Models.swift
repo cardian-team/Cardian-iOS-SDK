@@ -10,24 +10,102 @@ import Foundation
 
 struct CardianConfiguration: Codable {
     let version: String
-    let appName: String
-    let completion: String
-    let themeIconUrl: String
-    let themePrimaryColor: String // might be a hex or something other
-    let interval: String
-    let authMetrics: AuthMetrics
-}
-
-struct AuthMetrics: Codable {
-    let read: [Metric]
-    let write: [Metric]
+    let connectUi: ConnectUiConfiguration
+    let interval: String = "week"
+    let metrics: [Metric]
+    
+    enum CodingKeys: String, CodingKey {
+        case connectUi = "connect_ui"
+        
+        case version
+        case interval
+        case metrics
+    }
 }
 
 struct Metric: Codable {
-    let name: String
-    let displayName: String
-    let type: String
-    let description: String?
+    let label: String
+    let type: MetricSchemaType
+    let usage_description: String?
+    let id: CardianMetricIdentifier
+    let mode: Int
+}
+
+struct ConnectUiConfiguration: Codable {
+    let cardianUrl: String
+    let iconUrl: String
+    let appName: String
+    let views: ConnectUiViews
+    let colors: ConnectUiColors
+    
+    enum CodingKeys: String, CodingKey {
+        case cardianUrl = "cardian_url"
+        case iconUrl = "icon_url"
+        case appName = "app_name"
+        
+        case views
+        case colors
+    }
+}
+
+struct ConnectUiViews: Codable {
+    let introduction: ConnectUiIntroductionView
+    let usage: ConnectUiUsageView
+    let completion: ConnectUiCompletionView
+}
+
+struct ConnectUiIntroductionView: Codable {
+    let title1: String
+    let body1: String
+    let title2: String
+    let body2: String
+    let buttonLabel: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title1 = "bullet_1_title"
+        case body1 = "bullet_1_body"
+        case title2 = "bullet_2_title"
+        case body2 = "bullet_2_body"
+        case buttonLabel = "button_label"
+    }
+}
+
+struct ConnectUiUsageView: Codable {
+    let title: String
+    let description: String
+    let buttonLabel: String
+    
+    enum CodingKeys: String, CodingKey {
+        case buttonLabel = "button_label"
+        
+        case title
+        case description
+    }
+}
+
+struct ConnectUiCompletionView: Codable {
+    let title: String
+    let body: String
+    let buttonLabel: String
+    
+    enum CodingKeys: String, CodingKey {
+        case buttonLabel = "button_label"
+        
+        case title
+        case body
+    }
+}
+
+struct ConnectUiColors: Codable {
+    let primary: String
+}
+
+
+
+
+struct AuthMetrics: Codable { // Remove and just find this programmatically..
+    let read: [Metric]
+    let write: [Metric]
 }
 
 struct MetricCollection: Codable {
@@ -35,37 +113,10 @@ struct MetricCollection: Codable {
     let metrics: [Metric]
 }
 
-struct ConnectUIConfiguration: Codable {
-    let cardianUrl: String
-    
-    // Introduction Screen Variables
-    let introductionHeader: String
-    let introductionTitle1: String
-    let introductionBody1: String
-    let introductionTitle2: String
-    let introductionBody2: String
-    let introductionButtonLabel: String
-    
-    // Usage Screen Variables
-    let usageTitle: String
-    let usageDescription: String
-    let usageButtonLabel: String
-    // Completion Screen Variables
-    let completionTitle: String
-    let completionBody: String
-    let completionButtonLabel: String
-    
-    // TODO Remove this from here and have connect prompt take from regualr config :D
-    let authMetrics: AuthMetrics
-    let metricCollections: [MetricCollection]
-//    "metrics": {
-//      "height": {
-//        "label": "Height",
-//        "mode": 0
-//      }
-}
+
 
 struct ConnectedVersions: Codable {
     var versionsMap: [String: Bool]
     var latestConnectedVersion: String
 }
+

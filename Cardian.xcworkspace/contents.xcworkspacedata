@@ -4,4 +4,10 @@
    <FileRef
       location = "container:Cardian.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Cardian.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -15,4 +15,5 @@ Pod::Spec.new do |spec|
 
 # Dependencies
   # spec.dependency "---", "~> 1.0.0"
+  spec.dependency “Alamofire”
 end

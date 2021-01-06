@@ -25,11 +25,11 @@ class DisclosureViewController: BaseViewController {
     public static let nibName = "DisclosureViewController"
     
     // MARK: Variables
-    var dataSource: ConnectUIConfiguration
+    var currentConfiguration: CardianConfiguration
     
     // MARK: Functions
-    init(dataSource: ConnectUIConfiguration, showDismissButton: Bool = true) {
-        self.dataSource = dataSource
+    init(currentConfiguration: CardianConfiguration, showDismissButton: Bool = true) {
+        self.currentConfiguration = currentConfiguration
         let bundle = Bundle(for: DisclosureViewController.self)
         super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
     }
@@ -39,13 +39,29 @@ class DisclosureViewController: BaseViewController {
     }
     
     func mainActionTapped() {
+        // TODO maybe move to a function
+        var readMetrics: [Metric] = []
+        var writeMetrics: [Metric] = []
+        for (currentMetric) in currentConfiguration.metrics {
+            if (currentMetric.mode > 0) {
+                readMetrics.append(currentMetric)
+            }
+            
+            if (currentMetric.mode == 2) {
+                writeMetrics.append(currentMetric)
+            }
+        }
+        let readMetricsCollection = MetricCollection(name: "Readable Metrics", metrics: readMetrics)
+        let writeMetricColleciton = MetricCollection(name: "Writeable", metrics: writeMetrics)
+        let authMetrics = AuthMetrics(read: readMetrics, write: writeMetrics)
+        
         // TODO: This is temporary and should probably be in the API class
-        let breakdownDataSource = BreakdownDataSource(title: "Understand How Your Data is Used",
+        let breakdownCurrentConfiguration = BreakdownDataSource(title: "Understand How Your Data is Used",
                                                       description: "Below is a breakdown of the data being gathered by this app and a description of how it is used.",
                                                       actionTitle: "Continue",
-                                                      authMetrics: dataSource.authMetrics,
-                                                      MetricCollections: dataSource.metricCollections)
-        let breakdownController = DataBreakdownController(dataSource: breakdownDataSource)
+                                                      authMetrics: authMetrics,
+                                                      MetricCollections: [readMetricsCollection, writeMetricColleciton])
+        let breakdownController = DataBreakdownController(dataSource: breakdownCurrentConfiguration) // TODO fix this
         breakdownController.modalPresentationStyle = .fullScreen
         breakdownController.modalTransitionStyle = .crossDissolve
         if #available(iOS 13.0, *) { breakdownController.isModalInPresentation = true }
@@ -53,18 +69,18 @@ class DisclosureViewController: BaseViewController {
     }
     
     func linkTapped() {
-        guard let url = URL(string: dataSource.cardianUrl) else { return }
+        guard let url = URL(string: currentConfiguration.connectUi.cardianUrl) else { return }
         UIApplication.shared.open(url)
     }
     
     override func viewSetup() {
         super.viewSetup()
-        headingLabel.text = dataSource.introductionHeader
-        titleLabel1.text = dataSource.introductionTitle1
-        descriptionLabel1.text = dataSource.introductionBody1
-        titleLabel2.text = dataSource.introductionTitle2
-        descriptionLabel2.text = dataSource.introductionBody2
-        mainActionButton.setTitle(dataSource.introductionButtonLabel, for: .normal)
+        headingLabel.text = "\(currentConfiguration.connectUi.appName) uses Cardian to connect to Apple Health"
+        titleLabel1.text = currentConfiguration.connectUi.views.introduction.title1
+        descriptionLabel1.text = currentConfiguration.connectUi.views.introduction.body1
+        titleLabel2.text = currentConfiguration.connectUi.views.introduction.title2
+        descriptionLabel2.text = currentConfiguration.connectUi.views.introduction.body2
+        mainActionButton.setTitle(currentConfiguration.connectUi.views.introduction.buttonLabel, for: .normal)
         CardianStyler.styleRoundedButton(button: mainActionButton)
     }
     

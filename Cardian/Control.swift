@@ -11,6 +11,11 @@ import Foundation
 import Alamofire
 import UIKit
 
+
+public struct PromptForPermissionsOptions {
+    let presetationMode: String? = nil
+}
+
 // MARK: Class
 public class Control {
     // Expose an instance of control
@@ -22,13 +27,11 @@ public class Control {
     private var apiKey: String?
     private var externalId: String?
     private var config: CardianConfiguration?
-    private var connectUiConfig: ConnectUIConfiguration?
     
-    private var connectionClosure: ((ConnectUIConfiguration) -> Void)?
+    private var connectionClosure: ((ConnectUiConfiguration) -> Void)?
     
     public init() {
         self.config = nil
-        self.connectUiConfig = nil
         self.fetchingConfig = false
         self.connectionClosure = nil
         self.externalId = nil
@@ -36,22 +39,21 @@ public class Control {
     
     
     // MARK: Public Functions
-    public func configure(_ api_key: String) {
+    public func configure(_ api_key: String, version: String = "^") {
         self.apiKey = api_key
         self.fetchingConfig = true
         // Checck for a cached one under this API KEY
-        API.getConfig(api_key, callback: self.setConfigurations)
+        API.getConfig(api_key, version: version, callback: self.setConfigurations)
     }
     
-    
-    public func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
-        if (!self.fetchingConfig && self.config != nil && self.connectUiConfig != nil) {
+    public func promptForPermissions(presentationController: UIViewController, options: PromptForPermissionsOptions? = nil, completion: @escaping (Bool) -> Void) {
+        if (!self.fetchingConfig && self.config != nil && self.config?.connectUi != nil) {
             Connect.connect(presentationController: presentationController, completion: completion)
         } else {
             print("Still fetching.. would present a spinner")
             // Add spinner pop up or option for this
             self.connectionClosure = {
-                (ConnectUIConfiguration) -> Void in
+                (ConnectUiConfiguration) -> Void in
                 Connect.connect(presentationController: presentationController, completion: completion)
             }
         }
@@ -72,7 +74,7 @@ public class Control {
         }
         
         // store Connect UI Config in UserDefaults
-        if let uiConfig = self.connectUiConfig {
+        if let uiConfig = self.config?.connectUi {
             do {
                 let data = try encoder.encode(uiConfig)
                 UserDefaults.standard.set(data, forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG")
@@ -113,12 +115,11 @@ public class Control {
     }
     
     // MARK: Get/Setters
-    private func setConfigurations(config: CardianConfiguration, uiConfig: ConnectUIConfiguration) {
+    private func setConfigurations(config: CardianConfiguration?) {
         self.config = config
-        self.connectUiConfig = uiConfig;
         self.fetchingConfig = false;
         if let connectionClosure = self.connectionClosure {
-            connectionClosure(self.connectUiConfig!)
+            connectionClosure(config!.connectUi)
         }
         
         self.cacheConfigsInDefaults()
@@ -144,46 +145,57 @@ public class Control {
     public func sync() {
         let endDate = Date()
         let startDate = self.getIntervalStartDate()
-        
-//        var quanitityRecords: [GenericHealthKitRecord] = [GenericHealthKitRecord]()
-        
-        // TODO Force Unwrap
-        for metric in self.getAuthMetrics()!.read {
-            
-            switch metric.name {
-            case "stepCount":
-                HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: startDate, end: endDate)
-                { data in
-                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
-                }
-            case "heartRate":
-                HealthKitManager.getHeartRate(start: startDate, end: endDate)
-                { data in
-                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
-                }
                 
-            default:
-                print("HIT DEFAULT IN SYNC")
+        // TODO Force Unwrap
+        for metric in config!.metrics {
+            // tODO read vs write here and clean handling
+            print("in sync loop \(metric.label)")
+            HealthKitManager.getHealthKitRecords(metric: metric, start: startDate, end: endDate) {
+                (data, schema) in
+                if (data == nil){
+                    return
+                }
+                if (data!.isEmpty) {
+                    print("was empty")
+                    return
+                }
+                if (schema == MetricSchemaType.quantitative) {
+                    print("in quant \(metric.label)")
+                    API.uploadQuantityHealthData(self.apiKey!, externalId: self.externalId!, data: data!)
+                }
             }
         }
         
         // TODO combine all into one request
-        
-        // TODO Force unwrap
     }
     
-    func getConnectUIConfiguration() -> ConnectUIConfiguration? {
-        return self.connectUiConfig
+    // TODO add callback with data..
+    public func executeQuery(query: CardianQuery) {
+        API.uploadQuery(self.apiKey!, externalId: self.externalId!, query: query.getCodableQuery())
     }
     
-    func getAuthMetrics() -> AuthMetrics? {
-        if let config = self.config {
-            return config.authMetrics
+    func getConfiguration() -> CardianConfiguration? {
+        return self.config
+    }
+    
+    func getAuthMetrics() -> AuthMetrics {
+        var readMetrics: [Metric] = []
+        var writeMetrics: [Metric] = []
+        // tODO force unwrap
+        for (currentMetric) in self.config!.metrics {
+            if (currentMetric.mode > 0) {
+                readMetrics.append(currentMetric)
+            }
+            
+            if (currentMetric.mode == 2) {
+                writeMetrics.append(currentMetric)
+            }
         }
-        return nil
+        let authMetrics = AuthMetrics(read: readMetrics, write: writeMetrics)
+        return authMetrics
     }
     
-    func setExternalId(_ externalId: String) {
+    public func setExternalId(_ externalId: String) {
         self.externalId = externalId
     }
 }

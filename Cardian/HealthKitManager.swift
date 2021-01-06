@@ -10,12 +10,29 @@ import Foundation
 import HealthKit
 
 // MARK: Declarations
+enum MetricSchemaType : Int, Codable {
+    case quantitative = 1
+    case attribute = 2
+    case sleep = 3
+    case structured_activity = 4
+}
+
+// TODO clean this
+public enum CardianMetricIdentifier : Int, Codable {
+    case empty,height,weight,heartRate,bodyTemperature,oxygenSaturation,bloodPressureDiasystolic,bloodPressureSystolic,bodyFatPercentage,bloodGlucose,stepCount,distanceWalkingRunning,distanceCycling,basalEnergyBurned,activeEnergyBurned,flightsClimbed,sleepAnalysis,workouts,uvExposure,biologicalSex,dateOfBirth,menstrualFlow,cervicalMucusQuality,basalBodyTemperature,ovulationTestResults
+}
+
+struct CardianRecord : Codable {
+    var metric_schema_type: MetricSchemaType
+    var quantitative: QuantitativeCardianRecord
+}
+
 /// Stores step data for JSON export
-struct GenericHealthKitRecord : Codable {
-    var type: String
+struct QuantitativeCardianRecord : Codable {
+    var metric_type: CardianMetricIdentifier
     var start_time: Double
     var end_time: Double
-    var count: Double
+    var value: Double
     var reference_id: UUID
     var source: String = "h"
 }
@@ -46,6 +63,12 @@ enum HealthGender: Int {
     case notSet = -9999
 }
 
+struct HealthBirthdate {
+    let year: Int?
+    let month: Int?
+    let day: Int?
+}
+
 /// Stores sleep data for JSON export
 struct SleepData: Codable {
     var start_time: Double
@@ -65,64 +88,57 @@ struct CalorieData: Codable {
     var source: String = "h"
 }
 
-struct HealthBirthdate {
-    let year: Int?
-    let month: Int?
-    let day: Int?
-}
-
 // MARK: Class
 class HealthKitManager {
-    
     public static func healthKitObjectTranslater(metric: Metric) -> HKObjectType? {
-        switch metric.name {
-        case "height":
+        switch metric.id {
+        case CardianMetricIdentifier.height:
                 return HKQuantityType.quantityType(forIdentifier: .height)
-        case "weight":
+        case CardianMetricIdentifier.weight:
                 return HKQuantityType.quantityType(forIdentifier: .bodyMass)
-        case "heartRate":
+        case CardianMetricIdentifier.heartRate:
                 return HKQuantityType.quantityType(forIdentifier: .heartRate)
-        case "bodyTemperature":
+        case CardianMetricIdentifier.bodyTemperature:
                 return HKQuantityType.quantityType(forIdentifier: .bodyTemperature)
-        case "oxygenSaturation":
+        case CardianMetricIdentifier.oxygenSaturation:
                 return HKQuantityType.quantityType(forIdentifier: .oxygenSaturation)
-        case "bloodPressureDiasystolic":
+        case CardianMetricIdentifier.bloodPressureDiasystolic:
                 return HKQuantityType.quantityType(forIdentifier: .bloodPressureDiastolic)
-        case "bloodPressureSystolic":
+        case CardianMetricIdentifier.bloodPressureSystolic:
                 return HKQuantityType.quantityType(forIdentifier: .bloodPressureSystolic)
-        case "bodyFatPercentage":
+        case CardianMetricIdentifier.bodyFatPercentage:
             return HKQuantityType.quantityType(forIdentifier: .bodyFatPercentage)
-        case "bloodGlucose":
+        case CardianMetricIdentifier.bloodGlucose:
             return HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
-        case "stepCount":
+        case CardianMetricIdentifier.stepCount:
             return HKQuantityType.quantityType(forIdentifier: .stepCount)
-        case "distanceWalkingRunning":
+        case CardianMetricIdentifier.distanceWalkingRunning:
             return HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
-        case "distanceCycling":
+        case CardianMetricIdentifier.distanceCycling:
             return HKQuantityType.quantityType(forIdentifier: .distanceCycling)
-        case "basalEnergyBurned":
+        case CardianMetricIdentifier.basalEnergyBurned:
             return HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)
-        case "activeEnergyBurned":
+        case CardianMetricIdentifier.activeEnergyBurned:
             return HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
-        case "flightsClimbed":
+        case CardianMetricIdentifier.flightsClimbed:
             return HKQuantityType.quantityType(forIdentifier: .flightsClimbed)
-        case "sleepAnalysis":
+        case CardianMetricIdentifier.sleepAnalysis:
             return HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)
-        case "workouts":
+        case CardianMetricIdentifier.workouts:
             return HKObjectType.workoutType()
-        case "uvExposure":
+        case CardianMetricIdentifier.uvExposure:
             return HKQuantityType.quantityType(forIdentifier: .uvExposure)
-        case "biologicalSex":
+        case CardianMetricIdentifier.biologicalSex:
             return HKCharacteristicType.characteristicType(forIdentifier: .biologicalSex)
-        case "dateOfBirth":
+        case CardianMetricIdentifier.dateOfBirth:
             return HKCharacteristicType.characteristicType(forIdentifier: .dateOfBirth)
-        case "menstrualFlow":
+        case CardianMetricIdentifier.menstrualFlow:
             return HKCategoryType.categoryType(forIdentifier: .menstrualFlow)
-        case "cervicalMucusQuality":
+        case CardianMetricIdentifier.cervicalMucusQuality:
             return HKCategoryType.categoryType(forIdentifier: .cervicalMucusQuality)
-        case "basalBodyTemperature":
+        case CardianMetricIdentifier.basalBodyTemperature:
             return HKQuantityType.quantityType(forIdentifier: .basalBodyTemperature)
-        case "ovulationTestResults":
+        case CardianMetricIdentifier.ovulationTestResults:
             return HKCategoryType.categoryType(forIdentifier: .ovulationTestResult)
         default:
             print("Health metric either not supported or found.")
@@ -130,9 +146,73 @@ class HealthKitManager {
         }
     }
     
+    public static func getHealthKitRecords(metric: Metric, start: Date, end: Date, completion: @escaping ([CardianRecord]?, MetricSchemaType?) -> Void) {
+        switch metric.type {
+        case .quantitative:
+            var identifier: HKSampleType?
+            var unit = HKUnit.count()
+            switch metric.id {
+            case CardianMetricIdentifier.height:
+                identifier = HKSampleType.quantityType(forIdentifier: .height)
+                unit = HKUnit(from: LengthFormatter.Unit.inch)
+            case CardianMetricIdentifier.weight:
+                identifier = HKSampleType.quantityType(forIdentifier: .bodyMass)
+                unit = HKUnit(from: MassFormatter.Unit.pound)
+            case CardianMetricIdentifier.heartRate:
+                identifier = HKSampleType.quantityType(forIdentifier: .heartRate)
+                unit = HKUnit.init(from: "count/min")
+            case CardianMetricIdentifier.bodyTemperature:
+                identifier = HKSampleType.quantityType(forIdentifier: .bodyTemperature)
+            case CardianMetricIdentifier.oxygenSaturation:
+                identifier = HKSampleType.quantityType(forIdentifier: .oxygenSaturation)
+            case CardianMetricIdentifier.bloodPressureDiasystolic:
+                identifier = HKSampleType.quantityType(forIdentifier: .bloodPressureDiastolic)
+            case CardianMetricIdentifier.bloodPressureSystolic:
+                identifier = HKSampleType.quantityType(forIdentifier: .bloodPressureSystolic)
+            case CardianMetricIdentifier.bodyFatPercentage:
+                identifier = HKSampleType.quantityType(forIdentifier: .bodyFatPercentage)
+            case CardianMetricIdentifier.bloodGlucose:
+                identifier = HKSampleType.quantityType(forIdentifier: .bloodGlucose)
+            case CardianMetricIdentifier.stepCount:
+                identifier = HKSampleType.quantityType(forIdentifier: .stepCount)
+                unit = HKUnit.count()
+            case CardianMetricIdentifier.distanceWalkingRunning:
+                identifier = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)
+            case CardianMetricIdentifier.distanceCycling:
+                identifier = HKSampleType.quantityType(forIdentifier: .distanceCycling)
+            case CardianMetricIdentifier.basalEnergyBurned:
+                identifier = HKSampleType.quantityType(forIdentifier: .basalEnergyBurned)
+                unit = HKUnit(from: EnergyFormatter.Unit.kilocalorie)
+            case CardianMetricIdentifier.activeEnergyBurned:
+                identifier = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned)
+                unit = HKUnit(from: EnergyFormatter.Unit.kilocalorie)
+            case CardianMetricIdentifier.flightsClimbed:
+                identifier = HKSampleType.quantityType(forIdentifier: .flightsClimbed)
+            case CardianMetricIdentifier.uvExposure:
+                identifier = HKSampleType.quantityType(forIdentifier: .uvExposure)
+            case CardianMetricIdentifier.basalBodyTemperature:
+                identifier = HKSampleType.quantityType(forIdentifier: .basalBodyTemperature)
+            default:
+                print("IN DEFAULT OF HKM")
+                completion(nil, nil)
+            }
+            print("ABOUT TO CALL GQM \(metric.label), \(unit), \(identifier!)")
+            getQuantitativeMetric(metric: metric, field: identifier!, unit: unit, start: start, end: end, completion: completion)
+        case .attribute:
+            completion(nil, nil)
+        case .sleep:
+            completion(nil, nil)
+        case .structured_activity:
+            completion(nil, nil)
+        }
+    }
+    
+    
+    
     /// Returns whether health data is available on this device.
     public static func dataAvailable() -> Bool { return HKHealthStore.isHealthDataAvailable() }
     
+    // TODO add all data points here?
     /// Determines if a specific type of data is authorized for us to write to.  Options are: sleep, height, weight
     public static func isAuthorizedToWrite(type: HealthDataType) -> Bool {
         guard dataAvailable() else { return false }
@@ -212,86 +292,43 @@ class HealthKitManager {
         HKHealthStore().execute(query)
     }
     
-    /// Returns the current weight from healthkit in pounds
-    public static func getCurrentWeight(completion: @escaping (Double?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        guard let field = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
-            completion(nil)
-            return
-        }
-        queryHealthKit(sampleType: field) { (results) in
-            guard let samples = results as? [HKSample]?, let current = samples?.first as? HKQuantitySample else {
-                completion(nil)
-                return
-            }
-            completion(current.quantity.doubleValue(for: HKUnit(from: MassFormatter.Unit.pound)))
-        }
-    }
-    
-    /// Returns the current height from healthkit in inches
-    public static func getCurrentHeight(completion: @escaping (Double?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        guard let field = HKSampleType.quantityType(forIdentifier: .height) else {
-            completion(nil)
-            return
-        }
-        queryHealthKit(sampleType: field) { (results) in
-            guard let samples = results as? [HKSample]?, let current = samples?.first as? HKQuantitySample else {
-                completion(nil)
-                return
-            }
-            completion(current.quantity.doubleValue(for: HKUnit(from: LengthFormatter.Unit.inch)))
-        }
-    }
-    
     /// Returns step count from healthkit based on an interval of start/end timestamps
-    public static func getQuanitityMetric(healthKitType: HKQuantityTypeIdentifier, start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
+    public static func getQuantitativeMetric(metric: Metric, field: HKSampleType, unit: HKUnit, start: Date, end: Date, limit: Int = 250000, completion: @escaping ([CardianRecord]?, MetricSchemaType?) -> Void) {
         guard dataAvailable() else {
-            completion(nil)
+            completion(nil, nil)
             return
         }
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        guard let field = HKSampleType.quantityType(forIdentifier: healthKitType) else {
-            completion(nil)
-            return
-        }
-        
         let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
             
             guard error == nil else {
                 print("Failed to get steps from healthkit: \(error.debugDescription)")
-                completion(nil)
+                completion(nil, nil)
                 return
             }
             
             guard let samples = results else {
-                completion(nil)
+                completion(nil, nil)
                 return
             }
             
-            var out = [GenericHealthKitRecord]()
+            var out = [CardianRecord]()
             for sample in samples {
                 guard let s = sample as? HKQuantitySample else { continue }
                 // Get the CARDIAN Type here not the raw value of HK type
-                let record = GenericHealthKitRecord(
-                    type: healthKitType.rawValue,
+                let quantitativeRecord = QuantitativeCardianRecord(
+                    metric_type: metric.id,
                     start_time: s.startDate.timeIntervalSince1970,
                     end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.count()),
+                    value: s.quantity.doubleValue(for: unit),
                     reference_id: s.uuid
                 )
+                let record = CardianRecord(metric_schema_type: .quantitative, quantitative: quantitativeRecord)
                 out.append(record)
             }
-            completion(out)
+            completion(out, MetricSchemaType.quantitative)
         }
         HKHealthStore().execute(query)
     }
@@ -345,333 +382,6 @@ class HealthKitManager {
             }
             completion(out)
         }
-        HKHealthStore().execute(query)
-    }
-    
-    public static func getActiveCalories(start: Date, end: Date, limit: Int = 25000, completion: @escaping ([CalorieData]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        guard let field = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned) else {
-            completion(nil)
-            return
-        }
-        
-        let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get breathing sessions from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-            
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [CalorieData]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let activeCalorie = CalorieData(
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit(from: EnergyFormatter.Unit.kilocalorie)),
-                    type: CalorieRecordType.ACTIVE.rawValue,
-                    reference_id: s.uuid
-                )
-                out.append(activeCalorie)
-            }
-            completion(out)
-        }
-        HKHealthStore().execute(query)
-    }
-    
-    /// Returhs the calorie data from healthkit
-    public static func getCalories(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([CalorieData]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        guard let basalField = HKSampleType.quantityType(forIdentifier: .basalEnergyBurned) else {
-            completion(nil)
-            return
-        }
-        
-        guard let activeField = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned) else {
-            completion(nil)
-            return
-        }
-        
-        // Query for the basal calorie data
-        let basalQuery = HKSampleQuery(sampleType: basalField, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get basal calories from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-            
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [CalorieData]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let basalCalorie = CalorieData(
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit(from: EnergyFormatter.Unit.kilocalorie)),
-                    type: CalorieRecordType.BASAL.rawValue,
-                    reference_id: s.uuid
-                )
-                out.append(basalCalorie)
-            }
-            
-            // Query for the active calories data
-            let activeQuery = HKSampleQuery(sampleType: activeField, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-                
-                guard error == nil else {
-                    print("Failed to get active calories from healthkit: \(error.debugDescription)")
-                    completion(nil)
-                    return
-                }
-                
-                guard let samples = results else {
-                    completion(nil)
-                    return
-                }
-                
-                for sample in samples {
-                    guard let s = sample as? HKQuantitySample else { continue }
-                    
-                    let activeCalorie = CalorieData(
-                        start_time: s.startDate.timeIntervalSince1970,
-                        end_time: s.endDate.timeIntervalSince1970,
-                        count: s.quantity.doubleValue(for: HKUnit(from: EnergyFormatter.Unit.kilocalorie)),
-                        type: CalorieRecordType.ACTIVE.rawValue,
-                        reference_id: s.uuid
-                    )
-                    out.append(activeCalorie)
-                }
-                completion(out)
-            }
-            HKHealthStore().execute(activeQuery)
-        }
-        HKHealthStore().execute(basalQuery)
-    }
-    
-    /// Returns heart rate data on a start/end interval from HealthKit
-    public static func getHeartRate(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-    
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        guard let field = HKSampleType.quantityType(forIdentifier: .heartRate) else {
-            completion(nil)
-            return
-        }
-        
-        let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get heart rate data from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-            
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [GenericHealthKitRecord]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let heartRate = GenericHealthKitRecord(
-                    type: "heartRate",
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.init(from: "count/min")),
-                    reference_id: s.uuid
-                )
-                
-                out.append(heartRate)
-            }
-            completion(out)
-        }
-        HKHealthStore().execute(query)
-    }
-    
-    /// Returns heart rate variability data on a start/end interval from healthkit
-    public static func getHeartRateVariability(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        guard let field = HKSampleType.quantityType(forIdentifier: .heartRateVariabilitySDNN) else {
-            completion(nil)
-            return
-        }
-        
-        let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get heart rate variabliity data from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-            
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [GenericHealthKitRecord]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let hrv = GenericHealthKitRecord(
-                    type: "heartRateVariability",
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli)),
-                    reference_id: s.uuid
-                )
-                out.append(hrv)
-            }
-            completion(out)
-        }
-        HKHealthStore().execute(query)
-    }
-
-    /// Returns the exercise minutes for a given start/stop interval in minutes
-    public static func getExercise(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        guard let field = HKSampleType.quantityType(forIdentifier: .appleExerciseTime) else {
-            completion(nil)
-            return
-        }
-        
-        let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get exercise minutes from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [GenericHealthKitRecord]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let exercise = GenericHealthKitRecord(
-                    type: "exercise",
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.minute()),
-                    reference_id: s.uuid
-                )
-                out.append(exercise)
-            }
-           completion(out)
-        }
-        HKHealthStore().execute(query)
-    }
-    
-    /// Returns the exercise minutes for a given start/stop interval in minutes
-    public static func getBreathingSessions(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([GenericHealthKitRecord]?) -> Void) {
-        guard dataAvailable() else {
-            completion(nil)
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: [])
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        guard let field = HKSampleType.categoryType(forIdentifier: .mindfulSession) else {
-            completion(nil)
-            return
-        }
-        
-        let query = HKSampleQuery(sampleType: field, predicate: predicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-            
-            guard error == nil else {
-                print("Failed to get breathing sessions from healthkit: \(error.debugDescription)")
-                completion(nil)
-                return
-            }
-            
-            guard let samples = results else {
-                completion(nil)
-                return
-            }
-            
-            var out = [GenericHealthKitRecord]()
-            for sample in samples {
-                guard let s = sample as? HKQuantitySample else { continue }
-                
-                let breathingSession = GenericHealthKitRecord(
-                    type: "breathingSession",
-                    start_time: s.startDate.timeIntervalSince1970,
-                    end_time: s.endDate.timeIntervalSince1970,
-                    count: s.quantity.doubleValue(for: HKUnit.minute()),
-                    reference_id: s.uuid
-                )
-                out.append(breathingSession)
-            }
-            completion(out)
-        }
-        HKHealthStore().execute(query)
-    }
-
-    public static func getTodaysSteps(completion: @escaping (Double) -> Void) {
-        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
-        let now = Date()
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-
-        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else {
-                completion(0.0)
-                return
-            }
-            completion(sum.doubleValue(for: HKUnit.count()))
-        }
-
         HKHealthStore().execute(query)
     }
 }
