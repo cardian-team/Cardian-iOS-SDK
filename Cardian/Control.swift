@@ -12,7 +12,7 @@ import Alamofire
 import UIKit
 
 
-public struct promptForPermissionsOptions {
+public struct PromptForPermissionsOptions {
     let presetationMode: String? = nil
 }
 
@@ -39,15 +39,14 @@ public class Control {
     
     
     // MARK: Public Functions
-    public func configure(_ api_key: String) {
+    public func configure(_ api_key: String, version: String = "^") {
         self.apiKey = api_key
         self.fetchingConfig = true
         // Checck for a cached one under this API KEY
-        API.getConfig(api_key, callback: self.setConfigurations)
+        API.getConfig(api_key, version: version, callback: self.setConfigurations)
     }
     
-    
-    public func promptForPermissions(presentationController: UIViewController, options: promptForPermissionsOptions? = nil, completion: @escaping (Bool) -> Void) {
+    public func promptForPermissions(presentationController: UIViewController, options: PromptForPermissionsOptions? = nil, completion: @escaping (Bool) -> Void) {
         if (!self.fetchingConfig && self.config != nil && self.config?.connectUi != nil) {
             Connect.connect(presentationController: presentationController, completion: completion)
         } else {

@@ -13,8 +13,7 @@ import Cardian
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        CardianApp.configure("087418af-807e-4a14-b0ca-baf1be7be9fe")
-        
+        CardianApp.configure("bf5c7cb6-bae6-4f88-90c7-9ce24eca4c5d", version: "1.0.0")
         return true
     }
 

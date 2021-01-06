@@ -10,9 +10,26 @@ import Foundation
 import HealthKit
 
 // MARK: Declarations
+enum MetricSchemaType : Int, Codable {
+    case quantity = 1
+    case attribute = 2
+    case sleep = 3
+    case structured_activity = 4
+}
+
+// TODO clean this
+enum CardianMetricIdentifier : Int, Codable {
+    case empty,height,weight,heartRate,bodyTemperature,oxygenSaturation,bloodPressureDiasystolic,bloodPressureSystolic,bodyFatPercentage,bloodGlucose,stepCount,distanceWalkingRunning,distanceCycling,basalEnergyBurned,activeEnergyBurned,flightsClimbed,sleepAnalysis,workouts,uvExposure,biologicalSex,dateOfBirth,menstrualFlow,cervicalMucusQuality,basalBodyTemperature,ovulationTestResults
+}
+
+struct CardianRecord : Codable {
+    var metric_schema_type: MetricSchemaType
+    var quantitiy: QuantityCardianRecord
+}
+
 /// Stores step data for JSON export
-struct GenericHealthKitRecord : Codable {
-    var metric_type: Int
+struct QuantityCardianRecord : Codable {
+    var metric_type: CardianMetricIdentifier
     var start_time: Double
     var end_time: Double
     var value: Double
@@ -46,25 +63,6 @@ enum HealthGender: Int {
     case notSet = -9999
 }
 
-/// Stores sleep data for JSON export
-struct SleepData: Codable {
-    var start_time: Double
-    var end_time: Double
-    var type: Int
-    var reference_id: UUID
-    var source: String = "h"
-}
-
-/// Stores calorie data for JSON export
-struct CalorieData: Codable {
-    var start_time: Double
-    var end_time: Double
-    var count: Double
-    var type: Int
-    var reference_id: UUID
-    var source: String = "h"
-}
-
 struct HealthBirthdate {
     let year: Int?
     let month: Int?
@@ -73,56 +71,55 @@ struct HealthBirthdate {
 
 // MARK: Class
 class HealthKitManager {
-    
     public static func healthKitObjectTranslater(metric: Metric) -> HKObjectType? {
         switch metric.id {
-        case "height":
+        case CardianMetricIdentifier.height:
                 return HKQuantityType.quantityType(forIdentifier: .height)
-        case "weight":
+        case CardianMetricIdentifier.weight:
                 return HKQuantityType.quantityType(forIdentifier: .bodyMass)
-        case "heartRate":
+        case CardianMetricIdentifier.heartRate:
                 return HKQuantityType.quantityType(forIdentifier: .heartRate)
-        case "bodyTemperature":
+        case CardianMetricIdentifier.bodyTemperature:
                 return HKQuantityType.quantityType(forIdentifier: .bodyTemperature)
-        case "oxygenSaturation":
+        case CardianMetricIdentifier.oxygenSaturation:
                 return HKQuantityType.quantityType(forIdentifier: .oxygenSaturation)
-        case "bloodPressureDiasystolic":
+        case CardianMetricIdentifier.bloodPressureDiasystolic:
                 return HKQuantityType.quantityType(forIdentifier: .bloodPressureDiastolic)
-        case "bloodPressureSystolic":
+        case CardianMetricIdentifier.bloodPressureSystolic:
                 return HKQuantityType.quantityType(forIdentifier: .bloodPressureSystolic)
-        case "bodyFatPercentage":
+        case CardianMetricIdentifier.bodyFatPercentage:
             return HKQuantityType.quantityType(forIdentifier: .bodyFatPercentage)
-        case "bloodGlucose":
+        case CardianMetricIdentifier.bloodGlucose:
             return HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
-        case "stepCount":
+        case CardianMetricIdentifier.stepCount:
             return HKQuantityType.quantityType(forIdentifier: .stepCount)
-        case "distanceWalkingRunning":
+        case CardianMetricIdentifier.distanceWalkingRunning:
             return HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
-        case "distanceCycling":
+        case CardianMetricIdentifier.distanceCycling:
             return HKQuantityType.quantityType(forIdentifier: .distanceCycling)
-        case "basalEnergyBurned":
+        case CardianMetricIdentifier.basalEnergyBurned:
             return HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)
-        case "activeEnergyBurned":
+        case CardianMetricIdentifier.activeEnergyBurned:
             return HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
-        case "flightsClimbed":
+        case CardianMetricIdentifier.flightsClimbed:
             return HKQuantityType.quantityType(forIdentifier: .flightsClimbed)
-        case "sleepAnalysis":
+        case CardianMetricIdentifier.sleepAnalysis:
             return HKCategoryType.categoryType(forIdentifier: .sleepAnalysis)
-        case "workouts":
+        case CardianMetricIdentifier.workouts:
             return HKObjectType.workoutType()
-        case "uvExposure":
+        case CardianMetricIdentifier.uvExposure:
             return HKQuantityType.quantityType(forIdentifier: .uvExposure)
-        case "biologicalSex":
+        case CardianMetricIdentifier.biologicalSex:
             return HKCharacteristicType.characteristicType(forIdentifier: .biologicalSex)
-        case "dateOfBirth":
+        case CardianMetricIdentifier.dateOfBirth:
             return HKCharacteristicType.characteristicType(forIdentifier: .dateOfBirth)
-        case "menstrualFlow":
+        case CardianMetricIdentifier.menstrualFlow:
             return HKCategoryType.categoryType(forIdentifier: .menstrualFlow)
-        case "cervicalMucusQuality":
+        case CardianMetricIdentifier.cervicalMucusQuality:
             return HKCategoryType.categoryType(forIdentifier: .cervicalMucusQuality)
-        case "basalBodyTemperature":
+        case CardianMetricIdentifier.basalBodyTemperature:
             return HKQuantityType.quantityType(forIdentifier: .basalBodyTemperature)
-        case "ovulationTestResults":
+        case CardianMetricIdentifier.ovulationTestResults:
             return HKCategoryType.categoryType(forIdentifier: .ovulationTestResult)
         default:
             print("Health metric either not supported or found.")

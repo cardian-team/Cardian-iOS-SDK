@@ -15,15 +15,21 @@ class API {
         let data: CardianConfiguration
         let success: Bool
     }
-    public static func getConfig(_ apiKey: String, callback: @escaping (CardianConfiguration?) -> ()) -> Void {
+    public static func getConfig(_ apiKey: String, version: String, callback: @escaping (CardianConfiguration?) -> ()) -> Void {
         let headers: HTTPHeaders = [
-          "X-API-Key": apiKey,
+          "Cardian-API-Key": apiKey,
           "Accept": "application/json",
         ]
         
+        print("in config")
+        
         //TODO fix this to not throw if bad obj
-        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/1.0.0", headers: headers).responseJSON { response in
-            guard let data = response.data else { return }
+        AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/\(version)", headers: headers).responseJSON { response in
+            guard let data = response.data else {
+                // TODO maybe throw an error here? or callback with error
+                print("There is no release for the given version and api key");
+                return
+            }
         
             do {
                 let decoder = JSONDecoder()
@@ -75,7 +81,7 @@ class API {
         print("Health data \(data)")
         
         let headers: HTTPHeaders = [
-          "X-API-Key": apiKey,
+          "Cardian-API-Key": apiKey,
           "Accept": "application/json",
         ]
         
