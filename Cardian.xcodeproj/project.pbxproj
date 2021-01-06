@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D429B8B255B246C00B75D48 /* CardianAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */; };
+		0DDB35D825A601AA001EFB66 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB35D725A601AA001EFB66 /* File.swift */; };
 		0DEDE1F4255351CB00EAE60E /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F3255351CB00EAE60E /* Control.swift */; };
 		0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F9255352F600EAE60E /* Cardian.swift */; };
 		0DEDE20625536A9C00EAE60E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE20525536A9C00EAE60E /* Query.swift */; };
@@ -109,6 +110,7 @@
 /* Begin PBXFileReference section */
 		01663D842A8089EE57D7707E /* Pods_Cardian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cardian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianAppDelegate.swift; sourceTree = "<group>"; };
+		0DDB35D725A601AA001EFB66 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0DEDE1F3255351CB00EAE60E /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		0DEDE1F9255352F600EAE60E /* Cardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardian.swift; sourceTree = "<group>"; };
 		0DEDE20525536A9C00EAE60E /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				726CAA3325011E0C00428D6F /* Info.plist */,
 				0DEDE20525536A9C00EAE60E /* Query.swift */,
 				0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */,
+				0DDB35D725A601AA001EFB66 /* File.swift */,
 			);
 			path = Cardian;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				72335B7525133E9000014CE9 /* Connect.swift in Sources */,
 				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
 				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
+				0DDB35D825A601AA001EFB66 /* File.swift in Sources */,
 				0DEDE20625536A9C00EAE60E /* Query.swift in Sources */,
 				0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,

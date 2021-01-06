@@ -76,13 +76,14 @@ class API {
         }
     }
     
-    public static func uploadQuantityHealthData(_ apiKey: String, data: [CardianRecord]) {
+    public static func uploadQuantityHealthData(_ apiKey: String, externalId: String, data: [CardianRecord]) {
         let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/records"
         print("Health data \(data)")
         
         let headers: HTTPHeaders = [
-          "Cardian-API-Key": apiKey,
-          "Accept": "application/json",
+            "Cardian-API-Key": apiKey,
+            "Cardian-User-Id": externalId,
+            "Accept": "application/json",
         ]
         
         AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in

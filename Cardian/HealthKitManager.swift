@@ -24,7 +24,7 @@ enum CardianMetricIdentifier : Int, Codable {
 
 struct CardianRecord : Codable {
     var metric_schema_type: MetricSchemaType
-    var quantitiy: QuantitativeCardianRecord
+    var quantitative: QuantitativeCardianRecord
 }
 
 /// Stores step data for JSON export
@@ -193,8 +193,10 @@ class HealthKitManager {
             case CardianMetricIdentifier.basalBodyTemperature:
                 identifier = HKSampleType.quantityType(forIdentifier: .basalBodyTemperature)
             default:
+                print("IN DEFAULT OF HKM")
                 completion(nil, nil)
             }
+            print("ABOUT TO CALL GQM \(metric.label), \(unit), \(identifier!)")
             getQuantitativeMetric(metric: metric, field: identifier!, unit: unit, start: start, end: end, completion: completion)
         case .attribute:
             completion(nil, nil)
@@ -323,7 +325,7 @@ class HealthKitManager {
                     value: s.quantity.doubleValue(for: unit),
                     reference_id: s.uuid
                 )
-                let record = CardianRecord(metric_schema_type: .quantitative, quantitiy: quantitativeRecord)
+                let record = CardianRecord(metric_schema_type: .quantitative, quantitative: quantitativeRecord)
                 out.append(record)
             }
             completion(out, MetricSchemaType.quantitative)

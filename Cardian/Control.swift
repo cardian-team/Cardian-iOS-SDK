@@ -149,16 +149,19 @@ public class Control {
         // TODO Force Unwrap
         for metric in config!.metrics {
             // tODO read vs write here and clean handling
+            print("in sync loop \(metric.label)")
             HealthKitManager.getHealthKitRecords(metric: metric, start: startDate, end: endDate) {
                 (data, schema) in
                 if (data == nil){
                     return
                 }
                 if (data!.isEmpty) {
+                    print("was empty")
                     return
                 }
                 if (schema == MetricSchemaType.quantitative) {
-                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
+                    print("in quant \(metric.label)")
+                    API.uploadQuantityHealthData(self.apiKey!, externalId: self.externalId!, data: data!)
                 }
             }
         }
@@ -187,7 +190,7 @@ public class Control {
         return authMetrics
     }
     
-    func setExternalId(_ externalId: String) {
+    public func setExternalId(_ externalId: String) {
         self.externalId = externalId
     }
 }
