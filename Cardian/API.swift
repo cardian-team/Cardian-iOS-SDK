@@ -76,7 +76,7 @@ class API {
         }
     }
     
-    public static func uploadQuantityHealthData(_ apiKey: String, data: [GenericHealthKitRecord]) {
+    public static func uploadQuantityHealthData(_ apiKey: String, data: [CardianRecord]) {
         let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/records"
         print("Health data \(data)")
         

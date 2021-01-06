@@ -145,26 +145,21 @@ public class Control {
     public func sync() {
         let endDate = Date()
         let startDate = self.getIntervalStartDate()
-        
-//        var quanitityRecords: [GenericHealthKitRecord] = [GenericHealthKitRecord]()
-        
+                
         // TODO Force Unwrap
         for metric in config!.metrics {
-            // tODO read vs write here
-            switch metric.id {
-            case "stepCount":
-                HealthKitManager.getQuanitityMetric(healthKitType: .stepCount, start: startDate, end: endDate)
-                { data in
+            // tODO read vs write here and clean handling
+            HealthKitManager.getHealthKitRecords(metric: metric, start: startDate, end: endDate) {
+                (data, schema) in
+                if (data == nil){
+                    return
+                }
+                if (data!.isEmpty) {
+                    return
+                }
+                if (schema == MetricSchemaType.quantitative) {
                     API.uploadQuantityHealthData(self.apiKey!, data: data!)
                 }
-            case "heartRate":
-                HealthKitManager.getHeartRate(start: startDate, end: endDate)
-                { data in
-                    API.uploadQuantityHealthData(self.apiKey!, data: data!)
-                }
-                
-            default:
-                print("HIT DEFAULT IN SYNC")
             }
         }
         

@@ -25,7 +25,7 @@ struct CardianConfiguration: Codable {
 
 struct Metric: Codable {
     let label: String
-    let type: String
+    let type: MetricSchemaType
     let usage_description: String?
     let id: CardianMetricIdentifier
     let mode: Int
