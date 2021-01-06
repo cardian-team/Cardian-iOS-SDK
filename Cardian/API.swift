@@ -89,6 +89,22 @@ class API {
         AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
             print("Upload Response\(response)")
         }
+    }
+    
+    
+    public static func uploadQuery(_ apiKey: String, externalId: String, query: CodableQuery) {
+        let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/query"
+        print("Health data \(query)")
+        
+        let headers: HTTPHeaders = [
+            "Cardian-API-Key": apiKey,
+            "Cardian-User-Id": externalId,
+            "Accept": "application/json",
+        ]
+        
+        AF.request(url, method: .post, parameters: query, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
+            print("QUERY Response\(response)")
+        }
         
     }
 }

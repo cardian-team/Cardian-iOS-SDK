@@ -169,6 +169,11 @@ public class Control {
         // TODO combine all into one request
     }
     
+    // TODO add callback with data..
+    public func executeQuery(query: CardianQuery) {
+        API.uploadQuery(self.apiKey!, externalId: self.externalId!, query: query.getCodableQuery())
+    }
+    
     func getConfiguration() -> CardianConfiguration? {
         return self.config
     }

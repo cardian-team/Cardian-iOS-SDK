@@ -19,7 +19,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func connectTapped() {
-        CardianApp.sync()
+//        CardianApp.sync()
+        let q = CardianQuery(metric: .heartRate)
+        CardianApp.executeQuery(query: q)
     }
 }
 
