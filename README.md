@@ -17,6 +17,10 @@ See Cardian's [iOS Native SDK Setup Guide](https://cardian.io/docs/ios/sdk-setup
 #### API
 See Cardian's [iOS Native SDK API](https://cardian.io/docs/ios/sdk) page for a list of all available methods.
 
+#### Guides
+
+<p align="center"><img src="https://app.onesignal.com/images/ios_10_notification_image.gif" width="400" alt="iOS Notification"><img src="https://app.onesignal.com/images/ios_10_notification_image.gif" width="400" alt="iOS Notification"><img src="https://app.onesignal.com/images/ios_10_notification_image.gif" width="400" alt="iOS Notification"></p>
+
 #### Change Log
 See this repository's [release tags](https://github.com/cardian-team/Cardian-iOS-SDK/releases) for a complete change log of every released version.
 
