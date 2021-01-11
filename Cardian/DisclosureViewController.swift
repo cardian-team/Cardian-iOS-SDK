@@ -80,6 +80,8 @@ class DisclosureViewController: BaseViewController {
         descriptionLabel1.text = currentConfiguration.connectUi.views.introduction.body1
         titleLabel2.text = currentConfiguration.connectUi.views.introduction.title2
         descriptionLabel2.text = currentConfiguration.connectUi.views.introduction.body2
+        iconImage.layer.cornerRadius = 10
+        iconImage.clipsToBounds = true
         mainActionButton.setTitle(currentConfiguration.connectUi.views.introduction.buttonLabel, for: .normal)
         CardianStyler.styleRoundedButton(button: mainActionButton)
     }
