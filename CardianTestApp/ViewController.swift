@@ -20,8 +20,17 @@ class ViewController: UIViewController {
     
     @IBAction func connectTapped() {
 //        CardianApp.sync()
-        let q = CardianQuery(metric: .heartRate)
-        CardianApp.executeQuery(query: q)
+        
+        let query = CardianQuery(metric: .stepCount).select(fields: [.value, .startTime]).limitedBy(limit: 10)
+        CardianApp.executeQuery(query: query) {
+            result in
+            switch result {
+                case .success(let records):
+                    print(records)
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 }
 

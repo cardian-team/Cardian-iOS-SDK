@@ -8,7 +8,14 @@
 
 import Foundation
 
-struct CardianConfiguration: Codable {
+
+public enum CardianError: Error {
+    case configurationNotFound
+    case unknownQueryError
+}
+
+
+public struct CardianConfiguration: Codable {
     let version: String
     let connectUi: ConnectUiConfiguration
     let interval: String = "week"

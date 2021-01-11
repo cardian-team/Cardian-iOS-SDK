@@ -58,7 +58,7 @@ public struct QueryConditionalStatement: Codable {
 public struct CodableQuery: Codable {
     var metric: CardianMetricIdentifier
     var fields: [QueryField] = []
-    var conditionals: [QueryConditionalStatement]? = nil
+    var conditionals: [QueryConditionalStatement]? = []
     var order: QueryOrder? = nil
     var limit: Int = 1000
 }
@@ -71,21 +71,28 @@ public class CardianQuery {
         self.queryStructure = CodableQuery(metric: metric)
     }
     
-    public func whereSingle() {
+    // TODO Add Where for Multi conditionals
+    
+    // TODO Make this actually work
+    public func whereSingle() -> Self {
         let conditions = [QueryConditionalStatement(type: .single, append: .and, condition: QueryCondition(field: .value, conditionOperator: .greaterThanEqual, value: 60))]
         self.queryStructure.conditionals = conditions
+        return self
     }
     
-    public func select(fields: [QueryField]) {
+    public func select(fields: [QueryField]) -> Self {
         self.queryStructure.fields = fields
+        return self
     }
     
-    public func orderBy(field: QueryField, direction: QueryOrderDirection) {
+    public func orderBy(field: QueryField, direction: QueryOrderDirection) -> Self {
         self.queryStructure.order = QueryOrder(field: field, direction: direction)
+        return self
     }
     
-    public func limitedBy(limit: Int) {
+    public func limitedBy(limit: Int) -> Self {
         self.queryStructure.limit = limit
+        return self
     }
 
     public func getCodableQuery() -> CodableQuery {

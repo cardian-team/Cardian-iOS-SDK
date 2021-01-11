@@ -12,8 +12,11 @@ import UIKit
 @objc (CRDConnect) public class Connect: NSObject {
     
     @objc public class func connect(presentationController: UIViewController, completion: @escaping (Bool) -> Void) {
-        // TODO check this unwrap pls
-        let configuration = CardianApp.getConfiguration()!
+        guard let configuration = CardianApp.getConfiguration() else {
+            // TODO callback failure here
+            completion(false)
+            return
+        }
         let disclosureView = DisclosureViewController(currentConfiguration: configuration)
         if #available(iOS 13.0, *) { disclosureView.isModalInPresentation = true }
         let navController = UINavigationController(rootViewController: disclosureView)
@@ -26,7 +29,6 @@ import UIKit
     }
     
     @objc public class func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        // TODO fix force unqrap
         let authMetrics = CardianApp.getAuthMetrics()
         AuthManager.authorize(authMetrics: authMetrics) { (bool, error) in
             guard error == nil else {
