@@ -9,7 +9,6 @@ target 'Cardian' do
   target 'CardianTests' do
     # Pods for testing
   end
-
 end
 
 target 'CardianTestApp' do

@@ -69,6 +69,7 @@ struct HealthBirthdate {
     let day: Int?
 }
 
+// TODO make this be the real shape of data
 /// Stores sleep data for JSON export
 struct SleepData: Codable {
     var start_time: Double
@@ -78,6 +79,7 @@ struct SleepData: Codable {
     var source: String = "h"
 }
 
+// TODO remove or replace
 /// Stores calorie data for JSON export
 struct CalorieData: Codable {
     var start_time: Double
@@ -146,6 +148,7 @@ class HealthKitManager {
         }
     }
     
+    // TODO add support for all records and their correct data schema
     public static func getHealthKitRecords(metric: Metric, start: Date, end: Date, completion: @escaping ([CardianRecord]?, MetricSchemaType?) -> Void) {
         switch metric.type {
         case .quantitative:
@@ -333,6 +336,7 @@ class HealthKitManager {
         HKHealthStore().execute(query)
     }
     
+    // TODO implement this to the new format
     /// Returns the user's sleep analysis from healthkit on a start/end interval
     public static func getSleep(start: Date, end: Date, limit: Int = 250000, completion: @escaping ([SleepData]?) -> Void) {
         guard dataAvailable() else {

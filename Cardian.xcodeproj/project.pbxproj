@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D429B8B255B246C00B75D48 /* CardianAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */; };
 		0DDB35DE25A60227001EFB66 /* CardianQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB35DD25A60227001EFB66 /* CardianQuery.swift */; };
 		0DEDE1F4255351CB00EAE60E /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F3255351CB00EAE60E /* Control.swift */; };
 		0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE1F9255352F600EAE60E /* Cardian.swift */; };
-		0DEDE20625536A9C00EAE60E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDE20525536A9C00EAE60E /* Query.swift */; };
 		1E0AE860865F3C3FD703815E /* Pods_CardianTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCC02D6EC33C180050614FC /* Pods_CardianTestApp.framework */; };
 		72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B6A2512C21E00014CE9 /* MetricDescriptionController.swift */; };
 		72335B6D2512C21E00014CE9 /* MetricDescriptionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72335B6B2512C21E00014CE9 /* MetricDescriptionController.xib */; };
@@ -109,11 +107,9 @@
 
 /* Begin PBXFileReference section */
 		01663D842A8089EE57D7707E /* Pods_Cardian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cardian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianAppDelegate.swift; sourceTree = "<group>"; };
 		0DDB35DD25A60227001EFB66 /* CardianQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianQuery.swift; sourceTree = "<group>"; };
 		0DEDE1F3255351CB00EAE60E /* Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		0DEDE1F9255352F600EAE60E /* Cardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardian.swift; sourceTree = "<group>"; };
-		0DEDE20525536A9C00EAE60E /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		226AB221FC2892050AD79E6A /* Pods-Cardian.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardian.debug.xcconfig"; path = "Target Support Files/Pods-Cardian/Pods-Cardian.debug.xcconfig"; sourceTree = "<group>"; };
 		572566F9A8FD0A2BFD286B25 /* Pods_Cardian_CardianTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cardian_CardianTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6486E903043A778FB3FB0FC6 /* Pods_CardianTestAppObC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardianTestAppObC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +240,7 @@
 				726CAA3225011E0C00428D6F /* Cardian.h */,
 				0DEDE1F9255352F600EAE60E /* Cardian.swift */,
 				0DEDE1F3255351CB00EAE60E /* Control.swift */,
+				0DDB35DD25A60227001EFB66 /* CardianQuery.swift */,
 				72D9CA492509E96C009016D7 /* Models.swift */,
 				72D9CA5B2509F571009016D7 /* Declarations.swift */,
 				72D9CA592509F38C009016D7 /* CardianStyler.swift */,
@@ -253,9 +250,6 @@
 				72D9CA4C2509EC15009016D7 /* ViewControllers */,
 				726CAA492501231300428D6F /* HealthKit */,
 				726CAA3325011E0C00428D6F /* Info.plist */,
-				0DEDE20525536A9C00EAE60E /* Query.swift */,
-				0D429B8A255B246C00B75D48 /* CardianAppDelegate.swift */,
-				0DDB35DD25A60227001EFB66 /* CardianQuery.swift */,
 			);
 			path = Cardian;
 			sourceTree = "<group>";
@@ -711,7 +705,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72335B6C2512C21E00014CE9 /* MetricDescriptionController.swift in Sources */,
-				0D429B8B255B246C00B75D48 /* CardianAppDelegate.swift in Sources */,
 				0DEDE1F4255351CB00EAE60E /* Control.swift in Sources */,
 				72D9CA5C2509F571009016D7 /* Declarations.swift in Sources */,
 				726CAA4B2501232300428D6F /* HealthKitManager.swift in Sources */,
@@ -722,7 +715,6 @@
 				0DDB35DE25A60227001EFB66 /* CardianQuery.swift in Sources */,
 				72D9CA4E2509EC36009016D7 /* BaseViewController.swift in Sources */,
 				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
-				0DEDE20625536A9C00EAE60E /* Query.swift in Sources */,
 				0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
 				72335B7725133F2B00014CE9 /* API.swift in Sources */,

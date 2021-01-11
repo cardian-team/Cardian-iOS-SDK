@@ -15,7 +15,8 @@ class API {
         let data: CardianConfiguration
         let success: Bool
     }
-    public static func getConfig(_ apiKey: String, version: String, callback: @escaping (CardianConfiguration?) -> ()) -> Void {
+    
+    public static func getConfig(_ apiKey: String, version: String, callback: @escaping (ConfigureResult<CardianConfiguration, Error>) -> Void) -> Void {
         let headers: HTTPHeaders = [
           "Cardian-API-Key": apiKey,
           "Accept": "application/json",
@@ -35,12 +36,12 @@ class API {
                 let decoder = JSONDecoder()
                 let decodedResult = try decoder.decode(getConfigResponse.self, from: data)
                 let configuration = decodedResult.data
-                callback(configuration)
+                callback(.success(configuration))
             } catch let error {
                 var cachedConfig: CardianConfiguration? = nil
                 var cachedUIConfig: ConnectUiConfiguration? = nil
                 
-                if let appData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_APP_CONFIG") {
+                if let appData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_APP_CONFIG_\(apiKey)_\(version)") {
                     do {
                         // Create JSON Decoder
                         let decoder = JSONDecoder()
@@ -52,7 +53,7 @@ class API {
                         print("Unable to Decode Note (\(error))")
                     }
                 }
-                if let uiData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG") {
+                if let uiData = UserDefaults.standard.data(forKey: "CARDIAN_INTERNAL_CONNECT_UI_CONFIG_\(apiKey)_\(version)") {
                     do {
                         // Create JSON Decoder
                         let decoder = JSONDecoder()
@@ -65,13 +66,13 @@ class API {
                 }
                 print("Request failed with error: \(error), try from cache")
                 
-                // TODO tjhink of a better option
                 if cachedConfig != nil && cachedUIConfig != nil {
-                    callback(cachedConfig)
+                    callback(.cached(cachedConfig!))
+                    callback(.success(cachedConfig!))
                 }
                 
                 print(error)
-                callback(nil)
+                callback(.failure(CardianError.configurationNotFound))
             }
         }
     }
