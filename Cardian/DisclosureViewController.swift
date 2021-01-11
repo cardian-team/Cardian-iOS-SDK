@@ -73,6 +73,24 @@ class DisclosureViewController: BaseViewController {
         UIApplication.shared.open(url)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let control = Control()
+        let imageLoader = ImageLoader()
+        let config = control.getConfiguration()
+        imageLoader.loadImage(url: URL(string: config!.connectUi.iconUrl)!) { (image, error) in
+            guard error == nil else {
+                print("ERROR: Problem getting icon url")
+                return
+            }
+            guard let image = image else {
+                return
+            }
+            self.iconImage.image = image
+        }
+        
+    }
+    
     override func viewSetup() {
         super.viewSetup()
         headingLabel.text = "\(currentConfiguration.connectUi.appName) uses Cardian to connect to Apple Health"
