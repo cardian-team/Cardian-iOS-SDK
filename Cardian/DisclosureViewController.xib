@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +16,7 @@
                 <outlet property="descriptionLabel2" destination="rhq-0G-fk6" id="oJj-g2-Ke8"/>
                 <outlet property="dismissButton" destination="LFM-ya-84K" id="Nrs-Gr-Qac"/>
                 <outlet property="headingLabel" destination="PMQ-d7-IRz" id="jXV-pg-006"/>
-                <outlet property="iconImage" destination="CvS-BB-onu" id="YWo-QG-HJk"/>
+                <outlet property="iconImage" destination="XUl-vS-zPU" id="dmW-vn-ItR"/>
                 <outlet property="mainActionButton" destination="swC-vk-dFb" id="BcX-vv-mdf"/>
                 <outlet property="titleLabel1" destination="AWB-1c-bp1" id="NVQ-WO-HDz"/>
                 <outlet property="titleLabel2" destination="IAn-aF-I1o" id="IVt-7W-v6Y"/>
@@ -77,46 +77,26 @@ to connect to Apple Health</string>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UP7-cZ-bK3">
                     <rect key="frame" x="38" y="59" width="298" height="126"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stretch" translatesAutoresizingMaskIntoConstraints="NO" id="Ep9-M9-5Ub">
-                            <rect key="frame" x="0.0" y="76" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="NqL-uj-rwQ"/>
-                                <constraint firstAttribute="height" constant="50" id="yWd-2Y-7LL"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="otK-Jl-Faz">
+                            <rect key="frame" x="0.0" y="0.0" width="298" height="126"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Device" translatesAutoresizingMaskIntoConstraints="NO" id="7h8-53-eVL">
-                            <rect key="frame" x="248" y="76" width="50" height="50"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartBubble" translatesAutoresizingMaskIntoConstraints="NO" id="XUl-vS-zPU">
+                            <rect key="frame" x="120" y="0.0" width="58" height="58"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="TNM-Vz-c9m"/>
-                                <constraint firstAttribute="width" constant="50" id="pes-J9-g31"/>
-                            </constraints>
-                        </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse" translatesAutoresizingMaskIntoConstraints="NO" id="fW3-dv-4cf">
-                            <rect key="frame" x="34" y="22" width="230" height="48"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="48" id="MeK-vc-LgE"/>
-                            </constraints>
-                        </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartBubble" translatesAutoresizingMaskIntoConstraints="NO" id="CvS-BB-onu">
-                            <rect key="frame" x="108.5" y="0.0" width="81" height="81"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="81" id="1jz-w8-Uqm"/>
-                                <constraint firstAttribute="height" constant="81" id="Q6u-eW-4aV"/>
+                                <constraint firstAttribute="width" constant="58" id="BZw-je-Xmb"/>
+                                <constraint firstAttribute="height" constant="58" id="fZW-RH-4lU"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="fW3-dv-4cf" firstAttribute="top" secondItem="UP7-cZ-bK3" secondAttribute="top" constant="22" id="CfP-lv-OcI"/>
-                        <constraint firstAttribute="bottom" secondItem="Ep9-M9-5Ub" secondAttribute="bottom" id="ERg-GN-7ja"/>
-                        <constraint firstItem="CvS-BB-onu" firstAttribute="centerX" secondItem="UP7-cZ-bK3" secondAttribute="centerX" id="L3q-y2-9T7"/>
-                        <constraint firstItem="Ep9-M9-5Ub" firstAttribute="leading" secondItem="UP7-cZ-bK3" secondAttribute="leading" id="Nim-xa-zXz"/>
-                        <constraint firstItem="CvS-BB-onu" firstAttribute="top" secondItem="UP7-cZ-bK3" secondAttribute="top" id="Ocd-nH-8GW"/>
-                        <constraint firstAttribute="trailing" secondItem="fW3-dv-4cf" secondAttribute="trailing" constant="34" id="aRf-b9-svW"/>
-                        <constraint firstAttribute="bottom" secondItem="7h8-53-eVL" secondAttribute="bottom" id="abv-q2-rgd"/>
-                        <constraint firstAttribute="trailing" secondItem="7h8-53-eVL" secondAttribute="trailing" id="gsZ-AM-G4u"/>
+                        <constraint firstItem="otK-Jl-Faz" firstAttribute="leading" secondItem="UP7-cZ-bK3" secondAttribute="leading" id="4Aq-o9-8Na"/>
+                        <constraint firstItem="otK-Jl-Faz" firstAttribute="top" secondItem="UP7-cZ-bK3" secondAttribute="top" id="BsU-us-ho9"/>
+                        <constraint firstItem="XUl-vS-zPU" firstAttribute="top" secondItem="UP7-cZ-bK3" secondAttribute="top" id="Edi-9c-JMh"/>
+                        <constraint firstAttribute="bottom" secondItem="otK-Jl-Faz" secondAttribute="bottom" id="b5P-vd-9V9"/>
+                        <constraint firstAttribute="trailing" secondItem="otK-Jl-Faz" secondAttribute="trailing" id="fAe-vB-78e"/>
                         <constraint firstAttribute="height" constant="126" id="m8O-w6-lIl"/>
-                        <constraint firstItem="fW3-dv-4cf" firstAttribute="leading" secondItem="UP7-cZ-bK3" secondAttribute="leading" constant="34" id="pBv-ey-wfG"/>
+                        <constraint firstItem="XUl-vS-zPU" firstAttribute="centerX" secondItem="UP7-cZ-bK3" secondAttribute="centerX" id="sEM-Zn-6Au"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdO-pr-Wys">
@@ -264,10 +244,8 @@ to connect to Apple Health</string>
     </objects>
     <resources>
         <image name="Check" width="18" height="14"/>
-        <image name="Device" width="368" height="357"/>
-        <image name="Ellipse" width="200" height="48"/>
         <image name="HeartBubble" width="150" height="150"/>
-        <image name="Stretch" width="398" height="357"/>
+        <image name="NewLaunchScreen" width="1624" height="808"/>
         <image name="dismissbutton" width="31" height="31"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

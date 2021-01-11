@@ -73,6 +73,24 @@ class DisclosureViewController: BaseViewController {
         UIApplication.shared.open(url)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let control = Control()
+        let imageLoader = ImageLoader()
+        let config = control.getConfiguration()
+        imageLoader.loadImage(url: URL(string: config!.connectUi.iconUrl)!) { (image, error) in
+            guard error == nil else {
+                print("ERROR: Problem getting icon url")
+                return
+            }
+            guard let image = image else {
+                return
+            }
+            self.iconImage.image = image
+        }
+        
+    }
+    
     override func viewSetup() {
         super.viewSetup()
         headingLabel.text = "\(currentConfiguration.connectUi.appName) uses Cardian to connect to Apple Health"
@@ -80,6 +98,8 @@ class DisclosureViewController: BaseViewController {
         descriptionLabel1.text = currentConfiguration.connectUi.views.introduction.body1
         titleLabel2.text = currentConfiguration.connectUi.views.introduction.title2
         descriptionLabel2.text = currentConfiguration.connectUi.views.introduction.body2
+        iconImage.layer.cornerRadius = 10
+        iconImage.clipsToBounds = true
         mainActionButton.setTitle(currentConfiguration.connectUi.views.introduction.buttonLabel, for: .normal)
         CardianStyler.styleRoundedButton(button: mainActionButton)
     }

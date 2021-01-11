@@ -20,6 +20,7 @@
 		72335B732512D47C00014CE9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B722512D47C00014CE9 /* AuthManager.swift */; };
 		72335B7525133E9000014CE9 /* Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B7425133E9000014CE9 /* Connect.swift */; };
 		72335B7725133F2B00014CE9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72335B7625133F2B00014CE9 /* API.swift */; };
+		7237D1AB25ACB50200256458 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7237D1AA25ACB50200256458 /* ImageLoader.swift */; };
 		726CAA3925011E0C00428D6F /* Cardian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726CAA2F25011E0C00428D6F /* Cardian.framework */; };
 		726CAA3E25011E0C00428D6F /* CardianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726CAA3D25011E0C00428D6F /* CardianTests.swift */; };
 		726CAA4025011E0C00428D6F /* Cardian.h in Headers */ = {isa = PBXBuildFile; fileRef = 726CAA3225011E0C00428D6F /* Cardian.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -124,6 +125,7 @@
 		72335B722512D47C00014CE9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		72335B7425133E9000014CE9 /* Connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect.swift; sourceTree = "<group>"; };
 		72335B7625133F2B00014CE9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7237D1AA25ACB50200256458 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		726CAA2F25011E0C00428D6F /* Cardian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cardian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		726CAA3225011E0C00428D6F /* Cardian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cardian.h; sourceTree = "<group>"; };
 		726CAA3325011E0C00428D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				72D9CA5B2509F571009016D7 /* Declarations.swift */,
 				72D9CA592509F38C009016D7 /* CardianStyler.swift */,
 				72335B7625133F2B00014CE9 /* API.swift */,
+				7237D1AA25ACB50200256458 /* ImageLoader.swift */,
 				72335B7425133E9000014CE9 /* Connect.swift */,
 				72D9CA572509F0AC009016D7 /* Assets.xcassets */,
 				72D9CA4C2509EC15009016D7 /* ViewControllers */,
@@ -724,6 +727,7 @@
 				72335B702512CAAA00014CE9 /* ConfirmationController.swift in Sources */,
 				0DEDE20625536A9C00EAE60E /* Query.swift in Sources */,
 				0DEDE1FA255352F600EAE60E /* Cardian.swift in Sources */,
+				7237D1AB25ACB50200256458 /* ImageLoader.swift in Sources */,
 				72D9CA512509ED03009016D7 /* DataBreakdownController.swift in Sources */,
 				72335B7725133F2B00014CE9 /* API.swift in Sources */,
 				72335B732512D47C00014CE9 /* AuthManager.swift in Sources */,
