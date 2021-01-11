@@ -39,7 +39,7 @@ class DisclosureViewController: BaseViewController {
     }
     
     func mainActionTapped() {
-        // TODO maybe move to a function
+        // TODO make this group by the proper things
         var readMetrics: [Metric] = []
         var writeMetrics: [Metric] = []
         for (currentMetric) in currentConfiguration.metrics {
@@ -61,7 +61,7 @@ class DisclosureViewController: BaseViewController {
                                                       actionTitle: "Continue",
                                                       authMetrics: authMetrics,
                                                       MetricCollections: [readMetricsCollection, writeMetricColleciton])
-        let breakdownController = DataBreakdownController(dataSource: breakdownCurrentConfiguration) // TODO fix this
+        let breakdownController = DataBreakdownController(dataSource: breakdownCurrentConfiguration)
         breakdownController.modalPresentationStyle = .fullScreen
         breakdownController.modalTransitionStyle = .crossDissolve
         if #available(iOS 13.0, *) { breakdownController.isModalInPresentation = true }

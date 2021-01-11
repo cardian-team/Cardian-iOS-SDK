@@ -11,6 +11,7 @@ import Foundation
 
 public enum CardianError: Error {
     case configurationNotFound
+    case unknownQueryError
 }
 
 

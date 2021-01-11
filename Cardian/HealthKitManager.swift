@@ -22,7 +22,7 @@ public enum CardianMetricIdentifier : Int, Codable {
     case empty,height,weight,heartRate,bodyTemperature,oxygenSaturation,bloodPressureDiasystolic,bloodPressureSystolic,bodyFatPercentage,bloodGlucose,stepCount,distanceWalkingRunning,distanceCycling,basalEnergyBurned,activeEnergyBurned,flightsClimbed,sleepAnalysis,workouts,uvExposure,biologicalSex,dateOfBirth,menstrualFlow,cervicalMucusQuality,basalBodyTemperature,ovulationTestResults
 }
 
-struct CardianRecord : Codable {
+public struct CardianRecord : Codable {
     var metric_schema_type: MetricSchemaType
     var quantitative: QuantitativeCardianRecord
 }

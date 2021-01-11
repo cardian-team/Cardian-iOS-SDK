@@ -22,7 +22,15 @@ class ViewController: UIViewController {
 //        CardianApp.sync()
         
         let query = CardianQuery(metric: .stepCount).select(fields: [.value, .startTime]).limitedBy(limit: 10)
-        CardianApp.executeQuery(query: query)
+        CardianApp.executeQuery(query: query) {
+            result in
+            switch result {
+                case .success(let records):
+                    print(records)
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 }
 

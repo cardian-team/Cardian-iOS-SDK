@@ -16,6 +16,11 @@ class API {
         let success: Bool
     }
     
+    struct uploadQueryResponse: Codable {
+        let data: [CardianRecord]
+        let success: Bool
+    }
+    
     public static func getConfig(_ apiKey: String, version: String, callback: @escaping (ConfigureResult<CardianConfiguration, Error>) -> Void) -> Void {
         let headers: HTTPHeaders = [
           "Cardian-API-Key": apiKey,
@@ -24,11 +29,9 @@ class API {
         
         print("in config")
         
-        //TODO fix this to not throw if bad obj
         AF.request("https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/config/\(version)", headers: headers).responseJSON { response in
             guard let data = response.data else {
-                // TODO maybe throw an error here? or callback with error
-                print("There is no release for the given version and api key");
+                callback(.failure(CardianError.configurationNotFound))
                 return
             }
         
@@ -93,7 +96,7 @@ class API {
     }
     
     
-    public static func uploadQuery(_ apiKey: String, externalId: String, query: CodableQuery) {
+    public static func uploadQuery(_ apiKey: String, externalId: String, query: CodableQuery, completion: ((Result<[CardianRecord], Error>) -> Void)?) {
         let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/query"
         print("Health data \(query)")
         
@@ -104,8 +107,24 @@ class API {
         ]
         
         AF.request(url, method: .post, parameters: query, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
-            print("QUERY Response\(response)")
+            guard let data = response.data else {
+                if let completion = completion {
+                    completion(.failure(CardianError.unknownQueryError))
+                }
+                return
+            }
+            do {
+                print("QUERY Response\(response)")
+                let decoder = JSONDecoder()
+                let decodedResult = try decoder.decode(uploadQueryResponse.self, from: data)
+                if let completion = completion {
+                    completion(.success(decodedResult.data))
+                }
+            } catch {
+                if let completion = completion {
+                    completion(.failure(CardianError.unknownQueryError))
+                }
+            }
         }
-        
     }
 }
