@@ -17,7 +17,6 @@ enum MetricSchemaType : Int, Codable {
     case structured_activity = 4
 }
 
-// TODO clean this
 public enum CardianMetricIdentifier : Int, Codable {
     case empty,height,weight,heartRate,bodyTemperature,oxygenSaturation,bloodPressureDiasystolic,bloodPressureSystolic,bodyFatPercentage,bloodGlucose,stepCount,distanceWalkingRunning,distanceCycling,basalEnergyBurned,activeEnergyBurned,flightsClimbed,sleepAnalysis,workouts,uvExposure,biologicalSex,dateOfBirth,menstrualFlow,cervicalMucusQuality,basalBodyTemperature,ovulationTestResults
 }

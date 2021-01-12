@@ -68,6 +68,7 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
                 print("ERROR: could not authorize with HealthKit: \(error!.localizedDescription)")
                 return
             }
+            CardianApp.reportEvents([CardianEvent(event_type: .connectSuccess)])
             print("Successfully authorized with HealthKit")
             CardianApp.updateVersionsConnected()
             DispatchQueue.main.async {
@@ -85,7 +86,6 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

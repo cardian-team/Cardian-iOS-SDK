@@ -162,7 +162,7 @@ public class Control {
             }
         }
         return nil
-    }
+    } 
     
     // TODO add callbacks and options
     public func sync() {
@@ -225,5 +225,9 @@ public class Control {
     
     public func setExternalToken(_ externalToken: String) {
         self.externalToken = externalToken
+    }
+    
+    internal func reportEvents(_ events: [CardianEvent]) {
+        API.uploadEvent(self.apiKey, externalId: self.externalId, events: events)
     }
 }

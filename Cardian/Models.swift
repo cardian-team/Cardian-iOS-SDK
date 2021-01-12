@@ -14,6 +14,24 @@ public enum CardianError: Error {
     case unknownQueryError
 }
 
+public enum CardianEventType: Double, Codable {
+    case connectLaunch = 1
+    case connectSuccess = 2
+    case connectRejection = 3
+    case connectFailure = 4
+    case genericError = 5
+}
+
+
+public struct CardianEvent: Codable {
+    let event_type: CardianEventType
+    let source: String = "h"
+    var error: Bool = false
+    var message: String = ""
+    var start_time: Double = Date().timeIntervalSince1970
+    var end_time: Double = Date().timeIntervalSince1970
+}
+
 
 public struct CardianConfiguration: Codable {
     let version: String

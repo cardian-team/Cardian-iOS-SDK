@@ -108,6 +108,7 @@ class API {
         
         AF.request(url, method: .post, parameters: query, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
             guard let data = response.data else {
+                
                 if let completion = completion {
                     completion(.failure(CardianError.unknownQueryError))
                 }
@@ -125,6 +126,26 @@ class API {
                     completion(.failure(CardianError.unknownQueryError))
                 }
             }
+        }
+    }
+    
+    public static func uploadEvent(_ apiKey: String, externalId: String, events: [CardianEvent]) {
+        let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/analytics"
+        print("Event data \(events)")
+        
+        let headers: HTTPHeaders = [
+            "Cardian-API-Key": apiKey,
+            "Cardian-User-Id": externalId,
+            "Accept": "application/json",
+        ]
+        
+        AF.request(url, method: .post, parameters: events, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
+            guard let data = response.data else {
+                print("TODO FIX ERROR HERE \(response)")
+                return
+            }
+                print("EVENT Response\(data)")
+            
         }
     }
 }

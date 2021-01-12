@@ -17,6 +17,7 @@ import UIKit
             completion(false)
             return
         }
+        
         let disclosureView = DisclosureViewController(currentConfiguration: configuration)
         if #available(iOS 13.0, *) { disclosureView.isModalInPresentation = true }
         let navController = UINavigationController(rootViewController: disclosureView)
@@ -24,7 +25,9 @@ import UIKit
         navController.navigationBar.tintColor = .systemGray
         presentationController.present(navController, animated: true) {
             completion(true)
+            CardianApp.reportEvents([CardianEvent(event_type: .connectLaunch)])
             print("CardianConnect successfully presented.")
+            
         }
     }
     
@@ -33,6 +36,7 @@ import UIKit
         AuthManager.authorize(authMetrics: authMetrics) { (bool, error) in
             guard error == nil else {
                 print("HEALTH KIT ERROR: Unable to requrest authorization: \(error.debugDescription)")
+                CardianApp.reportEvents([CardianEvent(event_type: .connectFailure, error: true, message: error.debugDescription)])
                 completion(false)
                 return
             }
