@@ -31,8 +31,7 @@ class MetricDescriptionController: BaseViewController {
     // MARK: Functions
     init(dataSource: MetricDescriptionDataSource) {
         self.dataSource = dataSource
-        let bundle = Bundle(for: MetricDescriptionController.self)
-        super.init(nibName: MetricDescriptionController.nibName, bundle: bundle)
+        super.init(nibName: MetricDescriptionController.nibName, bundle: .module)
     }
     
     required init?(coder: NSCoder) {

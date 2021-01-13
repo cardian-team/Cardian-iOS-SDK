@@ -29,8 +29,7 @@ class ConfirmationController: BaseViewController {
     init(appName: String? = nil, actionButtonTitle: String = "Continue") {
         self.appName = appName
         self.actionButtonTitle = actionButtonTitle
-        let bundle = Bundle(for: ConfirmationController.self)
-        super.init(nibName: ConfirmationController.nibName, bundle: bundle)
+        super.init(nibName: ConfirmationController.nibName, bundle: .module)
     }
     
     required init?(coder: NSCoder) {

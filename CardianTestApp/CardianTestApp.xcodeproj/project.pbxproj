@@ -52,6 +52,7 @@
 		197393D725AF6D8F00191F0A /* CardianTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianTestAppUITests.swift; sourceTree = "<group>"; };
 		197393D925AF6D8F00191F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1973947A25AF6EBD00191F0A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		1973949F25AFA9C700191F0A /* CardianTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardianTestApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 		197393B425AF6D8E00191F0A /* CardianTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				1973949F25AFA9C700191F0A /* CardianTestApp.entitlements */,
 				197393B525AF6D8E00191F0A /* AppDelegate.swift */,
 				197393B725AF6D8E00191F0A /* SceneDelegate.swift */,
 				197393B925AF6D8E00191F0A /* ViewController.swift */,
@@ -453,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5W2JMZWR9U;
 				INFOPLIST_FILE = CardianTestApp/Info.plist;
@@ -473,6 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5W2JMZWR9U;
 				INFOPLIST_FILE = CardianTestApp/Info.plist;
