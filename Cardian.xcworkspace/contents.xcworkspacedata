@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:Cardian.xcodeproj">
+      location = "group:CardianTestAppObC/CardianTestAppObC.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Cardian.xcodeproj">
+      location = "group:CardianTestApp/CardianTestApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:Cardian">
    </FileRef>
 </Workspace>
