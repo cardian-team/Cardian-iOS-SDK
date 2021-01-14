@@ -29,10 +29,11 @@ let package = Package(
             name: "Cardian",
             dependencies: ["Alamofire"],
             path: "Cardian/",
-            sources: ["Sources"]
+            sources: ["Sources"],
+            publicHeadersPath:"SwiftPM/Public/Headers"
         ),
         .testTarget(
             name: "CardianTests",
-            dependencies: ["Cardian"]),
+            dependencies: ["Cardian"], path: "Cardian/"),
     ]
 )
