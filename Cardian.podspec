@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "Cardian"
-  spec.version      = "0.9.4"
+  spec.version      = "0.9.5"
   spec.summary      = "Cardian is a free service that makes it easy for mobile app developers to build data-driven, health & fitness apps."
   spec.description  = <<-DESC
 Cardian is a free service that makes it easy for mobile app developers to build data-driven, health & fitness apps. This plugin simplifies how you integrate your native iOS app with Apple HealthKit to just three lines of code.
