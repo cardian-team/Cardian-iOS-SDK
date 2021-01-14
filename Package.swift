@@ -29,7 +29,7 @@ let package = Package(
             name: "Cardian",
             dependencies: ["Alamofire"],
             path: "Cardian/",
-            exclude: ["Tests", "Cardian/Cardian/Info.plist"],
+            exclude: ["Tests", "Cardian/Cardian/Info.plist", "Cardian/Cardian/Cardian.h"],
             sources: ["Sources"],
             resources: [.process("Resources")],
             publicHeadersPath:"SwiftPM/Public/Headers"
