@@ -31,7 +31,7 @@ let package = Package(
             path: "Cardian/",
             exclude: ["Tests", "Cardian", ".gitignore", ".swiftpm"],
             sources: ["Sources"],
-            resources: [.process("Resources")]
+            resources: [.copy("Resources")]
         ),
         .testTarget(
             name: "CardianTests",
