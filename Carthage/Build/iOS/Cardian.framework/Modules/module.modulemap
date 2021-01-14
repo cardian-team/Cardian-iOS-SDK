@@ -1,0 +1,6 @@
+framework module Cardian {
+  umbrella header "Cardian.h"
+
+  export *
+  module * { export * }
+}
