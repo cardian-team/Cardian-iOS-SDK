@@ -37,7 +37,14 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     // MARK: Functions
     init(dataSource: BreakdownDataSource, showDismissButton: Bool = true) {
         self.dataSource = dataSource
-        super.init(nibName: DataBreakdownController.nibName, bundle: .module)
+        
+        #if SWIFT_PACKAGE
+           let resourceBundle = Bundle.module
+        #else
+            let resourceBundle = Bundle(for: DataBreakdownController.self)
+        #endif
+        
+        super.init(nibName: DataBreakdownController.nibName, bundle: resourceBundle)
         
 //        self.iconImage.image = icon
 //        self.dismissButton.isHidden = !showDismissButton
