@@ -31,7 +31,13 @@ let package = Package(
             path: "Cardian/",
             exclude: ["Tests", "Cardian", ".gitignore", ".swiftpm"],
             sources: ["Sources"],
-            resources: [.copy("Resources")]
+            resources: [
+                .process("Resources/ConfirmationController.xib"),
+                .process("Resources/DataBreakdownController.xib"),
+                .process("Resources/DisclosureViewController.xib"),
+                .process("Resources/MetricDescriptionController.xib"),
+                .process("Resources/Assets.xcassets")
+            ]
         ),
         .testTarget(
             name: "CardianTests",
