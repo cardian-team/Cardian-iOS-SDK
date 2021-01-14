@@ -14,5 +14,5 @@ spec.swift_version = "5.3"
 spec.source       = { :git => "https://github.com/cardian-team/Cardian-iOS-SDK.git", :tag => "#{spec.version}" }
 spec.source_files  = "Sources/Cardian/**/*.swift"
 spec.xcconfig = { "SWIFT_VERSION" => "5.3" }
-spec.dependency 'Alamofire'
+spec.dependency "Alamofire"
 end
