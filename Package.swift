@@ -30,7 +30,7 @@ let package = Package(
             dependencies: ["Alamofire"],
             path: "Cardian/",
             exclude: ["Tests", ".gitignore", ".swiftpm"],
-            sources: ["Sources"],
+            sources: ["Sources/Cardian/*.swift"],
             resources: [
                 .process("Resources/ConfirmationController.xib"),
                 .process("Resources/DataBreakdownController.xib"),
