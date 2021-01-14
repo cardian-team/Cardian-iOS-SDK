@@ -29,7 +29,7 @@ let package = Package(
             name: "Cardian",
             dependencies: ["Alamofire"],
             path: "Cardian/",
-            exclude: ["Tests", "Cardian"],
+            exclude: ["Tests", "Cardian", ".gitignore", ".swiftpm"],
             sources: ["Sources"],
             resources: [.process("Resources")]
         ),
