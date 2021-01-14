@@ -9,10 +9,11 @@ spec.homepage     = "https://cardian.io"
 spec.license      = { :type => "MIT", :file => "LICENSE" }
 spec.author             = { "author" => "team@cardian.io" }
 spec.documentation_url = "https://github.com/cardian-team/Cardian-iOS-SDK"
-spec.platforms = { :ios => "12.0", :osx => "10.12", :watchos => "6.0" }
+spec.platforms = { :ios => "12.0" }
 spec.swift_version = "5.3"
-spec.source       = { :git => "https://github.com/cardian-team/Cardian-iOS-SDK.git", :tag => "#{spec.version}" }
-spec.source_files  = "Sources/Cardian/**/*.swift"
+spec.requires_arc = true
+spec.source       = { :git => "https://github.com/cardian-team/Cardian-iOS-SDK.git", :tag => "#{spec.version}", submodules: true }
+spec.source_files  = "Cardian/Sources/Cardian/**/*.{h,swift}"
 spec.xcconfig = { "SWIFT_VERSION" => "5.3" }
 spec.dependency "Alamofire"
 end
