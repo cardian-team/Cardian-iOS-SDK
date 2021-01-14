@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		197393B625AF6D8E00191F0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393B525AF6D8E00191F0A /* AppDelegate.swift */; };
+		197393B825AF6D8E00191F0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393B725AF6D8E00191F0A /* SceneDelegate.swift */; };
+		197393BA25AF6D8E00191F0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393B925AF6D8E00191F0A /* ViewController.swift */; };
+		197393BD25AF6D8E00191F0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197393BB25AF6D8E00191F0A /* Main.storyboard */; };
+		197393BF25AF6D8F00191F0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197393BE25AF6D8F00191F0A /* Assets.xcassets */; };
+		197393C225AF6D8F00191F0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197393C025AF6D8F00191F0A /* LaunchScreen.storyboard */; };
+		197393CD25AF6D8F00191F0A /* CardianTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393CC25AF6D8F00191F0A /* CardianTestAppTests.swift */; };
+		197393D825AF6D8F00191F0A /* CardianTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393D725AF6D8F00191F0A /* CardianTestAppUITests.swift */; };
+		1973947B25AF6EBD00191F0A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1973947A25AF6EBD00191F0A /* HealthKit.framework */; };
+		1973948825AF717500191F0A /* Cardian in Frameworks */ = {isa = PBXBuildFile; productRef = 1973948725AF717500191F0A /* Cardian */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		197393C925AF6D8F00191F0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 197393AA25AF6D8E00191F0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 197393B125AF6D8E00191F0A;
+			remoteInfo = CardianTestApp;
+		};
+		197393D425AF6D8F00191F0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 197393AA25AF6D8E00191F0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 197393B125AF6D8E00191F0A;
+			remoteInfo = CardianTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		197393B225AF6D8E00191F0A /* CardianTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardianTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		197393B525AF6D8E00191F0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		197393B725AF6D8E00191F0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		197393B925AF6D8E00191F0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		197393BC25AF6D8E00191F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		197393BE25AF6D8F00191F0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		197393C125AF6D8F00191F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		197393C325AF6D8F00191F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		197393C825AF6D8F00191F0A /* CardianTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardianTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		197393CC25AF6D8F00191F0A /* CardianTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianTestAppTests.swift; sourceTree = "<group>"; };
+		197393CE25AF6D8F00191F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		197393D325AF6D8F00191F0A /* CardianTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardianTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		197393D725AF6D8F00191F0A /* CardianTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardianTestAppUITests.swift; sourceTree = "<group>"; };
+		197393D925AF6D8F00191F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1973947A25AF6EBD00191F0A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		1973949F25AFA9C700191F0A /* CardianTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CardianTestApp.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		197393AF25AF6D8E00191F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1973947B25AF6EBD00191F0A /* HealthKit.framework in Frameworks */,
+				1973948825AF717500191F0A /* Cardian in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393C525AF6D8F00191F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393D025AF6D8F00191F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		197393A925AF6D8E00191F0A = {
+			isa = PBXGroup;
+			children = (
+				197393B425AF6D8E00191F0A /* CardianTestApp */,
+				197393CB25AF6D8F00191F0A /* CardianTestAppTests */,
+				197393D625AF6D8F00191F0A /* CardianTestAppUITests */,
+				197393B325AF6D8E00191F0A /* Products */,
+				1973947925AF6EBD00191F0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		197393B325AF6D8E00191F0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				197393B225AF6D8E00191F0A /* CardianTestApp.app */,
+				197393C825AF6D8F00191F0A /* CardianTestAppTests.xctest */,
+				197393D325AF6D8F00191F0A /* CardianTestAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		197393B425AF6D8E00191F0A /* CardianTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				1973949F25AFA9C700191F0A /* CardianTestApp.entitlements */,
+				197393B525AF6D8E00191F0A /* AppDelegate.swift */,
+				197393B725AF6D8E00191F0A /* SceneDelegate.swift */,
+				197393B925AF6D8E00191F0A /* ViewController.swift */,
+				197393BB25AF6D8E00191F0A /* Main.storyboard */,
+				197393BE25AF6D8F00191F0A /* Assets.xcassets */,
+				197393C025AF6D8F00191F0A /* LaunchScreen.storyboard */,
+				197393C325AF6D8F00191F0A /* Info.plist */,
+			);
+			path = CardianTestApp;
+			sourceTree = "<group>";
+		};
+		197393CB25AF6D8F00191F0A /* CardianTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				197393CC25AF6D8F00191F0A /* CardianTestAppTests.swift */,
+				197393CE25AF6D8F00191F0A /* Info.plist */,
+			);
+			path = CardianTestAppTests;
+			sourceTree = "<group>";
+		};
+		197393D625AF6D8F00191F0A /* CardianTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				197393D725AF6D8F00191F0A /* CardianTestAppUITests.swift */,
+				197393D925AF6D8F00191F0A /* Info.plist */,
+			);
+			path = CardianTestAppUITests;
+			sourceTree = "<group>";
+		};
+		1973947925AF6EBD00191F0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1973947A25AF6EBD00191F0A /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		197393B125AF6D8E00191F0A /* CardianTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 197393DC25AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestApp" */;
+			buildPhases = (
+				197393AE25AF6D8E00191F0A /* Sources */,
+				197393AF25AF6D8E00191F0A /* Frameworks */,
+				197393B025AF6D8E00191F0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardianTestApp;
+			packageProductDependencies = (
+				1973948725AF717500191F0A /* Cardian */,
+			);
+			productName = CardianTestApp;
+			productReference = 197393B225AF6D8E00191F0A /* CardianTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		197393C725AF6D8F00191F0A /* CardianTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 197393DF25AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestAppTests" */;
+			buildPhases = (
+				197393C425AF6D8F00191F0A /* Sources */,
+				197393C525AF6D8F00191F0A /* Frameworks */,
+				197393C625AF6D8F00191F0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				197393CA25AF6D8F00191F0A /* PBXTargetDependency */,
+			);
+			name = CardianTestAppTests;
+			productName = CardianTestAppTests;
+			productReference = 197393C825AF6D8F00191F0A /* CardianTestAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		197393D225AF6D8F00191F0A /* CardianTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 197393E225AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestAppUITests" */;
+			buildPhases = (
+				197393CF25AF6D8F00191F0A /* Sources */,
+				197393D025AF6D8F00191F0A /* Frameworks */,
+				197393D125AF6D8F00191F0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				197393D525AF6D8F00191F0A /* PBXTargetDependency */,
+			);
+			name = CardianTestAppUITests;
+			productName = CardianTestAppUITests;
+			productReference = 197393D325AF6D8F00191F0A /* CardianTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		197393AA25AF6D8E00191F0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					197393B125AF6D8E00191F0A = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					197393C725AF6D8F00191F0A = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 197393B125AF6D8E00191F0A;
+					};
+					197393D225AF6D8F00191F0A = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 197393B125AF6D8E00191F0A;
+					};
+				};
+			};
+			buildConfigurationList = 197393AD25AF6D8E00191F0A /* Build configuration list for PBXProject "CardianTestApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 197393A925AF6D8E00191F0A;
+			productRefGroup = 197393B325AF6D8E00191F0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				197393B125AF6D8E00191F0A /* CardianTestApp */,
+				197393C725AF6D8F00191F0A /* CardianTestAppTests */,
+				197393D225AF6D8F00191F0A /* CardianTestAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		197393B025AF6D8E00191F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197393C225AF6D8F00191F0A /* LaunchScreen.storyboard in Resources */,
+				197393BF25AF6D8F00191F0A /* Assets.xcassets in Resources */,
+				197393BD25AF6D8E00191F0A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393C625AF6D8F00191F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393D125AF6D8F00191F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		197393AE25AF6D8E00191F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197393BA25AF6D8E00191F0A /* ViewController.swift in Sources */,
+				197393B625AF6D8E00191F0A /* AppDelegate.swift in Sources */,
+				197393B825AF6D8E00191F0A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393C425AF6D8F00191F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197393CD25AF6D8F00191F0A /* CardianTestAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197393CF25AF6D8F00191F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197393D825AF6D8F00191F0A /* CardianTestAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		197393CA25AF6D8F00191F0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 197393B125AF6D8E00191F0A /* CardianTestApp */;
+			targetProxy = 197393C925AF6D8F00191F0A /* PBXContainerItemProxy */;
+		};
+		197393D525AF6D8F00191F0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 197393B125AF6D8E00191F0A /* CardianTestApp */;
+			targetProxy = 197393D425AF6D8F00191F0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		197393BB25AF6D8E00191F0A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				197393BC25AF6D8E00191F0A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		197393C025AF6D8F00191F0A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				197393C125AF6D8F00191F0A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		197393DA25AF6D8F00191F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		197393DB25AF6D8F00191F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		197393DD25AF6D8F00191F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		197393DE25AF6D8F00191F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CardianTestApp/CardianTestApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		197393E025AF6D8F00191F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardianTestApp.app/CardianTestApp";
+			};
+			name = Debug;
+		};
+		197393E125AF6D8F00191F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardianTestApp.app/CardianTestApp";
+			};
+			name = Release;
+		};
+		197393E325AF6D8F00191F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CardianTestApp;
+			};
+			name = Debug;
+		};
+		197393E425AF6D8F00191F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5W2JMZWR9U;
+				INFOPLIST_FILE = CardianTestAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.curaegis.cardian.CardianTestAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CardianTestApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		197393AD25AF6D8E00191F0A /* Build configuration list for PBXProject "CardianTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197393DA25AF6D8F00191F0A /* Debug */,
+				197393DB25AF6D8F00191F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		197393DC25AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197393DD25AF6D8F00191F0A /* Debug */,
+				197393DE25AF6D8F00191F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		197393DF25AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197393E025AF6D8F00191F0A /* Debug */,
+				197393E125AF6D8F00191F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		197393E225AF6D8F00191F0A /* Build configuration list for PBXNativeTarget "CardianTestAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197393E325AF6D8F00191F0A /* Debug */,
+				197393E425AF6D8F00191F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1973948725AF717500191F0A /* Cardian */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Cardian;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 197393AA25AF6D8E00191F0A /* Project object */;
+}
