@@ -29,7 +29,7 @@ let package = Package(
             name: "Cardian",
             dependencies: ["Alamofire"],
             path: "Cardian/",
-            sources: ["Source"]
+            sources: ["Sources"]
         ),
         .testTarget(
             name: "CardianTests",
