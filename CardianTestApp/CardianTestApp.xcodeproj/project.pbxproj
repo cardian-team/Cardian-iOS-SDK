@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		197393CD25AF6D8F00191F0A /* CardianTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393CC25AF6D8F00191F0A /* CardianTestAppTests.swift */; };
 		197393D825AF6D8F00191F0A /* CardianTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197393D725AF6D8F00191F0A /* CardianTestAppUITests.swift */; };
 		1973947B25AF6EBD00191F0A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1973947A25AF6EBD00191F0A /* HealthKit.framework */; };
-		1973948825AF717500191F0A /* Cardian in Frameworks */ = {isa = PBXBuildFile; productRef = 1973948725AF717500191F0A /* Cardian */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1973947B25AF6EBD00191F0A /* HealthKit.framework in Frameworks */,
-				1973948825AF717500191F0A /* Cardian in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +159,6 @@
 			);
 			name = CardianTestApp;
 			packageProductDependencies = (
-				1973948725AF717500191F0A /* Cardian */,
 			);
 			productName = CardianTestApp;
 			productReference = 197393B225AF6D8E00191F0A /* CardianTestApp.app */;
@@ -616,13 +613,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1973948725AF717500191F0A /* Cardian */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Cardian;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 197393AA25AF6D8E00191F0A /* Project object */;
 }
