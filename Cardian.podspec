@@ -7,7 +7,7 @@ Cardian is a free service that makes it easy for mobile app developers to build 
 DESC
   spec.homepage = "https://cardian.io"
   spec.license = { type: 'Modified MIT', file: 'LICENSE' }
-  spec.authors = { "CurAegis Technologies" => 'team@cardian.io' }
+  spec.author             = { "author" => "team@cardian.io" }
   spec.social_media_url = "https://github.com/cardian-team"
 
   spec.platform = :ios, "12.0"
