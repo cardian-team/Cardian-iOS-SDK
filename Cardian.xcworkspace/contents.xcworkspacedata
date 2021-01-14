@@ -5,9 +5,6 @@
       location = "group:Cardian/Cardian/Cardian.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:CardianTestAppObC/CardianTestAppObC.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:CardianTestApp/CardianTestApp.xcodeproj">
    </FileRef>
    <FileRef
