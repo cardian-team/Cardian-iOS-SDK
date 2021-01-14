@@ -30,6 +30,7 @@ let package = Package(
             dependencies: ["Alamofire"],
             path: "Cardian/",
             sources: ["Sources"],
+            resources: [.process("Resources")],
             publicHeadersPath:"SwiftPM/Public/Headers"
         ),
         .testTarget(
