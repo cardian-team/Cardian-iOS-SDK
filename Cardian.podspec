@@ -10,6 +10,10 @@ DESC
   spec.author             = { "author" => "team@cardian.io" }
   spec.social_media_url = "https://github.com/cardian-team"
 
+  spec.resource_bundles = {
+     'Cardian' => ['Cardian/**/*.{storyboard,xib,xcdatamodeld,xcassets}']
+  }
+
   spec.platform = :ios, "12.0"
   spec.requires_arc = true
   spec.source = { git: "https://github.com/cardian-team/Cardian-iOS-SDK.git", tag: "#{spec.version}", submodules: true }

@@ -37,7 +37,7 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     // MARK: Functions
     init(dataSource: BreakdownDataSource, showDismissButton: Bool = true) {
         self.dataSource = dataSource
-        let bundle = Bundle(for: DataBreakdownController.self)
+        let bundle = Bundle(path: Bundle(for: DataBreakdownController.self).path(forResource: "Cardian", ofType: "bundle")!)
         super.init(nibName: DataBreakdownController.nibName, bundle: bundle)
         
 //        self.iconImage.image = icon
