@@ -31,10 +31,16 @@ class DisclosureViewController: BaseViewController {
     init(currentConfiguration: CardianConfiguration, showDismissButton: Bool = true) {
         self.currentConfiguration = currentConfiguration
         
-        let podBundle = Bundle(path: Bundle(for: DisclosureViewController.self).path(forResource: "Cardian", ofType: "bundle")!)
+        var bundle : Bundle? = nil
+        let path = Bundle(for: DisclosureViewController.self).path(forResource: "Cardian", ofType: "bundle")
         
-        //let bundle = Bundle(for: DisclosureViewController.self)
-        super.init(nibName: DisclosureViewController.nibName, bundle: podBundle)
+        if (path == nil) {
+            bundle = Bundle(for: DisclosureViewController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
+        
+        super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {

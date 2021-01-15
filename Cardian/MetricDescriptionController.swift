@@ -31,7 +31,15 @@ class MetricDescriptionController: BaseViewController {
     // MARK: Functions
     init(dataSource: MetricDescriptionDataSource) {
         self.dataSource = dataSource
-        let bundle = Bundle(path: Bundle(for: MetricDescriptionController.self).path(forResource: "Cardian", ofType: "bundle")!)
+        
+        var bundle : Bundle? = nil
+        let path = Bundle(for: MetricDescriptionController.self).path(forResource: "Cardian", ofType: "bundle")
+        
+        if (path == nil) {
+            bundle = Bundle(for: MetricDescriptionController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
         super.init(nibName: MetricDescriptionController.nibName, bundle: bundle)
     }
     

@@ -8,6 +8,12 @@
 
 import Foundation
 
+public enum CardianQueryScope: Int, Codable {
+    case individual = 1
+    case summary = 2
+    case group = 3
+}
+
 public enum QueryField: String, Codable {
     case value
     case startTime = "start_time"
@@ -31,7 +37,7 @@ public enum QueryConditionOperator: String, Codable {
 public struct QueryCondition: Codable {
     let field: QueryField
     let conditionOperator: QueryConditionOperator
-    let value: Int // TODO make this a dynamic type
+    let value: String // TODO make this a dynamic type
     
     enum CodingKeys: String, CodingKey {
         case conditionOperator = "operator"
@@ -56,9 +62,10 @@ public struct QueryConditionalStatement: Codable {
 }
 
 public struct CodableQuery: Codable {
+    var scope: CardianQueryScope
     var metric: CardianMetricIdentifier
     var fields: [QueryField] = []
-    var conditionals: [QueryConditionalStatement]? = []
+    var conditionals: [QueryConditionalStatement] = []
     var order: QueryOrder? = nil
     var limit: Int = 1000
 }
@@ -67,18 +74,33 @@ public struct CodableQuery: Codable {
 public class CardianQuery {
     var queryStructure: CodableQuery
     
-    public init(metric: CardianMetricIdentifier) {
-        self.queryStructure = CodableQuery(metric: metric)
+    public init(scope: CardianQueryScope, metric: CardianMetricIdentifier) {
+        self.queryStructure = CodableQuery(scope: scope, metric: metric)
     }
     
     // TODO Add Where for Multi conditionals
     
-    // TODO Make this actually work
-    public func whereSingle() -> Self {
-        let conditions = [QueryConditionalStatement(type: .single, append: .and, condition: QueryCondition(field: .value, conditionOperator: .greaterThanEqual, value: 60))]
-        self.queryStructure.conditionals = conditions
+    
+    
+    
+    public func whereSingle(startTime value: TimeInterval, op: QueryConditionOperator, append: QueryConditionalStatementAppendType) -> Self {
+        let condition = QueryConditionalStatement(type: .single, append: append, condition: QueryCondition(field: .startTime, conditionOperator: op, value: String(value)))
+        self.queryStructure.conditionals.append(condition)
         return self
     }
+    
+    public func whereSingle(endTime value: TimeInterval, op: QueryConditionOperator, append: QueryConditionalStatementAppendType) -> Self {
+        let condition = QueryConditionalStatement(type: .single, append: append, condition: QueryCondition(field: .endTime, conditionOperator: op, value: String(value)))
+        self.queryStructure.conditionals.append(condition)
+        return self
+    }
+    
+    public func whereSingle(recordValue value: Double, op: QueryConditionOperator, append: QueryConditionalStatementAppendType) -> Self {
+        let condition = QueryConditionalStatement(type: .single, append: append, condition: QueryCondition(field: .value, conditionOperator: op, value: String(value)))
+        self.queryStructure.conditionals.append(condition)
+        return self
+    }
+
     
     public func select(fields: [QueryField]) -> Self {
         self.queryStructure.fields = fields

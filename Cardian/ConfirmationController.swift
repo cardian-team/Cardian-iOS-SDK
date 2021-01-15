@@ -29,7 +29,14 @@ class ConfirmationController: BaseViewController {
     init(appName: String? = nil, actionButtonTitle: String = "Continue") {
         self.appName = appName
         self.actionButtonTitle = actionButtonTitle
-        let bundle = Bundle(path: Bundle(for: ConfirmationController.self).path(forResource: "Cardian", ofType: "bundle")!)
+        var bundle : Bundle? = nil
+        let path = Bundle(for: ConfirmationController.self).path(forResource: "Cardian", ofType: "bundle")
+        
+        if (path == nil) {
+            bundle = Bundle(for: ConfirmationController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
         super.init(nibName: ConfirmationController.nibName, bundle: bundle)
     }
     

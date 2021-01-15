@@ -21,7 +21,10 @@ class ViewController: UIViewController {
     @IBAction func connectTapped() {
 //        CardianApp.sync()
         
-        let query = CardianQuery(metric: .stepCount).select(fields: [.value, .startTime]).limitedBy(limit: 10)
+        let query = CardianQuery(scope: .individual, metric: .stepCount)
+            .select(fields: [.value, .startTime]).limitedBy(limit: 10)
+            .whereSingle(recordValue: 70, op: .lessThan, append: .and)
+            .whereSingle(startTime: 1609810560, op: .greaterThan, append: .or)
         CardianApp.executeQuery(query: query) {
             result in
             switch result {
