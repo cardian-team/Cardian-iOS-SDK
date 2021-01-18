@@ -27,13 +27,13 @@ public struct CardianRecord : Codable {
 }
 
 /// Stores step data for JSON export
-struct QuantitativeCardianRecord : Codable {
-    var metric_type: CardianMetricIdentifier
-    var start_time: Double
-    var end_time: Double
-    var value: Double
-    var reference_id: UUID
-    var source: String = "h"
+public struct QuantitativeCardianRecord : Codable {
+    var metric_type: CardianMetricIdentifier?
+    var start_time: Double?
+    var end_time: Double?
+    var value: Double?
+    var reference_id: UUID?
+    var source: String? = "h"
 }
 
 /// Sleep record types

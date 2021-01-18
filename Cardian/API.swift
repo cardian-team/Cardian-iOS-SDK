@@ -17,7 +17,10 @@ class API {
     }
     
     struct uploadQueryResponse: Codable {
-        let data: [CardianRecord]
+        struct nestedData: Codable {
+            let records: [QuantitativeCardianRecord]
+        }
+        let data: nestedData
         let success: Bool
     }
     
@@ -96,9 +99,8 @@ class API {
     }
     
     
-    public static func uploadQuery(_ apiKey: String, externalId: String, query: CodableQuery, completion: ((Result<[CardianRecord], Error>) -> Void)?) {
+    public static func uploadQuery(_ apiKey: String, externalId: String, query: CodableQuery, completion: ((Result<[QuantitativeCardianRecord], Error>) -> Void)?) {
         let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/query"
-        print("Health data \(query)")
         
         let headers: HTTPHeaders = [
             "Cardian-API-Key": apiKey,
@@ -108,20 +110,21 @@ class API {
         
         AF.request(url, method: .post, parameters: query, encoder: JSONParameterEncoder.default, headers: headers).responseJSON { response in
             guard let data = response.data else {
-                
                 if let completion = completion {
+                    print("In compeltions no completionsunknownQueryError")
                     completion(.failure(CardianError.unknownQueryError))
                 }
                 return
             }
             do {
-                print("QUERY Response\(response)")
+                print("QUERY Response \(response)")
                 let decoder = JSONDecoder()
                 let decodedResult = try decoder.decode(uploadQueryResponse.self, from: data)
                 if let completion = completion {
-                    completion(.success(decodedResult.data))
+                    completion(.success(decodedResult.data.records))
                 }
             } catch {
+                print("Catch \(error)")
                 if let completion = completion {
                     completion(.failure(CardianError.unknownQueryError))
                 }
@@ -131,8 +134,6 @@ class API {
     
     public static func uploadEvent(_ apiKey: String, externalId: String, events: [CardianEvent]) {
         let url = "https://tnggeogff3.execute-api.us-east-1.amazonaws.com/dev/analytics"
-        print("Event data \(events)")
-        
         let headers: HTTPHeaders = [
             "Cardian-API-Key": apiKey,
             "Cardian-User-Id": externalId,
@@ -144,8 +145,7 @@ class API {
                 print("TODO FIX ERROR HERE \(response)")
                 return
             }
-                print("EVENT Response\(data)")
-            
+                print("TODO EVENT Response\(data)")
         }
     }
 }

@@ -20,18 +20,19 @@ class ViewController: UIViewController {
     
     @IBAction func connectTapped() {
 //        CardianApp.sync()
-        
         let query = CardianQuery(scope: .individual, metric: .stepCount)
             .select(fields: [.value, .startTime]).limitedBy(limit: 10)
-            .whereSingle(recordValue: 70, op: .lessThan, append: .and)
-            .whereSingle(startTime: 1609810560, op: .greaterThan, append: .or)
+            .whereMulti(fields: [.value, .value], values: [60.0, 100.0], ops: [.greaterThanEqual, .lessThan], appends: [.and, .and], finalAppend: .and)
+        
         CardianApp.executeQuery(query: query) {
             result in
             switch result {
                 case .success(let records):
                     print(records)
+                    break
                 case .failure(let error):
-                    print(error)
+                    print("in failure of cb \(error)")
+                    break
             }
         }
     }

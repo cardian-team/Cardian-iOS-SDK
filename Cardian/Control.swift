@@ -192,7 +192,7 @@ public class Control {
         }
     }
     
-    public func executeQuery(query: CardianQuery, completion: ((Result<[CardianRecord], Error>) -> Void)?) {
+    public func executeQuery(query: CardianQuery, completion: ((Result<[QuantitativeCardianRecord], Error>) -> Void)?) {
         API.uploadQuery(self.apiKey, externalId: self.externalId, query: query.getCodableQuery(), completion: completion)
     }
     
