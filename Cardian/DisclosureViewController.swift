@@ -30,7 +30,16 @@ class DisclosureViewController: BaseViewController {
     // MARK: Functions
     init(currentConfiguration: CardianConfiguration, showDismissButton: Bool = true) {
         self.currentConfiguration = currentConfiguration
-        let bundle = Bundle(for: DisclosureViewController.self)
+        
+        var bundle : Bundle? = nil
+        let path = Bundle(for: DisclosureViewController.self).path(forResource: "Cardian", ofType: "bundle")
+        
+        if (path == nil) {
+            bundle = Bundle(for: DisclosureViewController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
+        
         super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
     }
     
