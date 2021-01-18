@@ -4,7 +4,7 @@
 
 ### Cardian iOS SDK
 
-[![CocoaPods](https://img.shields.io/cocoapods/v/Cardian.svg)](https://cocoapods.org/pods/Cardian) [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![CocoaPods](https://img.shields.io/cocoapods/v/Cardian.svg)](https://cocoapods.org/pods/Cardian) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage) [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://goo.gl/E01ufX) [![Build Status](https://travis-ci.org/OneSignal/OneSignal-iOS-SDK.svg?branch=master)](https://travis-ci.org/OneSignal/OneSignal-iOS-SDK)
 
 ---
 
