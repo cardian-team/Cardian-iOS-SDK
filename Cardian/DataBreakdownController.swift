@@ -37,11 +37,15 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
     // MARK: Functions
     init(dataSource: BreakdownDataSource, showDismissButton: Bool = true) {
         self.dataSource = dataSource
-        let bundle = Bundle(path: Bundle(for: DataBreakdownController.self).path(forResource: "Cardian", ofType: "bundle")!)
-        super.init(nibName: DataBreakdownController.nibName, bundle: bundle)
+        var bundle : Bundle? = nil
+        let path = Bundle(for: DataBreakdownController.self).path(forResource: "Cardian", ofType: "bundle")
         
-//        self.iconImage.image = icon
-//        self.dismissButton.isHidden = !showDismissButton
+        if (path == nil) {
+            bundle = Bundle(for: DataBreakdownController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
+        super.init(nibName: DataBreakdownController.nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +63,7 @@ class DataBreakdownController: BaseViewController, UITableViewDataSource, UITabl
         headingLabel.text = dataSource.title
         descriptionLabel.text = dataSource.description
         mainActionButton.setTitle(dataSource.actionTitle, for: .normal)
-        CardianStyler.styleRoundedButton(button: mainActionButton)
+        CardianStyler.styleRoundedButton(button: mainActionButton, backgroundColor: UIColor.primaryColor)
     }
     
     func mainActionTapped() {

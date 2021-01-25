@@ -15,7 +15,7 @@ class CardianStyler {
     public static let buttonCornerRadius: CGFloat = 15
     
     // MARK: Functions
-    public static func styleRoundedButton(button: UIButton, backgroundColor: UIColor = .cardianRed) {
+    public static func styleRoundedButton(button: UIButton, backgroundColor: UIColor? = .cardianRed) {
         button.backgroundColor = backgroundColor
         button.layer.cornerRadius = buttonCornerRadius
     }

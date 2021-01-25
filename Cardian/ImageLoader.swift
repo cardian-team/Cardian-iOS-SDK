@@ -1,9 +1,5 @@
 //
 //  ImageLoader.swift
-//  Product List
-//
-//  Created by Mitchell Sweet on 1/4/18.
-//  Copyright © 2018 Mitchell Sweet. All rights reserved.
 //
 
 import Foundation
@@ -20,7 +16,6 @@ class ImageLoader {
             completionHandler(cached, nil)
             return
         }
-        
         
         // Download images on global queue.
         DispatchQueue.global(qos: .userInitiated).async {
@@ -44,4 +39,3 @@ class ImageLoader {
         }
     }
 }
-

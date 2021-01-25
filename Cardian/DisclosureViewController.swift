@@ -31,10 +31,19 @@ class DisclosureViewController: BaseViewController {
     init(currentConfiguration: CardianConfiguration, showDismissButton: Bool = true) {
         self.currentConfiguration = currentConfiguration
         
-        let podBundle = Bundle(path: Bundle(for: DisclosureViewController.self).path(forResource: "Cardian", ofType: "bundle")!)
+        UIColor.primaryColor = UIColor.init(hexString: currentConfiguration.connectUi.colors.primary)
+        
+        var bundle : Bundle? = nil
+        let path = Bundle(for: DisclosureViewController.self).path(forResource: "Cardian", ofType: "bundle")
+        
+        if (path == nil) {
+            bundle = Bundle(for: DisclosureViewController.self)
+        } else {
+            bundle = Bundle(path: path!)
+        }
         
         //let bundle = Bundle(for: DisclosureViewController.self)
-        super.init(nibName: DisclosureViewController.nibName, bundle: podBundle)
+        super.init(nibName: DisclosureViewController.nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {
@@ -90,9 +99,7 @@ class DisclosureViewController: BaseViewController {
                 print("ERROR: Problem getting icon url")
                 return
             }
-            guard let image = image else {
-                return
-            }
+            guard let image = image else { return }
             self.iconImage.image = image
         }
         
@@ -108,7 +115,7 @@ class DisclosureViewController: BaseViewController {
         iconImage.layer.cornerRadius = 10
         iconImage.clipsToBounds = true
         mainActionButton.setTitle(currentConfiguration.connectUi.views.introduction.buttonLabel, for: .normal)
-        CardianStyler.styleRoundedButton(button: mainActionButton)
+        CardianStyler.styleRoundedButton(button: mainActionButton, backgroundColor: UIColor.primaryColor)
     }
     
     // MARK: IBActions
